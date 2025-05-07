@@ -6,18 +6,17 @@ namespace Game.StateManagement
     public class StateManager
     {
         public UnityEvent<Type> StateChanged = new();
-
         public StateBase CurrentState { private set; get; }
-
 
         public void SetState(StateBase state)
         {
-            CurrentState?.Exit();
+            if (CurrentState == null || CurrentState.Exit(state))
+            {
+                CurrentState = state ?? throw new Exception("State cannot be null.");
+                StateChanged?.Invoke(state.GetType());
 
-            CurrentState = state ?? throw new Exception("State cannot be null.");
-            StateChanged?.Invoke(state.GetType());
-
-            CurrentState.Enter();
+                CurrentState.Enter();
+            }
         }
 
         public void TickState(float deltaTime)

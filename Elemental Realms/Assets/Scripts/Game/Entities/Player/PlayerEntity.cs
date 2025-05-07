@@ -1,90 +1,88 @@
-using Game.Data;
+using System;
+using Game.Components;
+using Game.Controllers;
 using Game.Entities.Common;
-using Game.Interactables;
-using Game.Interactors;
+using Game.Interactions;
+using Game.Tools;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace Game.Entities.Player
 {
-    public class PlayerEntity : DynamicEntityBase, IInteractorEntity
+    [RequireComponent(typeof(MoveableComponent))]
+    public class PlayerEntity : Entity
     {
-        public UnityEvent<InteractionData> InteractionStarted = new();
-        public UnityEvent<InteractionData> InteractionCancelled = new();
-        public UnityEvent<InteractionData> InteractionEnded = new();
+        [HideInInspector] public MoveableComponent Moveable { get; private set; }
+        [HideInInspector] public OrbitComponent Orbit { get; private set; }
+        public IInteractionSource InteractionSource { get; private set; }
+        [SerializeField] private GameObject _fistPrefab;
+        [SerializeField] private float _dashSpeed = 1;
+        [SerializeField] private float _dashDuration = .3f;
+        [SerializeField] private float _dashCooldown = 1;
 
-        public bool IsInteracting { get; private set; } = false;
-        public bool CanInteract { get; private set; } = true;
-
-        public InteractorBase Interactor { get; private set; }
-
-        [SerializeField] private Fist _fistPrefab;
+        private float _dashCooldownTimer = 1;
 
         protected override void Awake()
         {
             base.Awake();
 
-            var fist = Instantiate(_fistPrefab, transform.position, Quaternion.identity);
-            fist.transform.parent = transform;
-            SetInteractor(fist);
+            Health = GetComponent<HealthComponent>();
+            Moveable = GetComponent<MoveableComponent>();
+            Orbit = GetComponent<OrbitComponent>();
+
+            Health.Changed.AddListener(OnHealthChanged);
+        }
+
+        public void SetLookDirection(Vector2 lookDirection)
+        {
+            Orbit.Direction = lookDirection;
+            Moveable.LookDirection = lookDirection;
+        }
+
+        private void OnHealthChanged(float newHealth)
+        {
+            if (newHealth != 0)
+                StateManager.SetState(new PlayerDamageState(this));
+        }
+
+        protected override void Start()
+        {
+            base.Start();
 
             StateManager.SetState(new PlayerIdleState(this));
+
+            // TODO: Create an inventory system.
+            var fist = Instantiate(_fistPrefab, EntityRenderer.transform.position, Quaternion.identity);
+            fist.transform.parent = Orbit.TargetTransform;
+            fist.GetComponent<GenericMeleeWeapon>().Setup(gameObject);
+            fist.GetComponent<GenericMeleeWeapon>().Hit.AddListener(
+                (target, ctx) => Camera.main.gameObject.GetComponent<CameraController>().TriggerCameraShake(.25f, .1f)
+            );
+
+            InteractionSource = fist.GetComponent<IInteractionSource>();
         }
 
-        public void StartInteraction()
+        protected override void Update()
         {
-            if (!CanInteract) return;
+            base.Update();
 
-            if (IsInteracting) return;
-            else IsInteracting = true;
-
-            InteractionStarted?.Invoke(new InteractionData());
+            _dashCooldownTimer = Math.Max(0, _dashCooldownTimer - Time.deltaTime);
         }
 
-        public void EndInteraction()
+        protected override void Kill()
         {
-            if (!IsInteracting) return;
-            else IsInteracting = false;
+            base.Kill();
 
-            InteractionEnded?.Invoke(new InteractionData());
+            StateManager.SetState(new PlayerKillState(this));
         }
 
-        public void CancelInteraction()
+        public void Dash()
         {
-            if (!IsInteracting) return;
-            else IsInteracting = false;
-
-            InteractionCancelled?.Invoke(new InteractionData());
-        }
-
-        public void SetInteractor(InteractorBase interactor)
-        {
-            if (Interactor != null)
+            if (_dashCooldownTimer <= 0)
             {
-                InteractionStarted.RemoveListener(Interactor.StartInteraction);
-                InteractionEnded.RemoveListener(Interactor.EndInteraction);
-                InteractionCancelled.RemoveListener(Interactor.CancelInteraction);
-
-                Interactor.PutDown();
+                StateManager.SetState(new PlayerDashState(this, Moveable.MovementDirection, Moveable.GetFinalSpeedMultiplier(), _dashSpeed, _dashDuration));
+                _dashCooldownTimer = _dashCooldown;
             }
-
-            Interactor = interactor;
-
-            if (Interactor != null)
-            {
-                InteractionStarted.AddListener(Interactor.StartInteraction);
-                InteractionEnded.AddListener(Interactor.EndInteraction);
-                InteractionCancelled.AddListener(Interactor.CancelInteraction);
-
-                Interactor.PullUp(this);
-            }
-
-            // TODO: Show tool on player.
-        }
-
-        public override float GetFinalSpeedMultiplier()
-        {
-            return base.GetFinalSpeedMultiplier() * Interactor.SpeedMultiplier;
         }
     }
 }

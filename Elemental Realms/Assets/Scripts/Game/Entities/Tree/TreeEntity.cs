@@ -2,7 +2,7 @@ using Game.Entities.Common;
 
 namespace Game.Entities.Tree
 {
-    public class TreeEntity : StaticEntityBase
+    public class TreeEntity : Entity
     {
 
     }

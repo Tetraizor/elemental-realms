@@ -14,12 +14,10 @@ namespace Game.Entities.Player
 
         public override void Enter()
         {
-            _player.EntityAnimator.SetTrigger("PlayerWalk");
+            _player.GetComponent<Animator>().SetTrigger("PlayerWalk");
         }
 
-        public override void Exit()
-        {
-        }
+        public override bool Exit(StateBase newState) => true;
 
         public override void FixedTick(float fixedDeltaTime)
         {
@@ -27,7 +25,7 @@ namespace Game.Entities.Player
 
         public override void Tick(float deltaTime)
         {
-            if (_player.MovementDirection.magnitude < 0.1f)
+            if (_player.Moveable.MovementDirection.magnitude < 0.1f)
             {
                 _player.StateManager.SetState(new PlayerIdleState(_player));
             }

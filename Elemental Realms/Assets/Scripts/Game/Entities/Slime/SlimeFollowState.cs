@@ -6,9 +6,9 @@ namespace Game.Entities.Slime
     public class SlimeFollowState : StateBase
     {
         private SlimeEntity _slime;
-        private EntityBase _target;
+        private Entity _target;
 
-        public SlimeFollowState(SlimeEntity slime, EntityBase target)
+        public SlimeFollowState(SlimeEntity slime, Entity target)
         {
             _slime = slime;
             _target = target;
@@ -16,21 +16,23 @@ namespace Game.Entities.Slime
 
         public override void Enter()
         {
-            _slime.SetSpeedMultiplier(1.5f);
+            _slime.Moveable.SetBaseSpeedMultiplier(1.5f);
 
-            _slime.EntityAnimator.SetTrigger("SlimeFollow");
+            _slime.GetComponent<Animator>().SetTrigger("SlimeFollow");
         }
 
-        public override void Exit()
+        public override bool Exit(StateBase newState)
         {
-            _slime.SetSpeedMultiplier(1);
+            _slime.Moveable.SetBaseSpeedMultiplier(1);
+
+            return true;
         }
 
         public override void FixedTick(float fixedDeltaTime)
         {
             Vector2 targetPositionDifference = _target.transform.position - _slime.transform.position;
-            _slime.MovementDirection = targetPositionDifference.normalized;
-            _slime.LookDirection = targetPositionDifference.normalized;
+            _slime.Moveable.MovementDirection = targetPositionDifference.normalized;
+            _slime.Moveable.LookDirection = targetPositionDifference.normalized;
 
             if (targetPositionDifference.magnitude > 15)
             {

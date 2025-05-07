@@ -22,15 +22,13 @@ namespace Game.Entities.Slime
         public override void Enter()
         {
             _moveDirection = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)).normalized;
-            _slime.MovementDirection = _moveDirection;
-            _slime.LookDirection = _moveDirection;
+            _slime.Moveable.MovementDirection = _moveDirection;
+            _slime.Moveable.LookDirection = _moveDirection;
 
-            _slime.EntityAnimator.SetTrigger("SlimeWalk");
+            _slime.GetComponent<Animator>().SetTrigger("SlimeWalk");
         }
 
-        public override void Exit()
-        {
-        }
+        public override bool Exit(StateBase newState) => true;
 
         public override void FixedTick(float fixedDeltaTime) { }
 
