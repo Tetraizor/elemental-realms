@@ -21,9 +21,11 @@ namespace Game.Entities.Slime
             _slime.GetComponent<Animator>().SetTrigger("SlimeFollow");
         }
 
-        public override void Exit()
+        public override bool Exit(StateBase newState)
         {
             _slime.Moveable.SetBaseSpeedMultiplier(1);
+
+            return true;
         }
 
         public override void FixedTick(float fixedDeltaTime)

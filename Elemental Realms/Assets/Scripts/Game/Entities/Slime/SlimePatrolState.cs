@@ -28,9 +28,7 @@ namespace Game.Entities.Slime
             _slime.GetComponent<Animator>().SetTrigger("SlimeWalk");
         }
 
-        public override void Exit()
-        {
-        }
+        public override bool Exit(StateBase newState) => true;
 
         public override void FixedTick(float fixedDeltaTime) { }
 

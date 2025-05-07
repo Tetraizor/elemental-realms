@@ -1,3 +1,4 @@
+using System.Collections;
 using Game.Data;
 using Game.Entities.Common;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Game.Entities.Slime
         private const float ATTACK_INTERVAL = 1.5f;
 
         private float _currentAttackTime = 0;
+        private Coroutine _attackCoroutine = null;
 
         public SlimeAttackState(SlimeEntity slime, Entity target)
         {
@@ -40,12 +42,29 @@ namespace Game.Entities.Slime
         public override void Enter()
         {
             _slime.Moveable.MovementDirection = Vector2.zero;
+
+            _attackCoroutine = _slime.StartCoroutine(StartAttack());
         }
 
         public override void FixedTick(float fixedDeltaTime) { }
 
-        public override void Exit()
+        public override bool Exit(StateBase newState)
         {
+            if (_attackCoroutine != null) _slime.StopCoroutine(_attackCoroutine);
+            _slime.AreaDamager.Deactivate();
+
+            return true;
+        }
+
+        private IEnumerator StartAttack()
+        {
+            _slime.GetComponent<Animator>().SetTrigger("SlimeAttack");
+
+            yield return new WaitForSeconds(.7f);
+
+            _slime.AreaDamager.Activate();
+
+            yield return new WaitForSeconds(.5f);
         }
     }
 }

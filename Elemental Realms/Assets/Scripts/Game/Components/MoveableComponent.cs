@@ -11,8 +11,6 @@ namespace Game.Components
     [RequireComponent(typeof(Entity))]
     public class MoveableComponent : MonoBehaviour
     {
-        [Header("Dynamic Base Properties")]
-        // Speed
         [SerializeField] protected float _baseSpeed = 1;
         public float BaseSpeed => _baseSpeed;
         private float _baseSpeedMultiplier = 1;
@@ -25,6 +23,8 @@ namespace Game.Components
         private Animator _moveableAnimator;
         private GameObject _moveableRenderer;
         private Rigidbody2D _moveableRigidbody;
+
+        public bool CanMove = true;
 
         public bool IsMoving => _moveableRigidbody?.linearVelocity.magnitude > .1f;
 
@@ -42,7 +42,7 @@ namespace Game.Components
 
         public virtual void Move()
         {
-            if (MovementDirection.magnitude > 0.1f)
+            if (CanMove && MovementDirection.magnitude > 0.1f)
             {
                 _moveableRigidbody.AddForce(MovementDirection.normalized * BaseSpeed * Time.fixedDeltaTime * 2500 * _moveableRigidbody.mass * GetFinalSpeedMultiplier());
 

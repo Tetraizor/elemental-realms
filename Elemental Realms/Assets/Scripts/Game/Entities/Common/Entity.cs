@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using Game.StateManagement;
 using Game.Components;
+using UnityEditor;
+using System.Linq;
 
 namespace Game.Entities.Common
 {
@@ -11,16 +13,15 @@ namespace Game.Entities.Common
     {
         #region Properties
 
-        [Header("Base References")]
-        [SerializeField] protected GameObject _renderer;
+        [Header("Entity Properties")]
+        [HideInInspector] public GameObject EntityRenderer { get; protected set; }
+        [HideInInspector] public Rigidbody2D EntityRigidbody { get; protected set; }
+        [HideInInspector] public StateManager StateManager { get; protected set; }
 
-        public Rigidbody2D EntityRigidbody { get; protected set; }
-        public StateManager StateManager { get; protected set; }
+        [HideInInspector] public UnityEvent Spawned;
+        [HideInInspector] public UnityEvent Killed;
 
-        public UnityEvent Spawned;
-        public UnityEvent Killed;
-
-        public HealthComponent Health;
+        [HideInInspector] public HealthComponent Health;
 
         #endregion
 
@@ -28,8 +29,9 @@ namespace Game.Entities.Common
         protected virtual void Awake()
         {
             StateManager = new StateManager();
-
             EntityRigidbody = GetComponent<Rigidbody2D>();
+            Health = GetComponent<HealthComponent>();
+            EntityRenderer = transform.Find("Renderer").gameObject;
 
             Health.Killed.AddListener(Kill);
         }
@@ -52,10 +54,17 @@ namespace Game.Entities.Common
         protected virtual void Kill()
         {
             Killed?.Invoke();
-
-            Destroy(gameObject);
         }
 
         #endregion
+
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            if (!Application.isPlaying) return;
+
+            Handles.Label(transform.position + Vector3.up * 2f, StateManager.CurrentState.GetType().ToString().Split('.').Last());
+        }
+#endif
     }
 }

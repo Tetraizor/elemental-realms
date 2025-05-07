@@ -47,8 +47,9 @@ namespace Game.Entities.Slime
         {
         }
 
-        public override void Exit()
+        public override bool Exit(StateBase newState)
         {
+            return true;
         }
     }
 }

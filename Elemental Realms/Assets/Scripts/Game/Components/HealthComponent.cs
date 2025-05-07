@@ -7,31 +7,34 @@ namespace Game.Components
     public class HealthComponent : MonoBehaviour
     {
         [Header("Health Properties")]
-        [SerializeField] private int _baseHealth = 20;
-        public int BaseHealth => _baseHealth;
-        public int Health { protected set; get; }
+        [SerializeField] private float _baseHealth = 20;
+        public float BaseHealth => _baseHealth;
+        public float Health { protected set; get; }
 
         [Header("Events")]
         public UnityEvent Killed;
-        public UnityEvent<int> Changed;
+        public UnityEvent<float> Changed;
+
+        public bool IsInvincible = false;
 
         private void Awake()
         {
             Health = _baseHealth;
         }
 
-        public virtual void TakeDamage(DamageData damageData)
+        public virtual void TakeDamage(float amount)
         {
-            SetHealth(Health - damageData.Strength);
+            if (IsInvincible) return;
+            SetHealth(Health - amount);
         }
 
-        public void SetHealth(int health)
+        public void SetHealth(float health)
         {
             Health = Mathf.Clamp(health, 0, _baseHealth);
 
             Changed?.Invoke(Health);
 
-            if (health == 0)
+            if (Health == 0)
             {
                 Kill();
             }

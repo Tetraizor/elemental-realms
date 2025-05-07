@@ -17,9 +17,7 @@ namespace Game.Entities.Player
             _player.GetComponent<Animator>().SetTrigger("PlayerWalk");
         }
 
-        public override void Exit()
-        {
-        }
+        public override bool Exit(StateBase newState) => true;
 
         public override void FixedTick(float fixedDeltaTime)
         {

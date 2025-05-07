@@ -3,6 +3,7 @@ using Game.Components;
 using Game.Entities.Common;
 using Game.Entities.Player;
 using Game.StateManagement;
+using Game.Tools;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,13 +14,16 @@ namespace Game.Entities.Slime
     public class SlimeEntity : Entity
     {
         [HideInInspector] public MoveableComponent Moveable;
+        public GenericAreaDamagerWeapon AreaDamager { get; protected set; }
 
         protected override void Awake()
         {
             base.Awake();
 
-            Health = GetComponent<HealthComponent>();
             Moveable = GetComponent<MoveableComponent>();
+
+            AreaDamager = GetComponentInChildren<GenericAreaDamagerWeapon>();
+            AreaDamager.Setup(gameObject);
         }
 
         protected override void Start()
@@ -42,13 +46,13 @@ namespace Game.Entities.Slime
             }
         }
 
-#if UNITY_EDITOR
-        private void OnDrawGizmos()
+        protected override void Kill()
         {
-            if (!Application.isPlaying) return;
+            base.Kill();
 
-            Handles.Label(transform.position + Vector3.up * 2f, StateManager.CurrentState.GetType().ToString().Split('.').Last());
+            StateManager.SetState(new SlimeKillState(this));
+
+            Destroy(gameObject, 1.5f);
         }
-#endif
     }
 }

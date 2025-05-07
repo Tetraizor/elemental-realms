@@ -29,12 +29,12 @@ namespace Game.Controllers.UI
         private void OnPlayerSpawned()
         {
             _root.gameObject.SetActive(true);
-            _playerHealthLabel.SetText($"Health: {_player.Health}");
+            _playerHealthLabel.SetText($"Health: {_player.Health.Health}");
         }
 
-        private void OnPlayerHealthChanged(int newHealth)
+        private void OnPlayerHealthChanged(float newHealth)
         {
-            _playerHealthLabel.SetText($"Health: {newHealth}");
+            _playerHealthLabel.SetText($"Health: {(int)newHealth}");
         }
     }
 }

@@ -1,4 +1,6 @@
+using System.Collections;
 using Game.Entities.Common;
+using UnityEditor;
 using UnityEngine;
 
 namespace Game.Entities.Slime
@@ -18,11 +20,10 @@ namespace Game.Entities.Slime
 
             _slime.GetComponent<Animator>().SetTrigger("SlimeKill");
         }
-
         public override void Tick(float deltaTime) { }
 
         public override void FixedTick(float fixedDeltaTime) { }
 
-        public override void Exit() { }
+        public override bool Exit(StateBase newState) => false;
     }
 }

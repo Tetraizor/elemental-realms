@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2277095973162557201}
   - component: {fileID: 6560368245269566933}
+  - component: {fileID: 6107015622337259565}
+  - component: {fileID: 8090387198255579164}
   m_Layer: 7
   m_Name: Interactor
   m_TagString: Untagged
@@ -68,6 +70,33 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1.5
+--- !u!114 &6107015622337259565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273805504483824787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534239e52fc236843bed04f0d202b43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effects:
+  - {fileID: 11400000, guid: 7b82e147b0e2c5847b15216949e54ba2, type: 2}
+  _radius: 3
+--- !u!114 &8090387198255579164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273805504483824787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72419ed96c9b0bd45b58c4028eb7d11f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3605814930523858675
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,8 +233,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1150a3394f00b34ea22458d8fcfdcd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 6269341355345710951}
   Spawned:
+    m_PersistentCalls:
+      m_Calls: []
+  Killed:
     m_PersistentCalls:
       m_Calls: []
   Health: {fileID: 0}

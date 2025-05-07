@@ -217,10 +217,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6029146042148992363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e0e1b3b8fff2049a6f6ef135155abb, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ca502cbb567d514da1762cb10046bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsBeingUsed: 0
+  _effects:
+  - {fileID: 11400000, guid: 5e2c544f7fcf21a4bb68023f3dba4a69, type: 2}
+  _animationTriggerNames:
+  - LeftPunch
+  - RightPunch
+  _cooldown: 0.5
 --- !u!95 &9088735984731355480
 Animator:
   serializedVersion: 7
@@ -321,10 +326,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7996180148431809729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 696c3c6707e2bc94db3239d1e71e0bc2, type: 3}
+  m_Script: {fileID: 11500000, guid: 72419ed96c9b0bd45b58c4028eb7d11f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactor: {fileID: 7355369238216508114}
 --- !u!1 &8232654417013322808
 GameObject:
   m_ObjectHideFlags: 0
