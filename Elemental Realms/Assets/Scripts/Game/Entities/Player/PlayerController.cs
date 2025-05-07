@@ -48,7 +48,7 @@ namespace Game.Entities.Player
                     CursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                     _player.Moveable.MovementDirection = _moveDirectionInput.normalized;
-                    _player.Moveable.LookDirection = CursorPositionNormalized.normalized;
+                    _player.SetLookDirection(CursorPositionNormalized.normalized);
                     break;
                 case InputType.Gamepad:
                     CursorPositionNormalized = (
@@ -61,7 +61,7 @@ namespace Game.Entities.Player
                     CursorPosition = _player.transform.position + (Vector3)(CursorPositionNormalized * 5);
 
                     _player.Moveable.MovementDirection = _moveDirectionInput.normalized;
-                    _player.Moveable.LookDirection = CursorPositionNormalized.normalized;
+                    _player.SetLookDirection(CursorPositionNormalized.normalized);
                     break;
             }
         }
