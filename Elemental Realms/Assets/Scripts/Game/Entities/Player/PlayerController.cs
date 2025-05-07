@@ -1,8 +1,6 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
 namespace Game.Entities.Player
 {
@@ -32,9 +30,6 @@ namespace Game.Entities.Player
             _controls.Player.Look.performed += (ctx) => _lookDirectionInput = ctx.ReadValue<Vector2>();
             _controls.Player.Look.canceled += (ctx) => _lookDirectionInput = Vector2.zero;
 
-            _controls.Player.Attack.started += (ctx) => _player.StartInteraction();
-            _controls.Player.Attack.canceled += (ctx) => _player.EndInteraction();
-
             _input = GetComponent<PlayerInput>();
             _input.onControlsChanged += OnControlsChanged;
         }
@@ -47,8 +42,8 @@ namespace Game.Entities.Player
                     CursorPositionNormalized = (new Vector2(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height) * 2) - Vector2.one;
                     CursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                    _player.MovementDirection = _moveDirectionInput;
-                    _player.LookDirection = CursorPositionNormalized;
+                    _player.Moveable.MovementDirection = _moveDirectionInput;
+                    _player.Moveable.LookDirection = CursorPositionNormalized;
                     break;
                 case InputType.Gamepad:
                     CursorPositionNormalized = (
@@ -60,8 +55,8 @@ namespace Game.Entities.Player
                         ).normalized;
                     CursorPosition = _player.transform.position + (Vector3)(CursorPositionNormalized * 5);
 
-                    _player.MovementDirection = _moveDirectionInput;
-                    _player.LookDirection = CursorPositionNormalized;
+                    _player.Moveable.MovementDirection = _moveDirectionInput;
+                    _player.Moveable.LookDirection = CursorPositionNormalized;
                     break;
             }
         }

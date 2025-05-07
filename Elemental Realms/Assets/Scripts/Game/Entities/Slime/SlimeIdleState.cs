@@ -13,7 +13,7 @@ namespace Game.Entities.Slime
         private float _currentWaitTime = 0;
         private float _currentSearchTime = 0;
 
-        public SlimeIdleState(EntityBase entity)
+        public SlimeIdleState(Entity entity)
         {
             _slime = entity as SlimeEntity;
         }
@@ -38,9 +38,9 @@ namespace Game.Entities.Slime
 
         public override void Enter()
         {
-            _slime.MovementDirection = Vector2.zero;
+            _slime.Moveable.MovementDirection = Vector2.zero;
 
-            _slime.EntityAnimator.SetTrigger("SlimeIdle");
+            _slime.GetComponent<Animator>().SetTrigger("SlimeIdle");
         }
 
         public override void FixedTick(float fixedDeltaTime)

@@ -10,7 +10,7 @@ namespace Game.Entities.Slime
         private const float WAIT_INTERVAL = 1;
         private float _currentWaitTime = 0;
 
-        public SlimeTakeDamageState(EntityBase entity)
+        public SlimeTakeDamageState(Entity entity)
         {
             _slime = entity as SlimeEntity;
         }
@@ -27,9 +27,9 @@ namespace Game.Entities.Slime
 
         public override void Enter()
         {
-            _slime.MovementDirection = Vector2.zero;
+            _slime.Moveable.MovementDirection = Vector2.zero;
 
-            _slime.EntityAnimator.SetTrigger("SlimeGetHit");
+            _slime.GetComponent<Animator>().SetTrigger("SlimeGetHit");
         }
 
         public override void FixedTick(float fixedDeltaTime)
