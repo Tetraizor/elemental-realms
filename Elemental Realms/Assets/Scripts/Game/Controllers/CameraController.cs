@@ -11,9 +11,9 @@ namespace Game.Controllers
 
         private void FixedUpdate()
         {
-            Vector2 lookOffset = (new Vector2(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height) * 2) - Vector2.one;
+            Vector2 lookOffset = (new Vector2(UnityEngine.Input.mousePosition.x / Screen.width, UnityEngine.Input.mousePosition.y / Screen.height) * 2) - Vector2.one;
 
-            transform.position = _target.position + _baseOffset + (Vector3)_shakeOffset + (Vector3)lookOffset;
+            transform.position = _target.position + _baseOffset + (Vector3)_shakeOffset + (Vector3)lookOffset * 2;
         }
 
         public void TriggerCameraShake(float magnitude, float duration)

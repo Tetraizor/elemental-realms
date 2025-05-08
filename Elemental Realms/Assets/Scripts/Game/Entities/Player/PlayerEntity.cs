@@ -14,7 +14,10 @@ namespace Game.Entities.Player
     {
         [HideInInspector] public MoveableComponent Moveable { get; private set; }
         [HideInInspector] public OrbitComponent Orbit { get; private set; }
+        [HideInInspector] public InteractorComponent ItemPicker { get; private set; }
+
         public IInteractionSource InteractionSource { get; private set; }
+
         [SerializeField] private GameObject _fistPrefab;
         [SerializeField] private float _dashSpeed = 1;
         [SerializeField] private float _dashDuration = .3f;
@@ -26,9 +29,9 @@ namespace Game.Entities.Player
         {
             base.Awake();
 
-            Health = GetComponent<HealthComponent>();
             Moveable = GetComponent<MoveableComponent>();
             Orbit = GetComponent<OrbitComponent>();
+            ItemPicker = GetComponent<InteractorComponent>();
 
             Health.Changed.AddListener(OnHealthChanged);
         }

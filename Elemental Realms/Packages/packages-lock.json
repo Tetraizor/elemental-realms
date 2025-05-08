@@ -1,5 +1,39 @@
 {
   "dependencies": {
+    "com.tetraizor.bootstrap": {
+      "version": "https://github.com/Tetraizor/Tetraizor.Bootstrap.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.tetraizor.monosingleton": "https://github.com/Tetraizor/Tetraizor.MonoSingleton.git#1.2.0",
+        "com.tetraizor.debugutils": "https://github.com/Tetraizor/Tetraizor.DebugUtils.git#1.0.0"
+      },
+      "hash": "94582e9d7a358f73892fb45e86fbd6da23fff811"
+    },
+    "com.tetraizor.debugutils": {
+      "version": "https://github.com/Tetraizor/Tetraizor.DebugUtils.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8346e6ee91e710e72089f3406d32799b63da7e9e"
+    },
+    "com.tetraizor.monosingleton": {
+      "version": "https://github.com/Tetraizor/Tetraizor.MonoSingleton.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "f5abfa83c33cd7d1192d7cbb3080eb20712a2d9a"
+    },
+    "com.tetraizor.scenesystem": {
+      "version": "https://github.com/Tetraizor/Tetraizor.SceneSystem.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.tetraizor.debugutils": "https://github.com/Tetraizor/Tetraizor.DebugUtils.git#1.0.0",
+        "com.tetraizor.bootstrap": "https://github.com/Tetraizor/Tetraizor.Bootstrap.git#1.1.1"
+      },
+      "hash": "bbb0a9eda2725fb9ad9e5d439690edfe28c4e643"
+    },
     "com.unity.2d.animation": {
       "version": "10.1.4",
       "depth": 1,

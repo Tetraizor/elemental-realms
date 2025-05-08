@@ -1,14 +1,14 @@
-using System;
+using Game.Controllers;
+using Game.Controllers.UI;
+using Game.Enum;
+using Game.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Game.Entities.Player
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IInputConsumer
     {
-        private MainControls _controls;
-        private PlayerInput _input;
-
         [SerializeField] private PlayerEntity _player;
 
         private Vector2 _moveDirectionInput = Vector2.zero;
@@ -17,47 +17,33 @@ namespace Game.Entities.Player
         public Vector2 CursorPosition { get; private set; } = Vector2.right;
         public Vector2 CursorPositionNormalized { get; private set; } = Vector2.right;
 
-        public InputType CurrentInputType { get; private set; }
+        private InputController _inputController;
 
         protected void Start()
         {
-            _controls = new MainControls();
-            _controls.Enable();
-
-            _controls.Player.Move.performed += (ctx) => _moveDirectionInput = ctx.ReadValue<Vector2>();
-            _controls.Player.Move.canceled += (ctx) => _moveDirectionInput = Vector2.zero;
-
-            _controls.Player.Look.performed += (ctx) => _lookDirectionInput = ctx.ReadValue<Vector2>();
-            _controls.Player.Look.canceled += (ctx) => _lookDirectionInput = Vector2.zero;
-
-            _controls.Player.Attack.performed += (ctx) => _player.InteractionSource.Activate();
-            _controls.Player.Attack.canceled += (ctx) => _player.InteractionSource.Deactivate();
-
-            _controls.Player.Dash.performed += (ctx) => _player.Dash();
-
-            _input = GetComponent<PlayerInput>();
-            _input.onControlsChanged += OnControlsChanged;
+            _inputController = FindFirstObjectByType<InputController>();
+            _inputController.ActivateConsumer(this);
         }
 
         private void Update()
         {
-            switch (CurrentInputType)
+            switch (_inputController.ActiveInputType)
             {
                 case InputType.KeyboardMouse:
-                    CursorPositionNormalized = (new Vector2(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height) * 2) - Vector2.one;
-                    CursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    CursorPositionNormalized = (new Vector2(UnityEngine.Input.mousePosition.x / Screen.width, UnityEngine.Input.mousePosition.y / Screen.height) * 2) - Vector2.one;
+                    CursorPosition = Camera.main.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
 
                     _player.Moveable.MovementDirection = _moveDirectionInput.normalized;
                     _player.SetLookDirection(CursorPositionNormalized.normalized);
                     break;
+
                 case InputType.Gamepad:
                     CursorPositionNormalized = (
-                        _lookDirectionInput.magnitude > 0.1f ?
-                            _lookDirectionInput :
-                            (_moveDirectionInput.magnitude > 0.1f ?
-                                _moveDirectionInput :
-                                CursorPositionNormalized)
-                        ).normalized;
+                        _lookDirectionInput.magnitude > 0.1f ? _lookDirectionInput :
+                        (_moveDirectionInput.magnitude > 0.1f ? _moveDirectionInput :
+                        CursorPositionNormalized)
+                    ).normalized;
+
                     CursorPosition = _player.transform.position + (Vector3)(CursorPositionNormalized * 5);
 
                     _player.Moveable.MovementDirection = _moveDirectionInput.normalized;
@@ -66,32 +52,107 @@ namespace Game.Entities.Player
             }
         }
 
-        private void OnControlsChanged(PlayerInput input)
+        public void ActivateInput()
         {
-            string currentScheme = input.currentControlScheme;
+            var controls = _inputController.Controls.Player;
 
-            switch (currentScheme)
+            controls.Move.performed += OnMovePerformed;
+            controls.Move.canceled += OnMoveCanceled;
+
+            controls.Look.performed += OnLookPerformed;
+            controls.Look.canceled += OnLookCanceled;
+
+            controls.Attack.performed += OnAttackPerformed;
+            controls.Attack.canceled += OnAttackCanceled;
+
+            controls.Dash.performed += OnDashPerformed;
+
+            controls.Interact.performed += OnInteractPerformed;
+
+            controls.Inventory.performed += OnInventoryPerformed;
+        }
+
+        public void DeactivateInput()
+        {
+            var controls = _inputController.Controls.Player;
+
+            controls.Move.performed -= OnMovePerformed;
+            controls.Move.canceled -= OnMoveCanceled;
+
+            controls.Look.performed -= OnLookPerformed;
+            controls.Look.canceled -= OnLookCanceled;
+
+            controls.Attack.performed -= OnAttackPerformed;
+            controls.Attack.canceled -= OnAttackCanceled;
+
+            controls.Dash.performed -= OnDashPerformed;
+
+            controls.Interact.performed -= OnInteractPerformed;
+
+            controls.Inventory.performed -= OnInventoryPerformed;
+
+            _moveDirectionInput = Vector2.zero;
+            _player.InteractionSource.Deactivate();
+        }
+
+        private void OnMovePerformed(InputAction.CallbackContext ctx)
+        {
+            _moveDirectionInput = ctx.ReadValue<Vector2>();
+        }
+
+        private void OnMoveCanceled(InputAction.CallbackContext ctx)
+        {
+            _moveDirectionInput = Vector2.zero;
+        }
+
+        private void OnLookPerformed(InputAction.CallbackContext ctx)
+        {
+            _lookDirectionInput = ctx.ReadValue<Vector2>();
+        }
+
+        private void OnLookCanceled(InputAction.CallbackContext ctx)
+        {
+            _lookDirectionInput = Vector2.zero;
+        }
+
+        private void OnAttackPerformed(InputAction.CallbackContext ctx)
+        {
+            _player.InteractionSource.Activate();
+        }
+
+        private void OnAttackCanceled(InputAction.CallbackContext ctx)
+        {
+            _player.InteractionSource.Deactivate();
+        }
+
+        private void OnDashPerformed(InputAction.CallbackContext ctx)
+        {
+            _player.Dash();
+        }
+
+        private void OnInteractPerformed(InputAction.CallbackContext ctx)
+        {
+            _player.ItemPicker.Interact();
+        }
+
+        private void OnInventoryPerformed(InputAction.CallbackContext context)
+        {
+            var playerUiController = FindFirstObjectByType<PlayerUIController>();
+            playerUiController.Toggle(true);
+            playerUiController.StateChanged.AddListener(OnInventoryStateChanged);
+
+            _inputController.DeactivateConsumer(this);
+        }
+
+        private void OnInventoryStateChanged(bool state)
+        {
+            if (!state)
             {
-                case "Keyboard&Mouse":
-                    CurrentInputType = InputType.KeyboardMouse;
-                    break;
-                case "Gamepad":
-                    CurrentInputType = InputType.Gamepad;
-                    break;
-                default:
-                    break;
+                var playerUiController = FindFirstObjectByType<PlayerUIController>();
+                playerUiController.StateChanged.RemoveListener(OnInventoryStateChanged);
+
+                _inputController.ActivateConsumer(this);
             }
         }
-
-        private void OnDestroy()
-        {
-            _input.onControlsChanged -= OnControlsChanged;
-        }
-    }
-
-    public enum InputType
-    {
-        KeyboardMouse,
-        Gamepad
     }
 }

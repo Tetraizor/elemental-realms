@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "com.tetraizor.bootstrap": "https://github.com/Tetraizor/Tetraizor.Bootstrap.git",
+    "com.tetraizor.debugutils": "https://github.com/Tetraizor/Tetraizor.DebugUtils.git",
+    "com.tetraizor.monosingleton": "https://github.com/Tetraizor/Tetraizor.MonoSingleton.git",
+    "com.tetraizor.scenesystem": "https://github.com/Tetraizor/Tetraizor.SceneSystem.git",
     "com.unity.collab-proxy": "2.7.1",
     "com.unity.feature.2d": "2.0.1",
     "com.unity.ide.rider": "3.0.31",
