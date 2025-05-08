@@ -1,0 +1,55 @@
+using Game.Enum;
+using Game.Input;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace Game.Controllers
+{
+    public class InputController : MonoBehaviour
+    {
+        public MainControls Controls { get; private set; }
+        public PlayerInput Input { get; private set; }
+        public InputType ActiveInputType { get; private set; }
+
+        private void Start()
+        {
+            Controls = new MainControls();
+            Controls.Enable();
+
+            Input = GetComponent<PlayerInput>();
+            Input.onControlsChanged += OnControlsChanged;
+        }
+
+        public void ActivateConsumer(IInputConsumer consumer)
+        {
+            consumer.Activate();
+        }
+
+        public void DeactivateConsumer(IInputConsumer consumer)
+        {
+            if (consumer != null) consumer.Deactivate();
+        }
+
+        private void OnControlsChanged(PlayerInput input)
+        {
+            string currentScheme = input.currentControlScheme;
+
+            switch (currentScheme)
+            {
+                case "Keyboard&Mouse":
+                    ActiveInputType = InputType.KeyboardMouse;
+                    break;
+                case "Gamepad":
+                    ActiveInputType = InputType.Gamepad;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            Input.onControlsChanged -= OnControlsChanged;
+        }
+    }
+}
