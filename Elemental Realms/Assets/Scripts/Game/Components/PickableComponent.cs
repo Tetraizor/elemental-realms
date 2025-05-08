@@ -1,5 +1,6 @@
 using Game.Interactions;
 using Game.Items;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Game.Components
@@ -31,7 +32,13 @@ namespace Game.Components
 
         public void Pickup()
         {
+            _renderer.transform.parent = null;
 
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(_renderer.transform.DOScale(1.1f, 0.1f).SetEase(Ease.OutBack));
+            sequence.Append(_renderer.transform.DOScale(0f, 0.2f).SetEase(Ease.InBack));
+
+            Destroy(gameObject);
         }
 
         public void ToggleSelection(bool state)
@@ -50,7 +57,7 @@ namespace Game.Components
 
         public void Interact()
         {
-            Destroy(gameObject);
+            Pickup();
         }
 
         public void Activate()
