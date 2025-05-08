@@ -9,13 +9,20 @@ namespace Game.Inventory
 {
     public class ItemSlot : MonoBehaviour, IPointerEnterHandler
     {
+        [Header("UI References")]
         [SerializeField] private Image _image;
-        [SerializeField] private TextMeshProUGUI _itemCount;
-
         [SerializeField] private Image _selectFrame;
+        [SerializeField] private TextMeshProUGUI _itemCount;
 
         public Item Item;
         public int Count;
+
+        private InventoryUIController _inventoryUiController;
+
+        public void Setup(InventoryUIController inventoryUiController)
+        {
+            _inventoryUiController = inventoryUiController;
+        }
 
         public void SetItem(SlotData data)
         {
@@ -49,7 +56,7 @@ namespace Game.Inventory
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            InventoryUIController.Instance.SelectSlot(this);
+            _inventoryUiController.SelectSlot(this);
         }
     }
 }

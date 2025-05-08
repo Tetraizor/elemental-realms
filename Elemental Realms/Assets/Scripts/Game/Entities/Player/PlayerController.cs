@@ -52,7 +52,7 @@ namespace Game.Entities.Player
             }
         }
 
-        public void Activate()
+        public void ActivateInput()
         {
             var controls = _inputController.Controls.Player;
 
@@ -72,7 +72,7 @@ namespace Game.Entities.Player
             controls.Inventory.performed += OnInventoryPerformed;
         }
 
-        public void Deactivate()
+        public void DeactivateInput()
         {
             var controls = _inputController.Controls.Player;
 
@@ -137,9 +137,9 @@ namespace Game.Entities.Player
 
         private void OnInventoryPerformed(InputAction.CallbackContext context)
         {
-            var inventoryUiController = FindFirstObjectByType<InventoryUIController>();
-            inventoryUiController.Toggle(true);
-            inventoryUiController.StateChanged.AddListener(OnInventoryStateChanged);
+            var playerUiController = FindFirstObjectByType<PlayerUIController>();
+            playerUiController.Toggle(true);
+            playerUiController.StateChanged.AddListener(OnInventoryStateChanged);
 
             _inputController.DeactivateConsumer(this);
         }
@@ -148,8 +148,8 @@ namespace Game.Entities.Player
         {
             if (!state)
             {
-                var inventoryUiController = FindFirstObjectByType<InventoryUIController>();
-                inventoryUiController.StateChanged.RemoveListener(OnInventoryStateChanged);
+                var playerUiController = FindFirstObjectByType<PlayerUIController>();
+                playerUiController.StateChanged.RemoveListener(OnInventoryStateChanged);
 
                 _inputController.ActivateConsumer(this);
             }

@@ -22,12 +22,12 @@ namespace Game.Controllers
 
         public void ActivateConsumer(IInputConsumer consumer)
         {
-            consumer.Activate();
+            consumer.ActivateInput();
         }
 
         public void DeactivateConsumer(IInputConsumer consumer)
         {
-            if (consumer != null) consumer.Deactivate();
+            if (consumer != null) consumer.DeactivateInput();
         }
 
         private void OnControlsChanged(PlayerInput input)

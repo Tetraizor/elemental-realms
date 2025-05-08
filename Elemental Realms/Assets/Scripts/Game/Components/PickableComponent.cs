@@ -2,6 +2,7 @@ using Game.Interactions;
 using Game.Inventory;
 using DG.Tweening;
 using UnityEngine;
+using Game.Enum;
 
 namespace Game.Components
 {
@@ -32,7 +33,7 @@ namespace Game.Components
 
         public void Pickup()
         {
-            if (InventoryController.Instance.AddItem(_itemData))
+            if (InventoryController.Instance.AddItem(InventoryType.MaterialInventory, _itemData))
             {
                 _renderer.transform.parent = null;
 

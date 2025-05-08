@@ -2,7 +2,7 @@ namespace Game.Input
 {
     public interface IInputConsumer
     {
-        public void Activate();
-        public void Deactivate();
+        public void ActivateInput();
+        public void DeactivateInput();
     }
 }
