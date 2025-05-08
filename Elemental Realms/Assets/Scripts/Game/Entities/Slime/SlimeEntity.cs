@@ -24,6 +24,8 @@ namespace Game.Entities.Slime
 
             AreaDamager = GetComponentInChildren<GenericAreaDamagerWeapon>();
             AreaDamager.Setup(gameObject);
+
+            Health.Changed.AddListener(OnHealthChanged);
         }
 
         protected override void Start()
@@ -53,6 +55,12 @@ namespace Game.Entities.Slime
             StateManager.SetState(new SlimeKillState(this));
 
             Destroy(gameObject, 1.5f);
+        }
+
+        private void OnHealthChanged(float newHealth)
+        {
+            if (newHealth != 0)
+                StateManager.SetState(new SlimeTakeDamageState(this));
         }
     }
 }
