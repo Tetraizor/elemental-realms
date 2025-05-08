@@ -49,7 +49,8 @@ namespace Game.Controllers
 
         private void OnDestroy()
         {
-            Input.onControlsChanged -= OnControlsChanged;
+            if (Input)
+                Input.onControlsChanged -= OnControlsChanged;
         }
     }
 }
