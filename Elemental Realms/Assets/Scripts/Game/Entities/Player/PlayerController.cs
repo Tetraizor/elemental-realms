@@ -67,6 +67,8 @@ namespace Game.Entities.Player
 
             controls.Dash.performed += OnDashPerformed;
 
+            controls.Interact.performed += OnInteractPerformed;
+
             controls.Inventory.performed += OnInventoryPerformed;
         }
 
@@ -84,6 +86,8 @@ namespace Game.Entities.Player
             controls.Attack.canceled -= OnAttackCanceled;
 
             controls.Dash.performed -= OnDashPerformed;
+
+            controls.Interact.performed -= OnInteractPerformed;
 
             controls.Inventory.performed -= OnInventoryPerformed;
 
@@ -124,6 +128,11 @@ namespace Game.Entities.Player
         private void OnDashPerformed(InputAction.CallbackContext ctx)
         {
             _player.Dash();
+        }
+
+        private void OnInteractPerformed(InputAction.CallbackContext ctx)
+        {
+            _player.ItemPicker.Interact();
         }
 
         private void OnInventoryPerformed(InputAction.CallbackContext context)
