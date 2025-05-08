@@ -1,11 +1,12 @@
 using Game.Enum;
 using Game.Input;
+using Tetraizor.MonoSingleton;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Game.Controllers
 {
-    public class InputController : MonoBehaviour
+    public class InputController : MonoSingleton<InputController>
     {
         public MainControls Controls { get; private set; }
         public PlayerInput Input { get; private set; }

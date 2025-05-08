@@ -1,12 +1,13 @@
 using Game.Interactions;
-using Game.Inventory;
+using Game.Inventories;
 using DG.Tweening;
 using UnityEngine;
 using Game.Enum;
+using Game.Items;
 
 namespace Game.Components
 {
-    public class PickableComponent : MonoBehaviour, IInteractable
+    public class PickableComponent : MonoBehaviour, IInteractable, IItemInitializable
     {
         [SerializeField] private Item _itemData;
         private SpriteRenderer _renderer;
@@ -17,11 +18,11 @@ namespace Game.Components
         {
             if (_itemData != null)
             {
-                Setup(_itemData);
+                InitializeWithItem(_itemData);
             }
         }
 
-        public void Setup(Item itemData)
+        public void InitializeWithItem(Item itemData)
         {
             _itemData = itemData;
             _renderer = GetComponentInChildren<SpriteRenderer>();

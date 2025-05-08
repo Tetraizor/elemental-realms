@@ -1,4 +1,4 @@
-using Game.Inventory;
+using Game.Inventories;
 
 namespace Game.Data
 {

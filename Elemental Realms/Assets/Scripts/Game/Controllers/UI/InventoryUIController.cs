@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Game.Data;
 using Game.Enum;
-using Game.Inventory;
+using Game.Inventories;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -16,9 +16,9 @@ namespace Game.Controllers.UI
         private InventoryController _inventory;
         private List<ItemSlot> _slots = new();
 
-        private ItemSlot _selectedSlot = null;
+        public ItemSlot ActiveSlot { get; protected set; } = null;
 
-        [SerializeField] private InventoryType Type = InventoryType.MaterialInventory;
+        [SerializeField] protected InventoryType Type = InventoryType.MaterialInventory;
 
         [SerializeField] private RectTransform _slotContainer;
         [SerializeField] private GameObject _slotPrefab;
@@ -26,7 +26,7 @@ namespace Game.Controllers.UI
         [SerializeField] private const int GRID_WIDTH = 5;
         [SerializeField] private const int GRID_HEIGHT = 5;
 
-        private void Start()
+        protected virtual void Start()
         {
             _inventory = InventoryController.Instance;
 
@@ -59,32 +59,32 @@ namespace Game.Controllers.UI
 
         public void SelectSlot(ItemSlot slot)
         {
-            if (_selectedSlot != null)
-                _selectedSlot.Deselect();
+            if (ActiveSlot != null)
+                ActiveSlot.Deselect();
 
-            _selectedSlot = slot;
-            _selectedSlot.Select();
+            ActiveSlot = slot;
+            ActiveSlot.Select();
 
-            SlotSelected?.Invoke(_selectedSlot);
+            SlotSelected?.Invoke(ActiveSlot);
         }
 
         private void OnUpButtonPressed(InputAction.CallbackContext context)
         {
-            int currentIndex = _slots.IndexOf(_selectedSlot);
+            int currentIndex = _slots.IndexOf(ActiveSlot);
             int newIndex = (currentIndex - GRID_WIDTH + _slots.Count) % _slots.Count;
             SelectSlot(_slots[newIndex]);
         }
 
         private void OnDownButtonPressed(InputAction.CallbackContext context)
         {
-            int currentIndex = _slots.IndexOf(_selectedSlot);
+            int currentIndex = _slots.IndexOf(ActiveSlot);
             int newIndex = (currentIndex + GRID_WIDTH) % _slots.Count;
             SelectSlot(_slots[newIndex]);
         }
 
         private void OnLeftButtonPressed(InputAction.CallbackContext context)
         {
-            int currentIndex = _slots.IndexOf(_selectedSlot);
+            int currentIndex = _slots.IndexOf(ActiveSlot);
             int rowStart = currentIndex - (currentIndex % GRID_WIDTH);
             int newIndex = (currentIndex == rowStart) ? rowStart + GRID_WIDTH - 1 : currentIndex - 1;
             SelectSlot(_slots[newIndex]);
@@ -92,13 +92,13 @@ namespace Game.Controllers.UI
 
         private void OnRightButtonPressed(InputAction.CallbackContext context)
         {
-            int currentIndex = _slots.IndexOf(_selectedSlot);
+            int currentIndex = _slots.IndexOf(ActiveSlot);
             int rowEnd = currentIndex - (currentIndex % GRID_WIDTH) + GRID_WIDTH - 1;
             int newIndex = (currentIndex == rowEnd) ? rowEnd - GRID_WIDTH + 1 : currentIndex + 1;
             SelectSlot(_slots[newIndex]);
         }
 
-        public void ActivateInput()
+        public virtual void ActivateInput()
         {
             var inputController = FindFirstObjectByType<InputController>();
 
@@ -108,7 +108,7 @@ namespace Game.Controllers.UI
             inputController.Controls.Player.Right.performed += OnRightButtonPressed;
         }
 
-        public void DeactivateInput()
+        public virtual void DeactivateInput()
         {
             var inputController = FindFirstObjectByType<InputController>();
 
