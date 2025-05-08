@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game.Interactions;
-using Game.Items;
-using Unity.VisualScripting;
+using Game.Inventory;
 using UnityEngine;
 
 namespace Game.Components

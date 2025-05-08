@@ -1,5 +1,5 @@
 using Game.Interactions;
-using Game.Items;
+using Game.Inventory;
 using DG.Tweening;
 using UnityEngine;
 
@@ -32,13 +32,16 @@ namespace Game.Components
 
         public void Pickup()
         {
-            _renderer.transform.parent = null;
+            if (InventoryController.Instance.AddItem(_itemData))
+            {
+                _renderer.transform.parent = null;
 
-            Sequence sequence = DOTween.Sequence();
-            sequence.Append(_renderer.transform.DOScale(1.1f, 0.1f).SetEase(Ease.OutBack));
-            sequence.Append(_renderer.transform.DOScale(0f, 0.2f).SetEase(Ease.InBack));
+                Sequence sequence = DOTween.Sequence();
+                sequence.Append(_renderer.transform.DOScale(1.1f, 0.1f).SetEase(Ease.OutBack));
+                sequence.Append(_renderer.transform.DOScale(0f, 0.2f).SetEase(Ease.InBack));
 
-            Destroy(gameObject);
+                Destroy(gameObject);
+            }
         }
 
         public void ToggleSelection(bool state)
