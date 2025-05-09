@@ -25,7 +25,7 @@ namespace Game.Components
             {
                 _direction = value;
 
-                if (CanDirectionChange)
+                if (CanDirectionChange && _targetTransform != null)
                 {
                     float angle = Mathf.Atan2(_direction.y, Mathf.Abs(_direction.x)) * Mathf.Rad2Deg;
                     angle = Mathf.Clamp(angle, _maxAngle * -1, _maxAngle);

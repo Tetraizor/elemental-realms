@@ -172,6 +172,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Health: {fileID: 0}
+  _toolContainer: {fileID: 4583183417497192680}
   _fistPrefab: {fileID: 6029146042148992363, guid: 4d75d3ed8b92f574eb18f781348c74d9, type: 3}
   _dashSpeed: 1.1
   _dashDuration: 0.6
@@ -281,7 +282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4583183417497192680}
   m_Layer: 6
-  m_Name: Orbit
+  m_Name: ToolContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
