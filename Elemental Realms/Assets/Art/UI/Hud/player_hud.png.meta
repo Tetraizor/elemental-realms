@@ -193,6 +193,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: player_hud_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 371
+        width: 80
+        height: 14
+      alignment: 9
+      pivot: {x: 0.175, y: 0.71428573}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff4bfc11d698aad40a6caec297dcc66c
+      internalID: 370180503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_hud_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 365
+        width: 62
+        height: 5
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06b8b9d9420f0da4db34ba9bd1d23b9a
+      internalID: 1307770664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -211,6 +255,8 @@ TextureImporter:
       player_hud_1: -2374830507632868058
       player_hud_2: 7833293776259453813
       player_hud_3: -1354145325
+      player_hud_4: 370180503
+      player_hud_5: 1307770664
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
