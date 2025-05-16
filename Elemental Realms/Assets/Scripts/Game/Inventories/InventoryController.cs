@@ -11,8 +11,8 @@ namespace Game.Inventories
     public class InventoryController : MonoSingleton<InventoryController>
     {
         private const int MATERIAL_CAPACITY = 25;
-        private const int EQUIPMENT_CAPACITY = 20;
-        private const int TOOLS_CAPACITY = 20;
+        private const int EQUIPMENT_CAPACITY = 16;
+        private const int TOOLS_CAPACITY = 16;
 
         [HideInInspector] public Dictionary<InventoryType, List<SlotData>> Inventories { get; private set; }
         [HideInInspector] public UnityEvent<InventoryType, List<SlotData>> InventoryChanged;
@@ -23,7 +23,7 @@ namespace Game.Inventories
 
             Inventories = new Dictionary<InventoryType, List<SlotData>> {
                 { InventoryType.MaterialInventory, new List<SlotData>(MATERIAL_CAPACITY) },
-                { InventoryType.EquipmentInventory, new List<SlotData>(EQUIPMENT_CAPACITY) },
+                { InventoryType.GearInventory, new List<SlotData>(EQUIPMENT_CAPACITY) },
                 { InventoryType.ToolsInventory, new List<SlotData>(TOOLS_CAPACITY) },
             };
 
@@ -34,7 +34,7 @@ namespace Game.Inventories
 
             for (int i = 0; i < EQUIPMENT_CAPACITY; i++)
             {
-                Inventories[InventoryType.EquipmentInventory].Add(new SlotData());
+                Inventories[InventoryType.GearInventory].Add(new SlotData());
             }
 
             for (int i = 0; i < TOOLS_CAPACITY; i++)

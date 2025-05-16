@@ -4,6 +4,6 @@ namespace Game.Enum
     {
         MaterialInventory,
         ToolsInventory,
-        EquipmentInventory
+        GearInventory
     }
 }

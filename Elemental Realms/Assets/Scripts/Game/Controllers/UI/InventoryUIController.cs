@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game.Data;
+using Game.Entities.Player;
 using Game.Enum;
 using Game.Inventories;
+using Game.Items;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -18,13 +20,12 @@ namespace Game.Controllers.UI
 
         public ItemSlot ActiveSlot { get; protected set; } = null;
 
-        [SerializeField] protected InventoryType Type = InventoryType.MaterialInventory;
-
         [SerializeField] private RectTransform _slotContainer;
         [SerializeField] private GameObject _slotPrefab;
 
-        [SerializeField] private const int GRID_WIDTH = 5;
-        [SerializeField] private const int GRID_HEIGHT = 5;
+        protected virtual InventoryType Type => InventoryType.MaterialInventory;
+        protected virtual int GridWidth => 5;
+        protected virtual int GridHeight => 5;
 
         protected virtual void Start()
         {
@@ -68,33 +69,62 @@ namespace Game.Controllers.UI
             SlotSelected?.Invoke(ActiveSlot);
         }
 
+        protected virtual void DropItem()
+        {
+            if (ActiveSlot.Item != null)
+            {
+                int slotIndex = _slots.FindIndex(slot => slot == ActiveSlot);
+                int itemId = ActiveSlot.Item.Id;
+
+                if (InventoryController.Instance.RemoveItemFromSlot(Type, slotIndex))
+                {
+                    Vector2 spawnDirection = new Vector2(
+                            UnityEngine.Random.Range(-1, 1),
+                            UnityEngine.Random.Range(-1, 1)).normalized * 2;
+
+                    Vector2 spawnPosition = FindFirstObjectByType<PlayerEntity>().transform.position +
+                        (Vector3)spawnDirection;
+
+                    var spawnedObject = ItemSpawnerController.Instance.SpawnItem(
+                        itemId,
+                        spawnPosition
+                    );
+
+                    if (spawnedObject.TryGetComponent(out Rigidbody2D rb))
+                    {
+                        rb.AddForce(spawnDirection * 4 * rb.mass, ForceMode2D.Impulse);
+                    }
+                }
+            }
+        }
+
         private void OnUpButtonPressed(InputAction.CallbackContext context)
         {
             int currentIndex = _slots.IndexOf(ActiveSlot);
-            int newIndex = (currentIndex - GRID_WIDTH + _slots.Count) % _slots.Count;
+            int newIndex = (currentIndex - GridWidth + _slots.Count) % _slots.Count;
             SelectSlot(_slots[newIndex]);
         }
 
         private void OnDownButtonPressed(InputAction.CallbackContext context)
         {
             int currentIndex = _slots.IndexOf(ActiveSlot);
-            int newIndex = (currentIndex + GRID_WIDTH) % _slots.Count;
+            int newIndex = (currentIndex + GridWidth) % _slots.Count;
             SelectSlot(_slots[newIndex]);
         }
 
         private void OnLeftButtonPressed(InputAction.CallbackContext context)
         {
             int currentIndex = _slots.IndexOf(ActiveSlot);
-            int rowStart = currentIndex - (currentIndex % GRID_WIDTH);
-            int newIndex = (currentIndex == rowStart) ? rowStart + GRID_WIDTH - 1 : currentIndex - 1;
+            int rowStart = currentIndex - (currentIndex % GridWidth);
+            int newIndex = (currentIndex == rowStart) ? rowStart + GridWidth - 1 : currentIndex - 1;
             SelectSlot(_slots[newIndex]);
         }
 
         private void OnRightButtonPressed(InputAction.CallbackContext context)
         {
             int currentIndex = _slots.IndexOf(ActiveSlot);
-            int rowEnd = currentIndex - (currentIndex % GRID_WIDTH) + GRID_WIDTH - 1;
-            int newIndex = (currentIndex == rowEnd) ? rowEnd - GRID_WIDTH + 1 : currentIndex + 1;
+            int rowEnd = currentIndex - (currentIndex % GridWidth) + GridWidth - 1;
+            int newIndex = (currentIndex == rowEnd) ? rowEnd - GridWidth + 1 : currentIndex + 1;
             SelectSlot(_slots[newIndex]);
         }
 

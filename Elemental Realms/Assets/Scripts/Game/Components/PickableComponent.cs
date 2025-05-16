@@ -24,17 +24,31 @@ namespace Game.Components
 
         public void InitializeWithItem(Item itemData)
         {
-            _itemData = itemData;
+            if (itemData != null)
+                _itemData = itemData;
 
             _renderer = GetComponentInChildren<SpriteRenderer>();
-            _renderer.sprite = _itemData.Sprite;
+
+            if (_renderer != null)
+                _renderer.sprite = _itemData.Sprite;
 
             ToggleSelection(false);
         }
 
         public void Pickup()
         {
-            if (InventoryController.Instance.AddItem(InventoryType.MaterialInventory, _itemData))
+            InventoryType inventoryType = InventoryType.GearInventory;
+
+            if (_itemData.Type == ItemType.Material)
+            {
+                inventoryType = InventoryType.MaterialInventory;
+            }
+            else if (_itemData.Type == ItemType.Tool || _itemData.Type == ItemType.Spell)
+            {
+                inventoryType = InventoryType.ToolsInventory;
+            }
+
+            if (InventoryController.Instance.AddItem(inventoryType, _itemData))
             {
                 _renderer.transform.parent = null;
 
@@ -48,6 +62,9 @@ namespace Game.Components
 
         public void ToggleSelection(bool state)
         {
+            if (!Application.isPlaying)
+                return;
+
             if (state)
             {
                 var material = _renderer.material;

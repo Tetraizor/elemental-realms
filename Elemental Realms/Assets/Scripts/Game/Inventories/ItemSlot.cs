@@ -39,7 +39,7 @@ namespace Game.Inventories
             if (_image.sprite == null) _image.color = new Color(1, 1, 1, 0);
             else _image.color = new Color(1, 1, 1, 1);
 
-            _itemCount.SetText(Count > 0 ? Count.ToString() : "");
+            _itemCount.SetText(Count > 1 ? Count.ToString() : "");
         }
 
         public void Select()

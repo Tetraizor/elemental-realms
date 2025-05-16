@@ -1,8 +1,5 @@
-using System;
 using Game.Controllers;
 using Game.Controllers.UI;
-using Game.Entities.Player;
-using Game.Items;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,24 +34,7 @@ namespace Game.Inventories
 
         private void OnDropPressed(InputAction.CallbackContext context)
         {
-            if (ActiveSlot.Item != null)
-            {
-                int slotIndex = _slots.FindIndex(slot => slot == ActiveSlot);
-                int itemId = ActiveSlot.Item.Id;
-
-                if (InventoryController.Instance.RemoveItemFromSlot(Type, slotIndex))
-                {
-                    Vector2 spawnPosition = FindFirstObjectByType<PlayerEntity>().transform.position +
-                        (Vector3)(new Vector2(
-                            UnityEngine.Random.Range(-1, 1),
-                            UnityEngine.Random.Range(-1, 1)).normalized * 2);
-
-                    ItemSpawnerController.Instance.SpawnItem(
-                        itemId,
-                        spawnPosition
-                    );
-                }
-            }
+            DropItem();
         }
 
         public override void ActivateInput()

@@ -4,6 +4,8 @@ namespace Game.Enum
     {
         Material,
         Tool,
-        Wearable
+        Armor,
+        Ammo,
+        Spell,
     }
 }

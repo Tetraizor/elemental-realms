@@ -237,6 +237,160 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: player_hud_6
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 373
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2cbfff3b02fe6043aa00a4b9e944be6
+      internalID: 1211212375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_hud_7
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 373
+        width: 31
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 7, y: 0, z: 7, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 989f871644fc59b4ebdf0e361754cdc0
+      internalID: 534351510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_hud_8
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 360
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60a11b97033391c4192ecf790075f79a
+      internalID: 40600331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_hud_9
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 360
+        width: 31
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 7, y: 0, z: 7, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 050a5b3680c86f94fb88a32bfc124215
+      internalID: 1098615700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_hud_10
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 472
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81615df506b97bb4f9adcc5de89f0d0a
+      internalID: 1352597941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_hud_11
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 470
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b2d6782f61c08e419d60454ddbeb533
+      internalID: -80447704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_hud_12
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 437
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 8, y: 8, z: 8, w: 8}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 894148527f89d554dac0c48fd2804089
+      internalID: -1328466821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -253,10 +407,17 @@ TextureImporter:
     nameFileIdTable:
       player_hud_0: 3814882604455696959
       player_hud_1: -2374830507632868058
+      player_hud_10: 1352597941
+      player_hud_11: -80447704
+      player_hud_12: -1328466821
       player_hud_2: 7833293776259453813
       player_hud_3: -1354145325
       player_hud_4: 370180503
       player_hud_5: 1307770664
+      player_hud_6: 1211212375
+      player_hud_7: 534351510
+      player_hud_8: 40600331
+      player_hud_9: 1098615700
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
