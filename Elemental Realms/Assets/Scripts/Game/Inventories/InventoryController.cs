@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Game.Data;
 using Game.Enum;
+using Game.Items;
 using Tetraizor.MonoSingleton;
 using UnityEngine;
 using UnityEngine.Events;

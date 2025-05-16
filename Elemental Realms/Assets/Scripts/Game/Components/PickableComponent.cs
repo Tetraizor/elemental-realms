@@ -25,9 +25,9 @@ namespace Game.Components
         public void InitializeWithItem(Item itemData)
         {
             _itemData = itemData;
-            _renderer = GetComponentInChildren<SpriteRenderer>();
 
-            GetComponentInChildren<SpriteRenderer>().sprite = _itemData.Sprite;
+            _renderer = GetComponentInChildren<SpriteRenderer>();
+            _renderer.sprite = _itemData.Sprite;
 
             ToggleSelection(false);
         }
