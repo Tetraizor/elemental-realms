@@ -45,28 +45,61 @@ namespace Game.Inventories
 
         public bool AddItem(InventoryType inventoryType, Item item, int count = 1)
         {
-            for (int i = 0; i < Inventories.Count; i++)
+            var inventory = Inventories[inventoryType];
+
+            // Check for non-filled stacks first
+            for (int i = 0; i < inventory.Count; i++)
             {
-                var slot = Inventories[inventoryType][i];
+                var slot = inventory[i];
 
-                if (slot.Item && slot.Item.Id == item.Id && slot.Count + count <= item.MaxStackSize)
+                if (slot.Item != null && slot.Item.Id == item.Id && slot.Count + count <= item.MaxStackSize)
                 {
-                    slot.Count = slot.Count + count;
+                    slot.Count += count;
 
-                    InventoryChanged?.Invoke(inventoryType, Inventories[inventoryType]);
+                    ReorganizeInventory(inventory);
+                    InventoryChanged?.Invoke(inventoryType, inventory);
 
                     return true;
                 }
             }
 
-            for (int i = 0; i < Inventories.Count; i++)
+            // Check for empty slots second
+            for (int i = 0; i < inventory.Count; i++)
             {
-                var slot = Inventories[inventoryType][i];
+                var slot = inventory[i];
 
                 if (slot.Item == null)
                 {
                     slot.Item = item;
                     slot.Count = count;
+
+                    ReorganizeInventory(inventory);
+                    InventoryChanged?.Invoke(inventoryType, inventory);
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool RemoveFirstItem(InventoryType inventoryType, Item item, int count = 1)
+        {
+            var inventory = Inventories[inventoryType];
+
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                var slot = inventory[i];
+
+                if (slot.Item && slot.Item.Id == item.Id && slot.Count >= count)
+                {
+                    slot.Count -= count;
+
+                    if (slot.Count == 0)
+                    {
+                        slot.Item = null;
+                        ReorganizeInventory(inventory);
+                    }
 
                     InventoryChanged?.Invoke(inventoryType, Inventories[inventoryType]);
 
@@ -77,28 +110,55 @@ namespace Game.Inventories
             return false;
         }
 
-        public bool RemoveItem(InventoryType inventoryType, Item item, int count = 1)
+        public bool RemoveItemFromSlot(InventoryType inventoryType, int slotId, int count = 1)
         {
-            for (int i = 0; i < Inventories.Count; i++)
+            var inventory = Inventories[inventoryType];
+            if (slotId < 0 || slotId >= inventory.Count) return false;
+
+            var slot = inventory[slotId];
+
+            if (slot.Item != null && slot.Count >= count)
             {
-                var slot = Inventories[inventoryType][i];
+                slot.Count -= count;
 
-                if (slot.Item && slot.Item.Id == item.Id && slot.Count >= count)
+                if (slot.Count == 0)
                 {
-                    slot.Count -= count;
-
-                    if (slot.Count == 0)
-                    {
-                        slot.Item = null;
-                    }
-
-                    InventoryChanged?.Invoke(inventoryType, Inventories[inventoryType]);
-
-                    return true;
+                    slot.Item = null;
+                    ReorganizeInventory(inventory);
                 }
+
+                InventoryChanged?.Invoke(inventoryType, inventory);
+
+                return true;
             }
 
             return false;
+        }
+
+        private void ReorganizeInventory(List<SlotData> inventory)
+        {
+            var nonEmptySlots = new List<SlotData>();
+
+            foreach (var slot in inventory)
+            {
+                if (slot.Item != null) nonEmptySlots.Add(new SlotData { Item = slot.Item, Count = slot.Count });
+            }
+
+            nonEmptySlots.Sort((a, b) => a.Item.Id.CompareTo(b.Item.Id));
+
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                if (i < nonEmptySlots.Count)
+                {
+                    inventory[i].Item = nonEmptySlots[i].Item;
+                    inventory[i].Count = nonEmptySlots[i].Count;
+                }
+                else
+                {
+                    inventory[i].Item = null;
+                    inventory[i].Count = 0;
+                }
+            }
         }
     }
 }

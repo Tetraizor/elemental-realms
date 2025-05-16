@@ -39,9 +39,10 @@ namespace Game.Inventories
         {
             if (ActiveSlot.Item != null)
             {
-                Item item = ActiveSlot.Item;
+                int slotIndex = _slots.FindIndex(slot => slot == ActiveSlot);
+                int itemId = ActiveSlot.Item.Id;
 
-                if (InventoryController.Instance.RemoveItem(Type, ActiveSlot.Item))
+                if (InventoryController.Instance.RemoveItemFromSlot(Type, slotIndex))
                 {
                     Vector2 spawnPosition = FindFirstObjectByType<PlayerEntity>().transform.position +
                         (Vector3)(new Vector2(
@@ -49,7 +50,7 @@ namespace Game.Inventories
                             UnityEngine.Random.Range(-1, 1)).normalized * 2);
 
                     ItemSpawnerController.Instance.SpawnItem(
-                        item.Id,
+                        itemId,
                         spawnPosition
                     );
                 }

@@ -7,16 +7,23 @@ namespace Game.Items
     public class Item : ScriptableObject
     {
         [Header("Item Properties")]
-        public int Id = 0;
-        public string Name = "Item Name";
-        public string Description = "Item Description";
-        public Sprite Sprite = null;
+        [SerializeField] private int _id = 0;
+        [SerializeField] private string _itemName = "Item Name";
+        [SerializeField] private string _description = "Item Description";
+        [SerializeField] private Sprite _sprite = null;
 
-        public ItemType Type = ItemType.Material;
+        [SerializeField] private ItemType _type = ItemType.Material;
+        [SerializeField] private int _mass = 5;
+        [SerializeField] private int _maxStackSize = 99;
+        [SerializeField] private GameObject _prefab;
 
-        public int Mass = 5;
-        public int MaxStackSize = 99;
-
-        public GameObject Prefab;
+        public int Id => _id;
+        public string Name => _itemName;
+        public string Description => _description;
+        public Sprite Sprite => _sprite;
+        public ItemType Type => _type;
+        public int Mass => _mass;
+        public int MaxStackSize => _maxStackSize;
+        public GameObject Prefab => _prefab;
     }
 }

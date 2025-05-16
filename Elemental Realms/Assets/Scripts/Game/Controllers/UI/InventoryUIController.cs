@@ -14,7 +14,7 @@ namespace Game.Controllers.UI
         public UnityEvent<ItemSlot> SlotSelected;
 
         private InventoryController _inventory;
-        private List<ItemSlot> _slots = new();
+        protected List<ItemSlot> _slots = new();
 
         public ItemSlot ActiveSlot { get; protected set; } = null;
 
