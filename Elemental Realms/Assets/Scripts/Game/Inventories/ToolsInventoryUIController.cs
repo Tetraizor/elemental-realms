@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Game.Controllers;
 using Game.Controllers.UI;
@@ -28,8 +29,22 @@ namespace Game.Inventories
             base.Start();
 
             _playerEquipmentController = FindFirstObjectByType<PlayerEquipmentController>();
+            _playerEquipmentController.ToolChanged.AddListener(OnToolChanged);
 
             SlotSelected.AddListener(OnSlotSelected);
+        }
+
+        private void OnToolChanged(ItemInstance previousItem, ItemInstance currentItem)
+        {
+            var itemSlot = _slots.Find(slot => slot.ItemInstance == currentItem);
+            if (itemSlot != null)
+            {
+                EquipItemSlot(itemSlot);
+            }
+            else
+            {
+                UnequipItemSlot();
+            }
         }
 
         private void OnSlotSelected(ItemSlot slot)
@@ -48,6 +63,8 @@ namespace Game.Inventories
 
         private void OnDropPressed(InputAction.CallbackContext context)
         {
+            if (ActiveSlot == _equippedSlot) _playerEquipmentController.SheathTool();
+
             DropItem();
         }
 
@@ -86,8 +103,6 @@ namespace Game.Inventories
 
             _equippedSlot = slot;
             _equippedSlot.EquipItem();
-
-            _playerEquipmentController.EquipTool(_equippedSlot.ItemInstance);
         }
 
         private void UnequipItemSlot()
@@ -98,14 +113,12 @@ namespace Game.Inventories
 
             _equippedSlot.UnequipItem();
             _equippedSlot = null;
-
-            _playerEquipmentController.SheathTool();
         }
 
         private void OnInteractPressed(InputAction.CallbackContext context)
         {
             if (ActiveSlot.ItemInstance == null) return;
-            EquipItemSlot(ActiveSlot);
+            _playerEquipmentController.EquipTool(ActiveSlot.ItemInstance);
         }
 
         public override void ActivateInput()

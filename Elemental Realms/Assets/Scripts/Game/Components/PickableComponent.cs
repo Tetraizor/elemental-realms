@@ -5,6 +5,7 @@ using UnityEngine;
 using Game.Enum;
 using Game.Items;
 using Game.Data;
+using Game.Entities.Player;
 
 namespace Game.Components
 {
@@ -53,10 +54,14 @@ namespace Game.Components
             if (InventoryController.Instance.AddItem(inventoryType, _itemInstance))
             {
                 _renderer.transform.parent = null;
+                Destroy(_renderer.gameObject, 1);
 
-                Sequence sequence = DOTween.Sequence();
-                sequence.Append(_renderer.transform.DOScale(1.1f, 0.1f).SetEase(Ease.OutBack));
-                sequence.Append(_renderer.transform.DOScale(0f, 0.2f).SetEase(Ease.InBack));
+                var player = FindFirstObjectByType<PlayerEntity>();
+                if (player != null)
+                {
+                    _renderer.transform.DOMove(player.transform.position, .2f);
+                }
+                _renderer.transform.DOScale(0, 0.2f);
 
                 Destroy(gameObject);
             }
