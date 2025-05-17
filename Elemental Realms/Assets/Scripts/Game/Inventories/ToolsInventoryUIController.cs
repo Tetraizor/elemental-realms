@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Game.Controllers;
 using Game.Controllers.UI;
 using Game.Data;
+using Game.Entities.Player;
 using Game.Enum;
 using TMPro;
 using UnityEngine;
@@ -19,14 +20,14 @@ namespace Game.Inventories
         protected override int GridWidth => 4;
         protected override int GridHeight => 4;
 
-        public UnityEvent<ItemInstance> ItemEquipped;
-        public UnityEvent<ItemInstance> ItemUnequipped;
-
         private ItemSlot _equippedSlot;
+        private PlayerEquipmentController _playerEquipmentController;
 
         protected override void Start()
         {
             base.Start();
+
+            _playerEquipmentController = FindFirstObjectByType<PlayerEquipmentController>();
 
             SlotSelected.AddListener(OnSlotSelected);
         }
@@ -75,18 +76,30 @@ namespace Game.Inventories
 
         private void EquipItemSlot(ItemSlot slot)
         {
+            if (_equippedSlot == slot)
+            {
+                UnequipItemSlot();
+                return;
+            }
+
             if (_equippedSlot != null) UnequipItemSlot();
 
             _equippedSlot = slot;
             _equippedSlot.EquipItem();
+
+            _playerEquipmentController.EquipTool(_equippedSlot.ItemInstance);
         }
 
         private void UnequipItemSlot()
         {
             if (_equippedSlot == null) return;
 
+            var temp = _equippedSlot.ItemInstance;
+
             _equippedSlot.UnequipItem();
             _equippedSlot = null;
+
+            _playerEquipmentController.SheathTool();
         }
 
         private void OnInteractPressed(InputAction.CallbackContext context)

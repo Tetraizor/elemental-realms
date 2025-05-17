@@ -19,6 +19,7 @@ MonoBehaviour:
   _type: 1
   _mass: 15
   _maxStackSize: 1
-  _prefab: {fileID: 6029146042148992363, guid: 4d75d3ed8b92f574eb18f781348c74d9, type: 3}
+  _prefab: {fileID: 0}
   _droppable: 0
   Durability: 0
+  InteractorPrefab: {fileID: 6029146042148992363, guid: 4d75d3ed8b92f574eb18f781348c74d9, type: 3}

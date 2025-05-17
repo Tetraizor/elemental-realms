@@ -8,5 +8,6 @@ namespace Game.Items
     {
         [Header("Tool Properties")]
         public int Durability = 20;
+        public GameObject InteractorPrefab;
     }
 }

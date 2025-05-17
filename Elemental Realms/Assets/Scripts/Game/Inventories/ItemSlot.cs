@@ -57,13 +57,11 @@ namespace Game.Inventories
         public void EquipItem()
         {
             _equipBackground.DOFade(1, .1f);
-            Debug.Log("Equipped Slot " + transform.GetSiblingIndex());
         }
 
         public void UnequipItem()
         {
             _equipBackground.DOFade(0, .1f);
-            Debug.Log("Unequipped Slot " + transform.GetSiblingIndex());
         }
 
         public void OnPointerEnter(PointerEventData eventData)

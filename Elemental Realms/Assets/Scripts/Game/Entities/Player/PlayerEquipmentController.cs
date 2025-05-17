@@ -1,5 +1,7 @@
+using System;
 using Game.Data;
 using Game.Interactions;
+using Game.Inventories;
 using Game.Items;
 using Game.Tools;
 using UnityEngine;
@@ -9,32 +11,38 @@ namespace Game.Entities.Player
 {
     public class PlayerEquipmentController : MonoBehaviour
     {
-        public ToolItemInstance ToolInstanceData { get; private set; }
-        public GameObject ToolInstance { get; private set; }
+        public ItemInstance ToolInstance { get; private set; }
+        public GameObject ToolGameObject { get; private set; }
 
         [SerializeField] private ToolItem _fist;
 
         private PlayerEntity _player;
 
-        public UnityEvent<ToolItemInstance, ToolItemInstance> ToolChanged;
+        public UnityEvent<ItemInstance, ItemInstance> ToolChanged;
 
         private void Start()
         {
             _player = FindFirstObjectByType<PlayerEntity>();
 
-            EquipTool(new ToolItemInstance { Data = _fist, Durability = -1 });
+            SheathTool();
+
+            var toolInventoryController = FindFirstObjectByType<ToolsInventoryUIController>();
         }
 
-        public void EquipTool(ToolItemInstance toolInstance)
+        public void EquipTool(ItemInstance itemInstance)
         {
-            var previousToolInstanceData = ToolInstanceData;
-            var previousToolInstance = ToolInstance;
-            var tool = toolInstance.Data;
+            if (itemInstance == ToolInstance) return;
 
-            ToolInstance = Instantiate(tool.Prefab, _player.EntityRenderer.transform.position, Quaternion.identity);
-            ToolInstance.transform.parent = _player.Orbit.TargetTransform;
+            var previousToolInstanceData = ToolInstance;
+            var previousToolInstance = ToolGameObject;
+            var tool = itemInstance.Item as ToolItem;
 
-            if (ToolInstance.TryGetComponent(out GenericMeleeWeapon weapon))
+            ToolGameObject = Instantiate(tool.InteractorPrefab, _player.Orbit.TargetTransform);
+            ToolGameObject.transform.localPosition = Vector3.zero;
+            ToolGameObject.transform.localEulerAngles = Vector3.zero;
+            ToolGameObject.transform.localScale = Vector3.one;
+
+            if (ToolGameObject.TryGetComponent(out GenericMeleeWeapon weapon))
             {
                 weapon.Setup(_player.gameObject);
             }
@@ -44,7 +52,7 @@ namespace Game.Entities.Player
                 Destroy(previousToolInstance.gameObject);
             }
 
-            if (ToolInstance.TryGetComponent(out IInteractionSource interactionSource))
+            if (ToolGameObject.TryGetComponent(out IInteractionSource interactionSource))
             {
                 _player.InteractionSource = interactionSource;
             }
@@ -53,12 +61,12 @@ namespace Game.Entities.Player
                 _player.InteractionSource = null;
             }
 
-            ToolChanged.Invoke(previousToolInstanceData, toolInstance);
+            ToolChanged.Invoke(previousToolInstanceData, itemInstance);
         }
 
         public void SheathTool()
         {
-            EquipTool(new ToolItemInstance { Data = _fist, Durability = -1 });
+            EquipTool(new ItemInstance { Item = _fist, Durability = -1 });
         }
     }
 }
