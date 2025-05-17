@@ -1,9 +1,9 @@
-using Game.Inventories;
+using Game.Data;
 
 namespace Game.Items
 {
     public interface IItemInitializable
     {
-        public void InitializeWithItem(Item item);
+        public void InitializeWithItem(ItemInstance itemInstance);
     }
 }

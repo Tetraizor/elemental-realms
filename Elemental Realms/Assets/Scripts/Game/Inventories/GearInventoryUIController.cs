@@ -25,10 +25,10 @@ namespace Game.Inventories
 
         private void OnSlotSelected(ItemSlot slot)
         {
-            if (slot.Item != null)
+            if (slot.ItemInstance != null)
             {
-                _titleText.SetText(slot.Item.Name);
-                _descriptionText.SetText(slot.Item.Description);
+                _titleText.SetText(slot.ItemInstance.Item.Name);
+                _descriptionText.SetText(slot.ItemInstance.Item.Description);
             }
             else
             {

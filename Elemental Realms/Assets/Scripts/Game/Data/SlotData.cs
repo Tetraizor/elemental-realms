@@ -4,7 +4,7 @@ namespace Game.Data
 {
     public class SlotData
     {
-        public Item Item;
+        public ItemInstance ItemInstance;
         public int Count;
     }
 }

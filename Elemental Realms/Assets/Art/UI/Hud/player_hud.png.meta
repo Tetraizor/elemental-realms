@@ -391,6 +391,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: player_hud_13
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 472
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7001e9c336801b34d8ff3d601b3cdba9
+      internalID: -1556618784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -410,6 +432,7 @@ TextureImporter:
       player_hud_10: 1352597941
       player_hud_11: -80447704
       player_hud_12: -1328466821
+      player_hud_13: -1556618784
       player_hud_2: 7833293776259453813
       player_hud_3: -1354145325
       player_hud_4: 370180503

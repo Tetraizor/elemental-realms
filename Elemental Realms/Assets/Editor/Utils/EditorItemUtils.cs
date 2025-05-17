@@ -12,6 +12,7 @@ namespace Game.Editor.Utils
             foreach (var pickable in GameObject.FindObjectsByType<PickableComponent>(FindObjectsSortMode.None))
             {
                 pickable.InitializeWithItem(null);
+                pickable.transform.name = $"Pickable {pickable.ItemInstance.Item.Name}";
             }
         }
     }

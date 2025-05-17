@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Game.Controllers.UI;
 using Game.Data;
 using Game.Items;
@@ -13,10 +14,11 @@ namespace Game.Inventories
         [Header("UI References")]
         [SerializeField] private Image _image;
         [SerializeField] private Image _selectFrame;
+        [SerializeField] private Image _equipBackground;
         [SerializeField] private TextMeshProUGUI _itemCount;
 
-        public Item Item;
-        public int Count;
+        [HideInInspector] public ItemInstance ItemInstance;
+        [HideInInspector] public int Count;
 
         private InventoryUIController _inventoryUiController;
 
@@ -27,14 +29,14 @@ namespace Game.Inventories
 
         public void SetItem(SlotData data)
         {
-            SetItem(data.Item, data.Count);
+            SetItem(data.ItemInstance, data.Count);
         }
 
-        public void SetItem(Item item, int count)
+        public void SetItem(ItemInstance itemInstance, int count)
         {
-            Item = item;
+            ItemInstance = itemInstance;
             Count = count;
-            _image.sprite = item?.Sprite;
+            _image.sprite = itemInstance?.Item?.Sprite;
 
             if (_image.sprite == null) _image.color = new Color(1, 1, 1, 0);
             else _image.color = new Color(1, 1, 1, 1);
@@ -50,6 +52,18 @@ namespace Game.Inventories
         public void Deselect()
         {
             _selectFrame.enabled = false;
+        }
+
+        public void EquipItem()
+        {
+            _equipBackground.DOFade(1, .1f);
+            Debug.Log("Equipped Slot " + transform.GetSiblingIndex());
+        }
+
+        public void UnequipItem()
+        {
+            _equipBackground.DOFade(0, .1f);
+            Debug.Log("Unequipped Slot " + transform.GetSiblingIndex());
         }
 
         public void OnPointerEnter(PointerEventData eventData)

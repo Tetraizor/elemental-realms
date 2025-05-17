@@ -45,7 +45,7 @@ namespace Game.Controllers.UI
             UpdateInventorySlots(Type, _inventory.Inventories[Type]);
         }
 
-        public void UpdateInventorySlots(InventoryType type, List<SlotData> inventorySlotData)
+        public virtual void UpdateInventorySlots(InventoryType type, List<SlotData> inventorySlotData)
         {
             if (type != Type) return;
 
@@ -71,16 +71,16 @@ namespace Game.Controllers.UI
 
         protected virtual void DropItem()
         {
-            if (ActiveSlot.Item != null && ActiveSlot.Item.Droppable)
+            if (ActiveSlot.ItemInstance != null && ActiveSlot.ItemInstance.Item.Droppable)
             {
                 int slotIndex = _slots.FindIndex(slot => slot == ActiveSlot);
-                int itemId = ActiveSlot.Item.Id;
+                int itemId = ActiveSlot.ItemInstance.Item.Id;
 
                 if (InventoryController.Instance.RemoveItemFromSlot(Type, slotIndex))
                 {
                     Vector2 spawnDirection = new Vector2(
-                            UnityEngine.Random.Range(-1, 1),
-                            UnityEngine.Random.Range(-1, 1)).normalized * 2;
+                            Random.Range(-1, 1),
+                            Random.Range(-1, 1)).normalized * 2;
 
                     Vector2 spawnPosition = FindFirstObjectByType<PlayerEntity>().transform.position +
                         (Vector3)spawnDirection;

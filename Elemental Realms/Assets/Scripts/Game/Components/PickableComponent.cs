@@ -4,33 +4,35 @@ using DG.Tweening;
 using UnityEngine;
 using Game.Enum;
 using Game.Items;
+using Game.Data;
 
 namespace Game.Components
 {
     public class PickableComponent : MonoBehaviour, IInteractable, IItemInitializable
     {
-        [SerializeField] private Item _itemData;
+        [SerializeField] private ItemInstance _itemInstance;
+        public ItemInstance ItemInstance => _itemInstance;
         private SpriteRenderer _renderer;
 
         public Vector2 InteractablePosition => gameObject.transform.position;
 
         private void Start()
         {
-            if (_itemData != null)
+            if (_itemInstance != null)
             {
-                InitializeWithItem(_itemData);
+                InitializeWithItem(_itemInstance);
             }
         }
 
-        public void InitializeWithItem(Item itemData)
+        public void InitializeWithItem(ItemInstance itemInstance)
         {
-            if (itemData != null)
-                _itemData = itemData;
+            if (itemInstance != null)
+                _itemInstance = itemInstance;
 
             _renderer = GetComponentInChildren<SpriteRenderer>();
 
             if (_renderer != null)
-                _renderer.sprite = _itemData.Sprite;
+                _renderer.sprite = _itemInstance.Item.Sprite;
 
             ToggleSelection(false);
         }
@@ -39,16 +41,16 @@ namespace Game.Components
         {
             InventoryType inventoryType = InventoryType.GearInventory;
 
-            if (_itemData.Type == ItemType.Material)
+            if (_itemInstance.Item.Type == ItemType.Material)
             {
                 inventoryType = InventoryType.MaterialInventory;
             }
-            else if (_itemData.Type == ItemType.Tool || _itemData.Type == ItemType.Spell)
+            else if (_itemInstance.Item.Type == ItemType.Tool || _itemInstance.Item.Type == ItemType.Spell)
             {
                 inventoryType = InventoryType.ToolsInventory;
             }
 
-            if (InventoryController.Instance.AddItem(inventoryType, _itemData))
+            if (InventoryController.Instance.AddItem(inventoryType, _itemInstance))
             {
                 _renderer.transform.parent = null;
 

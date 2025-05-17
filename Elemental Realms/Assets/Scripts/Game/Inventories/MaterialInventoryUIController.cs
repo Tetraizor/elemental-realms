@@ -32,12 +32,12 @@ namespace Game.Inventories
                 Destroy(element.gameObject);
             }
 
-            if (slot.Item != null)
+            if (slot.ItemInstance != null)
             {
-                _titleText.SetText(slot.Item.Name);
-                _descriptionText.SetText(slot.Item.Description);
+                _titleText.SetText(slot.ItemInstance.Item.Name);
+                _descriptionText.SetText(slot.ItemInstance.Item.Description);
 
-                if (slot.Item is IItemConsumable consumable)
+                if (slot.ItemInstance is IItemConsumable consumable)
                 {
                     var consumableEffects = consumable.Consume();
                     _consumablePrompt.gameObject.SetActive(true);
@@ -69,14 +69,14 @@ namespace Game.Inventories
 
         private void OnInteractPressed(InputAction.CallbackContext context)
         {
-            if (ActiveSlot == null || ActiveSlot.Item == null) return;
+            if (ActiveSlot == null || ActiveSlot.ItemInstance == null) return;
 
-            var item = ActiveSlot.Item;
+            var item = ActiveSlot.ItemInstance;
 
             if (item is IItemConsumable consumable)
             {
                 int slotIndex = _slots.FindIndex(slot => slot == ActiveSlot);
-                int itemId = ActiveSlot.Item.Id;
+                int itemId = ActiveSlot.ItemInstance.Item.Id;
 
                 if (InventoryController.Instance.RemoveItemFromSlot(Type, slotIndex))
                 {

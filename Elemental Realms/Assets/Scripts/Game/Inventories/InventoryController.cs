@@ -43,7 +43,7 @@ namespace Game.Inventories
             }
         }
 
-        public bool AddItem(InventoryType inventoryType, Item item, int count = 1)
+        public bool AddItem(InventoryType inventoryType, ItemInstance itemInstance, int count = 1)
         {
             var inventory = Inventories[inventoryType];
 
@@ -52,7 +52,7 @@ namespace Game.Inventories
             {
                 var slot = inventory[i];
 
-                if (slot.Item != null && slot.Item.Id == item.Id && slot.Count + count <= item.MaxStackSize)
+                if (slot.ItemInstance != null && slot.ItemInstance.Item.Id == itemInstance.Item.Id && slot.Count + count <= itemInstance.Item.MaxStackSize)
                 {
                     slot.Count += count;
 
@@ -68,9 +68,9 @@ namespace Game.Inventories
             {
                 var slot = inventory[i];
 
-                if (slot.Item == null)
+                if (slot.ItemInstance == null)
                 {
-                    slot.Item = item;
+                    slot.ItemInstance = itemInstance;
                     slot.Count = count;
 
                     ReorganizeInventory(inventory);
@@ -91,13 +91,13 @@ namespace Game.Inventories
             {
                 var slot = inventory[i];
 
-                if (slot.Item && slot.Item.Id == item.Id && slot.Count >= count)
+                if (slot.ItemInstance != null && slot.ItemInstance.Item.Id == item.Id && slot.Count >= count)
                 {
                     slot.Count -= count;
 
                     if (slot.Count == 0)
                     {
-                        slot.Item = null;
+                        slot.ItemInstance = null;
                         ReorganizeInventory(inventory);
                     }
 
@@ -117,13 +117,13 @@ namespace Game.Inventories
 
             var slot = inventory[slotId];
 
-            if (slot.Item != null && slot.Count >= count)
+            if (slot.ItemInstance != null && slot.Count >= count)
             {
                 slot.Count -= count;
 
                 if (slot.Count == 0)
                 {
-                    slot.Item = null;
+                    slot.ItemInstance = null;
                     ReorganizeInventory(inventory);
                 }
 
@@ -141,21 +141,21 @@ namespace Game.Inventories
 
             foreach (var slot in inventory)
             {
-                if (slot.Item != null) nonEmptySlots.Add(new SlotData { Item = slot.Item, Count = slot.Count });
+                if (slot.ItemInstance != null) nonEmptySlots.Add(new SlotData { ItemInstance = slot.ItemInstance, Count = slot.Count });
             }
 
-            nonEmptySlots.Sort((a, b) => a.Item.Id.CompareTo(b.Item.Id));
+            nonEmptySlots.Sort((a, b) => a.ItemInstance.Item.Id.CompareTo(b.ItemInstance.Item.Id));
 
             for (int i = 0; i < inventory.Count; i++)
             {
                 if (i < nonEmptySlots.Count)
                 {
-                    inventory[i].Item = nonEmptySlots[i].Item;
+                    inventory[i].ItemInstance = nonEmptySlots[i].ItemInstance;
                     inventory[i].Count = nonEmptySlots[i].Count;
                 }
                 else
                 {
-                    inventory[i].Item = null;
+                    inventory[i].ItemInstance = null;
                     inventory[i].Count = 0;
                 }
             }

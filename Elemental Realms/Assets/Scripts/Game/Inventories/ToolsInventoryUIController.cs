@@ -1,8 +1,11 @@
+using System.Collections.Generic;
 using Game.Controllers;
 using Game.Controllers.UI;
+using Game.Data;
 using Game.Enum;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Game.Inventories
@@ -16,6 +19,11 @@ namespace Game.Inventories
         protected override int GridWidth => 4;
         protected override int GridHeight => 4;
 
+        public UnityEvent<ItemInstance> ItemEquipped;
+        public UnityEvent<ItemInstance> ItemUnequipped;
+
+        private ItemSlot _equippedSlot;
+
         protected override void Start()
         {
             base.Start();
@@ -25,10 +33,10 @@ namespace Game.Inventories
 
         private void OnSlotSelected(ItemSlot slot)
         {
-            if (slot.Item != null)
+            if (slot.ItemInstance != null)
             {
-                _titleText.SetText(slot.Item.Name);
-                _descriptionText.SetText(slot.Item.Description);
+                _titleText.SetText(slot.ItemInstance.Item.Name);
+                _descriptionText.SetText(slot.ItemInstance.Item.Description);
             }
             else
             {
@@ -42,9 +50,49 @@ namespace Game.Inventories
             DropItem();
         }
 
+        public override void UpdateInventorySlots(InventoryType type, List<SlotData> inventorySlotData)
+        {
+            ItemInstance prevEquippedItem = null;
+            if (_equippedSlot != null)
+            {
+                prevEquippedItem = _equippedSlot.ItemInstance;
+                UnequipItemSlot();
+            }
+
+            base.UpdateInventorySlots(type, inventorySlotData);
+
+            var currentEquippedSlot = _slots.Find((slot) => slot.ItemInstance == prevEquippedItem);
+
+            if (prevEquippedItem != null && currentEquippedSlot != null)
+            {
+                EquipItemSlot(currentEquippedSlot);
+            }
+            else
+            {
+                UnequipItemSlot();
+            }
+        }
+
+        private void EquipItemSlot(ItemSlot slot)
+        {
+            if (_equippedSlot != null) UnequipItemSlot();
+
+            _equippedSlot = slot;
+            _equippedSlot.EquipItem();
+        }
+
+        private void UnequipItemSlot()
+        {
+            if (_equippedSlot == null) return;
+
+            _equippedSlot.UnequipItem();
+            _equippedSlot = null;
+        }
+
         private void OnInteractPressed(InputAction.CallbackContext context)
         {
-            // TODO: Complete here.
+            if (ActiveSlot.ItemInstance == null) return;
+            EquipItemSlot(ActiveSlot);
         }
 
         public override void ActivateInput()
