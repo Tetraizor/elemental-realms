@@ -3,13 +3,14 @@ using System.Linq;
 using Game.Data;
 using Game.Interactions;
 using Game.Interactions.Effects;
+using Game.Modifiers;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Game.Tools
 {
     [RequireComponent(typeof(Animator))]
-    public class GenericMeleeWeapon : MonoBehaviour, IInteractionSource, IInteractorFieldParent
+    public class GenericMeleeWeapon : MonoBehaviour, IInteractionSource, IInteractorFieldParent, ISpeedModifier
     {
         public List<InteractionEffectSO> Effects => _effects;
         [SerializeField] private List<InteractionEffectSO> _effects;
@@ -86,6 +87,8 @@ namespace Game.Tools
         public void OnHitStayed(Collider2D collider) { }
 
         public void OnHitEnded(Collider2D collider) { }
+
+        public float GetSpeedModifier() => _isActive ? .5f : 1;
 
         private void OnDestroy()
         {

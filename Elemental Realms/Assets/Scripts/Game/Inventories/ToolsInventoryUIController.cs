@@ -7,7 +7,6 @@ using Game.Entities.Player;
 using Game.Enum;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Game.Inventories

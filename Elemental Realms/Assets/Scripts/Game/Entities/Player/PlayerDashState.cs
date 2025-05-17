@@ -1,4 +1,5 @@
 
+using Game.Enum;
 using UnityEngine;
 
 namespace Game.Entities.Player
@@ -30,6 +31,7 @@ namespace Game.Entities.Player
                 _player.GetComponent<Animator>().SetTrigger("PlayerDash");
                 _player.EntityRigidbody.linearVelocity = Vector2.zero;
                 _player.Moveable.CanMove = false;
+                _player.Moveable.DirectionMode = MoveableDirectionMode.SetByMovementVector;
             }
         }
 
@@ -40,6 +42,8 @@ namespace Game.Entities.Player
             bool canTransition = _dashDuration <= 0;
 
             if (canTransition) _player.Moveable.CanMove = true;
+
+            _player.Moveable.DirectionMode = MoveableDirectionMode.SetByLookVector;
 
             return canTransition;
         }

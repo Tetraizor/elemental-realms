@@ -3,6 +3,7 @@ using Game.Data;
 using Game.Interactions;
 using Game.Inventories;
 using Game.Items;
+using Game.Modifiers;
 using Game.Tools;
 using UnityEngine;
 using UnityEngine.Events;
@@ -41,6 +42,16 @@ namespace Game.Entities.Player
             ToolGameObject.transform.localPosition = Vector3.zero;
             ToolGameObject.transform.localEulerAngles = Vector3.zero;
             ToolGameObject.transform.localScale = Vector3.one;
+
+            if (ToolGameObject.TryGetComponent(out ISpeedModifier speedModifier))
+            {
+                _player.Moveable.RegisterSpeedModifier(speedModifier);
+            }
+
+            if (previousToolInstance != null && previousToolInstance.TryGetComponent(out ISpeedModifier previousSpeedModifier))
+            {
+                _player.Moveable.RegisterSpeedModifier(previousSpeedModifier);
+            }
 
             if (ToolGameObject.TryGetComponent(out GenericMeleeWeapon weapon))
             {

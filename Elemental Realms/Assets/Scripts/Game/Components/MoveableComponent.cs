@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game.Entities.Common;
+using Game.Enum;
 using Game.Modifiers;
 using UnityEngine;
 
@@ -26,6 +27,8 @@ namespace Game.Components
 
         public bool CanMove = true;
 
+        public MoveableDirectionMode DirectionMode = MoveableDirectionMode.SetByLookVector;
+
         public bool IsMoving => _moveableRigidbody?.linearVelocity.magnitude > .1f;
 
         private void Awake()
@@ -40,15 +43,23 @@ namespace Game.Components
             _speedModifiers = GetComponentsInChildren<ISpeedModifier>(true).ToList();
         }
 
+        public void RegisterSpeedModifier(ISpeedModifier modifier)
+        {
+            if (!_speedModifiers.Contains(modifier)) _speedModifiers.Add(modifier);
+        }
+
+        public void DeregisterSpeedModifier(ISpeedModifier modifier)
+        {
+            if (_speedModifiers.Contains(modifier)) _speedModifiers.Remove(modifier);
+        }
+
         public virtual void Move()
         {
-            if (CanMove && MovementDirection.magnitude > 0.1f)
+            if (CanMove)
             {
-                _moveableRigidbody.AddForce(MovementDirection.normalized * BaseSpeed * Time.fixedDeltaTime * 2500 * _moveableRigidbody.mass * GetFinalSpeedMultiplier());
-
-                if (Mathf.Abs(LookDirection.normalized.x) > .1f)
+                if (MovementDirection.magnitude > 0.1f)
                 {
-                    _moveableRenderer.transform.localScale = new Vector3(LookDirection.x > 0 ? 1 : -1, 1, 1);
+                    _moveableRigidbody.AddForce(MovementDirection.normalized * BaseSpeed * Time.fixedDeltaTime * 2500 * _moveableRigidbody.mass * GetFinalSpeedMultiplier());
                 }
             }
         }
@@ -56,6 +67,13 @@ namespace Game.Components
         private void FixedUpdate()
         {
             if (MovementDirection.magnitude > 0.1f) Move();
+
+            var referenceVector = DirectionMode == MoveableDirectionMode.SetByMovementVector ? MovementDirection : LookDirection;
+
+            if (Mathf.Abs(referenceVector.normalized.x) > .1f)
+            {
+                _moveableRenderer.transform.localScale = new Vector3(referenceVector.x > 0 ? 1 : -1, 1, 1);
+            }
         }
 
         public void SetBaseSpeedMultiplier(float speedMultiplier)
