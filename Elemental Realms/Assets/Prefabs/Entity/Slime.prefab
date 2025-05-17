@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6107015622337259565}
   - component: {fileID: 8090387198255579164}
   m_Layer: 7
-  m_Name: Interactor
+  m_Name: GenericAreaDamager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,9 +82,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534239e52fc236843bed04f0d202b43c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effects:
-  - {fileID: 11400000, guid: 7b82e147b0e2c5847b15216949e54ba2, type: 2}
   _radius: 3
+  AttackEffects:
+  - Type: 0
+    Damage: 15
+    Knockback: 0.3
 --- !u!114 &8090387198255579164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +256,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _baseHealth: 20
+  _knockbackResistance: 0.5
+  TypeVsResistance:
+    _serializedList:
+    - Key: 2
+      Value: 0.4
+    - Key: 1
+      Value: 0.6
   Killed:
     m_PersistentCalls:
       m_Calls: []
@@ -275,6 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseSpeed: 0.5
   CanMove: 1
+  DirectionMode: 1
 --- !u!1 &6073098698987112848
 GameObject:
   m_ObjectHideFlags: 0

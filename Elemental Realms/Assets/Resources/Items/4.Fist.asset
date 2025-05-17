@@ -21,5 +21,11 @@ MonoBehaviour:
   _maxStackSize: 1
   _prefab: {fileID: 0}
   _droppable: 0
-  Durability: 0
+  MaxDurability: 20
+  MovementSpeedPenalty: 0
+  UseSpeedPenalty: 0.6
   InteractorPrefab: {fileID: 6029146042148992363, guid: 4d75d3ed8b92f574eb18f781348c74d9, type: 3}
+  AttackEffects:
+  - Type: 0
+    Damage: 4
+    Knockback: 0.2

@@ -55,7 +55,7 @@ namespace Game.Entities.Player
 
             if (ToolGameObject.TryGetComponent(out GenericMeleeWeapon weapon))
             {
-                weapon.Setup(_player.gameObject);
+                weapon.Setup(_player.gameObject, itemInstance);
             }
 
             if (previousToolInstance != null)

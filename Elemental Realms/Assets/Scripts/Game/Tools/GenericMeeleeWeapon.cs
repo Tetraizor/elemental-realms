@@ -3,6 +3,7 @@ using System.Linq;
 using Game.Data;
 using Game.Interactions;
 using Game.Interactions.Effects;
+using Game.Items;
 using Game.Modifiers;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,13 +13,14 @@ namespace Game.Tools
     [RequireComponent(typeof(Animator))]
     public class GenericMeleeWeapon : MonoBehaviour, IInteractionSource, IInteractorFieldParent, ISpeedModifier
     {
-        public List<InteractionEffectSO> Effects => _effects;
-        [SerializeField] private List<InteractionEffectSO> _effects;
-
         private GameObject _user;
+        private ItemInstance _itemInstance;
         private List<InteractorField> _interactorFields;
 
         private bool _isActive = false;
+
+        private float _useSpeedPenalty = .5f;
+        private float _moveSpeedPenalty = .2f;
 
         [SerializeField] private string[] _animationTriggerNames = new string[] { "Attack1" };
         [SerializeField] private float _cooldown = .5f;
@@ -49,9 +51,13 @@ namespace Game.Tools
             _cooldownTimer = Mathf.Max(0, _cooldownTimer);
         }
 
-        public void Setup(GameObject user)
+        public void Setup(GameObject user, ItemInstance itemInstance)
         {
             _user = user;
+            _itemInstance = itemInstance;
+
+            _useSpeedPenalty = (_itemInstance.Item as ToolItem).UseSpeedPenalty;
+            _moveSpeedPenalty = (_itemInstance.Item as ToolItem).MovementSpeedPenalty;
         }
 
         public void Activate()
@@ -75,10 +81,12 @@ namespace Game.Tools
                     HitPoint = collider.gameObject.GetComponent<Collider2D>().ClosestPoint(_user.transform.position)
                 };
 
-                _effects.ForEach(effect => effect.ApplyEffect(
+                (_itemInstance.Item as ToolItem).AttackEffects.ForEach(effect => effect.ApplyEffect(
                     collider.gameObject,
                     ctx
                 ));
+
+                _itemInstance.Durability -= 1;
 
                 Hit?.Invoke(collider.gameObject, ctx);
             }
@@ -88,7 +96,7 @@ namespace Game.Tools
 
         public void OnHitEnded(Collider2D collider) { }
 
-        public float GetSpeedModifier() => _isActive ? .5f : 1;
+        public float GetSpeedModifier() => _isActive ? (1 - _useSpeedPenalty) : (1 - _moveSpeedPenalty);
 
         private void OnDestroy()
         {

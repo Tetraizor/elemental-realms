@@ -1,4 +1,5 @@
-using Game.Enum;
+using System.Collections.Generic;
+using Game.Interactions.Effects;
 using UnityEngine;
 
 namespace Game.Items
@@ -7,7 +8,11 @@ namespace Game.Items
     public class ToolItem : Item
     {
         [Header("Tool Properties")]
-        public int Durability = 20;
+        public int MaxDurability = 20;
+        public float MovementSpeedPenalty = 0;
+        public float UseSpeedPenalty = 0;
         public GameObject InteractorPrefab;
+
+        public List<ToolAttackEffect> AttackEffects;
     }
 }

@@ -5,8 +5,6 @@ namespace Game.Interactions
 {
     public interface IInteractionSource
     {
-        public List<InteractionEffectSO> Effects { get; }
-
         public void Activate();
         public void Deactivate();
     }

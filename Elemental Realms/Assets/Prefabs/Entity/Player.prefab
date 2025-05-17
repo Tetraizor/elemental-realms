@@ -190,6 +190,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _baseHealth: 100
+  _knockbackResistance: 0.5
+  TypeVsResistance:
+    _serializedList:
+    - Key: 0
+      Value: 0
+    - Key: 1
+      Value: 0
+    - Key: 2
+      Value: 0
+    - Key: 3
+      Value: 0
   Killed:
     m_PersistentCalls:
       m_Calls: []
@@ -211,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseSpeed: 1
   CanMove: 1
+  DirectionMode: 1
 --- !u!114 &7774238481631605572
 MonoBehaviour:
   m_ObjectHideFlags: 0

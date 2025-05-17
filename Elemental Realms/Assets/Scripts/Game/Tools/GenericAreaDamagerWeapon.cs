@@ -10,9 +10,9 @@ namespace Game.Tools
     [RequireComponent(typeof(InteractorField))]
     public class GenericAreaDamagerWeapon : MonoBehaviour, IInteractionSource, IInteractorFieldParent
     {
-        public List<InteractionEffectSO> Effects => _effects;
-        [SerializeField] private List<InteractionEffectSO> _effects = new();
         [SerializeField] private float _radius;
+
+        public List<ToolAttackEffect> AttackEffects = new();
 
         private CircleCollider2D _collider;
         private GameObject _user;
@@ -51,7 +51,7 @@ namespace Game.Tools
                 HitPoint = collider.gameObject.GetComponent<Collider2D>().ClosestPoint(_user.transform.position)
             };
 
-            Effects.ForEach(effect => effect.ApplyEffect(collider.gameObject, ctx));
+            AttackEffects.ForEach(effect => effect.ApplyEffect(collider.gameObject, ctx));
         }
 
         public void OnHitStayed(Collider2D collider) { }
