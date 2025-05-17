@@ -7,6 +7,6 @@ namespace Game.Items
     public class ToolItem : Item
     {
         [Header("Tool Properties")]
-        public int Durability;
+        public int Durability = 20;
     }
 }

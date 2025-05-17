@@ -55,6 +55,8 @@ namespace Game.Controllers.UI
 
             _activeInventoryType = InventoryType.ToolsInventory;
             ChangeInventory(InventoryType.MaterialInventory);
+
+            DeactivateInput();
         }
 
         public void ChangeInventory(InventoryType inventoryType)

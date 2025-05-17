@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1384121607259474593}
   - component: {fileID: 7774238481631605572}
   - component: {fileID: 4105409511000606628}
+  - component: {fileID: 3006788670449808849}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -172,7 +173,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Health: {fileID: 0}
-  _toolContainer: {fileID: 4583183417497192680}
   _fistPrefab: {fileID: 6029146042148992363, guid: 4d75d3ed8b92f574eb18f781348c74d9, type: 3}
   _dashSpeed: 1.1
   _dashDuration: 0.6
@@ -239,6 +239,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactorField: {fileID: 6438422386294187888}
+--- !u!114 &3006788670449808849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75764764439306446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857605cc09bb7244284b949b81045368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fist: {fileID: 11400000, guid: a448eb510ed81a4439c448c8536610e8, type: 2}
+  ToolChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2301019607572931459
 GameObject:
   m_ObjectHideFlags: 0

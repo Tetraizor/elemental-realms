@@ -42,6 +42,11 @@ namespace Game.Inventories
             DropItem();
         }
 
+        private void OnInteractPressed(InputAction.CallbackContext context)
+        {
+            // TODO: Complete here.
+        }
+
         public override void ActivateInput()
         {
             base.ActivateInput();
@@ -49,6 +54,7 @@ namespace Game.Inventories
             var inputController = InputController.Instance;
 
             inputController.Controls.Player.Drop.performed += OnDropPressed;
+            inputController.Controls.Player.Interact.performed += OnInteractPressed;
         }
 
         public override void DeactivateInput()
@@ -58,6 +64,7 @@ namespace Game.Inventories
             var inputController = InputController.Instance;
 
             inputController.Controls.Player.Drop.performed -= OnDropPressed;
+            inputController.Controls.Player.Interact.performed -= OnInteractPressed;
         }
     }
 }

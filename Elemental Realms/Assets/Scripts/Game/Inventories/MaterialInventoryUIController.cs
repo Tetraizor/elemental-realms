@@ -1,5 +1,7 @@
 using Game.Controllers;
 using Game.Controllers.UI;
+using Game.Items;
+using Game.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +12,10 @@ namespace Game.Inventories
     {
         [SerializeField] private TextMeshProUGUI _titleText;
         [SerializeField] private TextMeshProUGUI _descriptionText;
+        [SerializeField] private RectTransform _consumablePrompt;
+
+        [SerializeField] private RectTransform _promptPrefab;
+        [SerializeField] private RectTransform _effectContainer;
 
         protected override void Start()
         {
@@ -20,21 +26,65 @@ namespace Game.Inventories
 
         private void OnSlotSelected(ItemSlot slot)
         {
+            var elements = _effectContainer.GetComponentsInChildren<PromptElement>();
+            foreach (var element in elements)
+            {
+                Destroy(element.gameObject);
+            }
+
             if (slot.Item != null)
             {
                 _titleText.SetText(slot.Item.Name);
                 _descriptionText.SetText(slot.Item.Description);
+
+                if (slot.Item is IItemConsumable consumable)
+                {
+                    var consumableEffects = consumable.Consume();
+                    _consumablePrompt.gameObject.SetActive(true);
+
+                    foreach (var consumableEffect in consumableEffects)
+                    {
+                        var prompt = Instantiate(_promptPrefab, _effectContainer);
+                        prompt.GetComponent<PromptElement>().Setup($"{consumableEffect.Type.Name} ({consumableEffect.Magnitude})", consumableEffect.Type.Icon);
+                    }
+                }
+                else
+                {
+                    _consumablePrompt.gameObject.SetActive(false);
+                }
             }
             else
             {
                 _titleText.SetText("");
                 _descriptionText.SetText("");
+
+                _consumablePrompt.gameObject.SetActive(false);
             }
         }
 
         private void OnDropPressed(InputAction.CallbackContext context)
         {
             DropItem();
+        }
+
+        private void OnInteractPressed(InputAction.CallbackContext context)
+        {
+            if (ActiveSlot == null || ActiveSlot.Item == null) return;
+
+            var item = ActiveSlot.Item;
+
+            if (item is IItemConsumable consumable)
+            {
+                int slotIndex = _slots.FindIndex(slot => slot == ActiveSlot);
+                int itemId = ActiveSlot.Item.Id;
+
+                if (InventoryController.Instance.RemoveItemFromSlot(Type, slotIndex))
+                {
+                    var effects = consumable.Consume();
+                }
+
+                SelectSlot(ActiveSlot);
+            }
         }
 
         public override void ActivateInput()
@@ -44,6 +94,7 @@ namespace Game.Inventories
             var inputController = InputController.Instance;
 
             inputController.Controls.Player.Drop.performed += OnDropPressed;
+            inputController.Controls.Player.Interact.performed += OnInteractPressed;
         }
 
         public override void DeactivateInput()
@@ -53,6 +104,7 @@ namespace Game.Inventories
             var inputController = InputController.Instance;
 
             inputController.Controls.Player.Drop.performed -= OnDropPressed;
+            inputController.Controls.Player.Interact.performed -= OnInteractPressed;
         }
     }
 }

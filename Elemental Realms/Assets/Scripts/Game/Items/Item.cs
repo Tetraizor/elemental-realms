@@ -17,6 +17,8 @@ namespace Game.Items
         [SerializeField] private int _maxStackSize = 99;
         [SerializeField] private GameObject _prefab;
 
+        [SerializeField] private bool _droppable = true;
+
         public int Id => _id;
         public string Name => _itemName;
         public string Description => _description;
@@ -25,5 +27,6 @@ namespace Game.Items
         public int Mass => _mass;
         public int MaxStackSize => _maxStackSize;
         public GameObject Prefab => _prefab;
+        public bool Droppable => _droppable;
     }
 }

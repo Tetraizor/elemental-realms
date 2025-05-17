@@ -71,7 +71,7 @@ namespace Game.Controllers.UI
 
         protected virtual void DropItem()
         {
-            if (ActiveSlot.Item != null)
+            if (ActiveSlot.Item != null && ActiveSlot.Item.Droppable)
             {
                 int slotIndex = _slots.FindIndex(slot => slot == ActiveSlot);
                 int itemId = ActiveSlot.Item.Id;
@@ -94,6 +94,8 @@ namespace Game.Controllers.UI
                     {
                         rb.AddForce(spawnDirection * 4 * rb.mass, ForceMode2D.Impulse);
                     }
+
+                    SelectSlot(ActiveSlot);
                 }
             }
         }

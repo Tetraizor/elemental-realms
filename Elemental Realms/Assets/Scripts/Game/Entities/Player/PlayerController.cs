@@ -92,7 +92,7 @@ namespace Game.Entities.Player
             controls.Inventory.performed -= OnInventoryPerformed;
 
             _moveDirectionInput = Vector2.zero;
-            _player.InteractionSource.Deactivate();
+            _player.InteractionSource?.Deactivate();
         }
 
         private void OnMovePerformed(InputAction.CallbackContext ctx)
@@ -117,12 +117,12 @@ namespace Game.Entities.Player
 
         private void OnAttackPerformed(InputAction.CallbackContext ctx)
         {
-            _player.InteractionSource.Activate();
+            _player.InteractionSource?.Activate();
         }
 
         private void OnAttackCanceled(InputAction.CallbackContext ctx)
         {
-            _player.InteractionSource.Deactivate();
+            _player.InteractionSource?.Deactivate();
         }
 
         private void OnDashPerformed(InputAction.CallbackContext ctx)

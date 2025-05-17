@@ -5,7 +5,6 @@ using Game.Entities.Common;
 using Game.Interactions;
 using Game.Tools;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Game.Entities.Player
 {
@@ -15,8 +14,7 @@ namespace Game.Entities.Player
         [HideInInspector] public MoveableComponent Moveable { get; private set; }
         [HideInInspector] public OrbitComponent Orbit { get; private set; }
         [HideInInspector] public InteractorComponent ItemPicker { get; private set; }
-
-        public IInteractionSource InteractionSource { get; private set; }
+        [HideInInspector] public IInteractionSource InteractionSource { get; set; }
 
         [SerializeField] private GameObject _fistPrefab;
         [SerializeField] private float _dashSpeed = 1;
@@ -53,16 +51,6 @@ namespace Game.Entities.Player
             base.Start();
 
             StateManager.SetState(new PlayerIdleState(this));
-
-            // TODO: Create an inventory system.
-            var fist = Instantiate(_fistPrefab, EntityRenderer.transform.position, Quaternion.identity);
-            fist.transform.parent = Orbit.TargetTransform;
-            fist.GetComponent<GenericMeleeWeapon>().Setup(gameObject);
-            fist.GetComponent<GenericMeleeWeapon>().Hit.AddListener(
-                (target, ctx) => Camera.main.gameObject.GetComponent<CameraController>().TriggerCameraShake(.25f, .1f)
-            );
-
-            InteractionSource = fist.GetComponent<IInteractionSource>();
         }
 
         protected override void Update()
