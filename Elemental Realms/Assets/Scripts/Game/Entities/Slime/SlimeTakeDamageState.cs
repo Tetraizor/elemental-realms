@@ -7,7 +7,7 @@ namespace Game.Entities.Slime
     {
         private SlimeEntity _slime;
 
-        private const float WAIT_INTERVAL = 1;
+        private const float WAIT_INTERVAL = .3f;
         private float _currentWaitTime = 0;
 
         public SlimeTakeDamageState(Entity entity)

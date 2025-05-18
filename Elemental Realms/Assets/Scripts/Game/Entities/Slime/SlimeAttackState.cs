@@ -27,13 +27,16 @@ namespace Game.Entities.Slime
 
             if (_currentAttackTime > ATTACK_INTERVAL)
             {
-                _slime.StateManager.SetState(new SlimeAttackState(_slime, _target));
-            }
 
-            Vector2 targetPositionDifference = _target.transform.position - _slime.transform.position;
-            if (targetPositionDifference.magnitude > 2.5f)
-            {
-                _slime.StateManager.SetState(new SlimeFollowState(_slime, _target));
+                Vector2 targetPositionDifference = _target.transform.position - _slime.transform.position;
+                if (targetPositionDifference.magnitude > 2.5f)
+                {
+                    _slime.StateManager.SetState(new SlimeFollowState(_slime, _target));
+                }
+                else
+                {
+                    _slime.StateManager.SetState(new SlimeAttackState(_slime, _target));
+                }
             }
 
             _slime.Moveable.LookDirection = (_target.transform.position - _slime.transform.position).normalized;
@@ -50,6 +53,8 @@ namespace Game.Entities.Slime
 
         public override bool Exit(StateBase newState)
         {
+            if (newState is SlimeTakeDamageState) return false;
+
             if (_attackCoroutine != null) _slime.StopCoroutine(_attackCoroutine);
             _slime.AreaDamager.Deactivate();
 

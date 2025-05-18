@@ -59,6 +59,9 @@ TagManager:
   - name: Shadow
     uniqueID: 2853059959
     locked: 0
+  - name: GroundEffects
+    uniqueID: 2342260091
+    locked: 0
   - name: Entity
     uniqueID: 3678934911
     locked: 0

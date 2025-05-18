@@ -12,7 +12,7 @@ namespace Game.Entities.Slime
         private float _waitInterval = 4;
 
         private float _currentSearchTime = 0;
-        private float _searchInterval = .5f;
+        private const float SEARCH_INTERVAL = .3f;
 
         public SlimePatrolState(SlimeEntity slime)
         {
@@ -26,6 +26,8 @@ namespace Game.Entities.Slime
             _slime.Moveable.LookDirection = _moveDirection;
 
             _slime.GetComponent<Animator>().SetTrigger("SlimeWalk");
+
+            _currentSearchTime = SEARCH_INTERVAL;
         }
 
         public override bool Exit(StateBase newState) => true;
@@ -43,7 +45,7 @@ namespace Game.Entities.Slime
 
             _currentSearchTime += deltaTime;
 
-            if (_currentSearchTime > _searchInterval)
+            if (_currentSearchTime > SEARCH_INTERVAL)
             {
                 _slime.SearchForTargets();
             }
