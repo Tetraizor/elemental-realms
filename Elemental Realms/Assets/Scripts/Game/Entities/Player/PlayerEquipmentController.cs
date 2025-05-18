@@ -50,7 +50,7 @@ namespace Game.Entities.Player
 
             if (previousToolInstance != null && previousToolInstance.TryGetComponent(out ISpeedModifier previousSpeedModifier))
             {
-                _player.Moveable.RegisterSpeedModifier(previousSpeedModifier);
+                _player.Moveable.DeregisterSpeedModifier(previousSpeedModifier);
             }
 
             if (ToolGameObject.TryGetComponent(out GenericMeleeWeapon weapon))

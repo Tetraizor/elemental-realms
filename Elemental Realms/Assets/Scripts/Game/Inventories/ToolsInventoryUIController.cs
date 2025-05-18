@@ -108,8 +108,6 @@ namespace Game.Inventories
         {
             if (_equippedSlot == null) return;
 
-            var temp = _equippedSlot.ItemInstance;
-
             _equippedSlot.UnequipItem();
             _equippedSlot = null;
         }
@@ -117,7 +115,9 @@ namespace Game.Inventories
         private void OnInteractPressed(InputAction.CallbackContext context)
         {
             if (ActiveSlot.ItemInstance == null) return;
-            _playerEquipmentController.EquipTool(ActiveSlot.ItemInstance);
+
+            if (ActiveSlot == _equippedSlot) _playerEquipmentController.SheathTool();
+            else _playerEquipmentController.EquipTool(ActiveSlot.ItemInstance);
         }
 
         public override void ActivateInput()

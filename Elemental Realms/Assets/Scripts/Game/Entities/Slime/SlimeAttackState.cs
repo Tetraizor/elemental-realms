@@ -27,7 +27,6 @@ namespace Game.Entities.Slime
 
             if (_currentAttackTime > ATTACK_INTERVAL)
             {
-
                 Vector2 targetPositionDifference = _target.transform.position - _slime.transform.position;
                 if (targetPositionDifference.magnitude > 2.5f)
                 {
