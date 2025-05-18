@@ -5,7 +5,7 @@ namespace Game.Interactions
 {
     public interface IInteractionSource
     {
-        public void Activate();
-        public void Deactivate();
+        public void Activate(int actionCode = 0);
+        public void Deactivate(int actionCode = 0);
     }
 }

@@ -13,7 +13,7 @@ namespace Game.Data
             if (ReferenceEquals(a, b))
                 return true;
 
-            if (a is null || b is null)
+            if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
                 return false;
 
             return a.Equals(b);
@@ -28,6 +28,9 @@ namespace Game.Data
         {
             if (obj is ItemInstance other)
             {
+                if (Item == null || other.Item == null)
+                    return false;
+
                 return !(Item is ToolItem) && Item.Id == other.Item.Id;
             }
 
@@ -36,7 +39,7 @@ namespace Game.Data
 
         public override int GetHashCode()
         {
-            return GetHashCode();
+            return Item != null ? Item.Id.GetHashCode() : 0;
         }
     }
 }

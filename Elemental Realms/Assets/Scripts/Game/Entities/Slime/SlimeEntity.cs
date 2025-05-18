@@ -14,7 +14,7 @@ namespace Game.Entities.Slime
     public class SlimeEntity : Entity
     {
         [HideInInspector] public MoveableComponent Moveable;
-        public GenericAreaDamagerWeapon AreaDamager { get; protected set; }
+        public AreaDamager AreaDamager { get; protected set; }
 
         protected override void Awake()
         {
@@ -22,7 +22,7 @@ namespace Game.Entities.Slime
 
             Moveable = GetComponent<MoveableComponent>();
 
-            AreaDamager = GetComponentInChildren<GenericAreaDamagerWeapon>();
+            AreaDamager = GetComponentInChildren<AreaDamager>();
             AreaDamager.Setup(gameObject);
 
             Health.Changed.AddListener(OnHealthChanged);

@@ -1,4 +1,5 @@
 using System;
+using Game.Components;
 using Game.Data;
 using Game.Interactions;
 using Game.Inventories;
@@ -43,6 +44,7 @@ namespace Game.Entities.Player
             ToolGameObject.transform.localEulerAngles = Vector3.zero;
             ToolGameObject.transform.localScale = Vector3.one;
 
+            // Clean previous item related stuff
             if (ToolGameObject.TryGetComponent(out ISpeedModifier speedModifier))
             {
                 _player.Moveable.RegisterSpeedModifier(speedModifier);
@@ -53,9 +55,15 @@ namespace Game.Entities.Player
                 _player.Moveable.DeregisterSpeedModifier(previousSpeedModifier);
             }
 
-            if (ToolGameObject.TryGetComponent(out GenericMeleeWeapon weapon))
+            // Assign new item related stuff
+            if (ToolGameObject.TryGetComponent(out MeleeWeapon weapon))
             {
                 weapon.Setup(_player.gameObject, itemInstance);
+            }
+
+            if (ToolGameObject.TryGetComponent(out IItemThrowable newThrowable))
+            {
+                newThrowable.GetThrownEvent().AddListener(OnItemThrown);
             }
 
             if (previousToolInstance != null)
@@ -78,6 +86,30 @@ namespace Game.Entities.Player
         public void SheathTool()
         {
             EquipTool(new ItemInstance { Item = _fist, Durability = -1 });
+        }
+
+        public void OnItemThrown(ItemInstance itemInstance)
+        {
+            SheathTool();
+
+            if (InventoryController.Instance.RemoveFirstItemByInstance(Enum.InventoryType.ToolsInventory, itemInstance))
+            {
+                var direction = _player.Moveable.LookDirection;
+                var position = _player.transform.position + (Vector3)(direction * 1.5f);
+
+                var spawnedObject = ItemSpawnerController.Instance.SpawnPickable(itemInstance, position);
+
+                if (spawnedObject.TryGetComponent(out Rigidbody2D rb))
+                {
+                    rb.AddForce(direction * 20 * rb.mass, ForceMode2D.Impulse);
+                    rb.AddTorque(300);
+                }
+
+                if (spawnedObject.TryGetComponent(out PickableComponent pickable))
+                {
+                    pickable.InitializeWithItem(itemInstance);
+                }
+            }
         }
     }
 }

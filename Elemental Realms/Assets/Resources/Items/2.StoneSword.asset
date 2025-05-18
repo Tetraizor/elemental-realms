@@ -19,7 +19,7 @@ MonoBehaviour:
   _type: 1
   _mass: 15
   _maxStackSize: 1
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 8826670579028751054, guid: 88f78cb9b7d1d15499c7c4e753c68f83, type: 3}
   _droppable: 1
   MaxDurability: 20
   MovementSpeedPenalty: 0.2

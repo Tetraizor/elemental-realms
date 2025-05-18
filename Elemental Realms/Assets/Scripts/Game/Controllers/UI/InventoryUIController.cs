@@ -85,7 +85,7 @@ namespace Game.Controllers.UI
                     Vector2 spawnPosition = FindFirstObjectByType<PlayerEntity>().transform.position +
                         (Vector3)spawnDirection;
 
-                    var spawnedObject = ItemSpawnerController.Instance.SpawnItem(
+                    var spawnedObject = ItemSpawnerController.Instance.SpawnPickable(
                         instance,
                         spawnPosition
                     );

@@ -11,13 +11,13 @@ namespace Game.Components
 {
     public class PickableComponent : MonoBehaviour, IInteractable, IItemInitializable
     {
-        [SerializeField] private ItemInstance _itemInstance;
-        public ItemInstance ItemInstance => _itemInstance;
+        [SerializeField] protected ItemInstance _itemInstance;
+        [HideInInspector] public ItemInstance ItemInstance => _itemInstance;
         private SpriteRenderer _renderer;
 
         public Vector2 InteractablePosition => gameObject.transform.position;
 
-        private void Start()
+        protected virtual void Start()
         {
             if (_itemInstance != null)
             {
@@ -25,7 +25,7 @@ namespace Game.Components
             }
         }
 
-        public void InitializeWithItem(ItemInstance itemInstance)
+        public virtual void InitializeWithItem(ItemInstance itemInstance)
         {
             if (itemInstance != null)
                 _itemInstance = itemInstance;

@@ -123,22 +123,22 @@ namespace Game.Entities.Player
 
         private void OnPrimaryAttackPerformed(InputAction.CallbackContext ctx)
         {
-            _player.InteractionSource?.Activate();
+            _player.ActivateInteractionSourcePrimary();
         }
 
         private void OnPrimaryAttackCanceled(InputAction.CallbackContext ctx)
         {
-            _player.InteractionSource?.Deactivate();
+            _player.DeactivateInteractionSourcePrimary();
         }
 
         private void OnSecondaryAttackPerformed(InputAction.CallbackContext ctx)
         {
-            _player.InteractionSource?.Activate();
+            _player.ActivateInteractionSourceSecondary();
         }
 
         private void OnSecondaryAttackCanceled(InputAction.CallbackContext ctx)
         {
-            _player.InteractionSource?.Deactivate();
+            _player.DeactivateInteractionSourceSecondary();
         }
 
         private void OnDashPerformed(InputAction.CallbackContext ctx)

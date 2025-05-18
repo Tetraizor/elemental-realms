@@ -60,6 +60,11 @@ namespace Game.Entities.Player
             _dashCooldownTimer = Math.Max(0, _dashCooldownTimer - Time.deltaTime);
         }
 
+        public void ActivateInteractionSourcePrimary() => InteractionSource?.Activate(0);
+        public void DeactivateInteractionSourcePrimary() => InteractionSource?.Deactivate(0);
+        public void ActivateInteractionSourceSecondary() => InteractionSource?.Activate(1);
+        public void DeactivateInteractionSourceSecondary() => InteractionSource?.Deactivate(1);
+
         protected override void Kill()
         {
             base.Kill();
