@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using Game.Data;
+using Game.Entities.Common;
+using Game.Enum;
 using Game.Interactions;
 using Game.Interactions.Effects;
+using Game.Utils;
 using UnityEngine;
 
 namespace Game.Tools
@@ -11,6 +14,7 @@ namespace Game.Tools
     public class GenericAreaDamagerWeapon : MonoBehaviour, IInteractionSource, IInteractorFieldParent
     {
         [SerializeField] private float _radius;
+        [SerializeField] private EntityTag _tags;
 
         public List<ToolAttackEffect> AttackEffects = new();
 
@@ -43,6 +47,8 @@ namespace Game.Tools
         public void OnHitStarted(Collider2D collider)
         {
             if (collider.gameObject == gameObject) return;
+            if (!collider.gameObject.TryGetComponent(out Entity entity)) return;
+            if (!_tags.HasCommon(entity.Tags)) return;
 
             var ctx = new InteractionContext
             {

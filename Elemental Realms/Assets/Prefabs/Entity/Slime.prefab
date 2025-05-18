@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 3
+  _tags: 1
   AttackEffects:
   - Type: 0
     Damage: 15
@@ -236,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1150a3394f00b34ea22458d8fcfdcd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tags: 196608
   Spawned:
     m_PersistentCalls:
       m_Calls: []

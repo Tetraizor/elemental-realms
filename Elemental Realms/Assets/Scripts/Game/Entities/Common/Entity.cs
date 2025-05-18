@@ -4,6 +4,7 @@ using Game.StateManagement;
 using Game.Components;
 using UnityEditor;
 using System.Linq;
+using Game.Enum;
 
 namespace Game.Entities.Common
 {
@@ -14,6 +15,10 @@ namespace Game.Entities.Common
         #region Properties
 
         [Header("Entity Properties")]
+
+        [SerializeField] protected EntityTag _tags = EntityTag.None;
+        public EntityTag Tags => _tags;
+
         [HideInInspector] public GameObject EntityRenderer { get; protected set; }
         [HideInInspector] public Rigidbody2D EntityRigidbody { get; protected set; }
         [HideInInspector] public StateManager StateManager { get; protected set; }

@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game.Data;
+using Game.Entities.Common;
+using Game.Enum;
 using Game.Interactions;
 using Game.Interactions.Effects;
 using Game.Items;
 using Game.Modifiers;
+using Game.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +19,7 @@ namespace Game.Tools
         private GameObject _user;
         private ItemInstance _itemInstance;
         private List<InteractorField> _interactorFields;
+        [SerializeField] private EntityTag _targetTags = EntityTag.Enemy;
 
         private bool _isActive = false;
 
@@ -72,24 +76,25 @@ namespace Game.Tools
 
         public void OnHitStarted(Collider2D collider)
         {
-            if (collider.gameObject != _user)
+            if (collider.gameObject == _user) return;
+            if (!collider.gameObject.TryGetComponent(out Entity entity)) return;
+            if (!_targetTags.HasCommon(entity.Tags)) return;
+
+            var ctx = new InteractionContext
             {
-                var ctx = new InteractionContext
-                {
-                    Source = _user,
-                    HitDirection = (collider.gameObject.transform.position - _user.transform.position).normalized,
-                    HitPoint = collider.gameObject.GetComponent<Collider2D>().ClosestPoint(_user.transform.position)
-                };
+                Source = _user,
+                HitDirection = (collider.gameObject.transform.position - _user.transform.position).normalized,
+                HitPoint = collider.gameObject.GetComponent<Collider2D>().ClosestPoint(_user.transform.position)
+            };
 
-                (_itemInstance.Item as ToolItem).AttackEffects.ForEach(effect => effect.ApplyEffect(
-                    collider.gameObject,
-                    ctx
-                ));
+            (_itemInstance.Item as ToolItem).AttackEffects.ForEach(effect => effect.ApplyEffect(
+                collider.gameObject,
+                ctx
+            ));
 
-                _itemInstance.Durability -= 1;
+            _itemInstance.Durability -= 1;
 
-                Hit?.Invoke(collider.gameObject, ctx);
-            }
+            Hit?.Invoke(collider.gameObject, ctx);
         }
 
         public void OnHitStayed(Collider2D collider) { }
