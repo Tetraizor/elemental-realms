@@ -74,9 +74,9 @@ namespace Game.Controllers.UI
             if (ActiveSlot.ItemInstance != null && ActiveSlot.ItemInstance.Item.Droppable)
             {
                 int slotIndex = _slots.FindIndex(slot => slot == ActiveSlot);
-                int itemId = ActiveSlot.ItemInstance.Item.Id;
+                var instance = ActiveSlot.ItemInstance;
 
-                if (InventoryController.Instance.RemoveItemFromSlot(Type, slotIndex))
+                if (InventoryController.Instance.RemoveFirstItemByInstance(Type, instance))
                 {
                     Vector2 spawnDirection = new Vector2(
                             Random.Range(-1, 1),
@@ -86,7 +86,7 @@ namespace Game.Controllers.UI
                         (Vector3)spawnDirection;
 
                     var spawnedObject = ItemSpawnerController.Instance.SpawnItem(
-                        itemId,
+                        instance,
                         spawnPosition
                     );
 

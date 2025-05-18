@@ -3,6 +3,7 @@ using Game.Data;
 using Game.Enum;
 using Game.Items;
 using Tetraizor.MonoSingleton;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -52,7 +53,7 @@ namespace Game.Inventories
             {
                 var slot = inventory[i];
 
-                if (slot.ItemInstance != null && slot.ItemInstance.Item.Id == itemInstance.Item.Id && slot.Count + count <= itemInstance.Item.MaxStackSize)
+                if (slot.ItemInstance != null && slot.ItemInstance == itemInstance && slot.Count + count <= itemInstance.Item.MaxStackSize)
                 {
                     slot.Count += count;
 
@@ -83,7 +84,7 @@ namespace Game.Inventories
             return false;
         }
 
-        public bool RemoveFirstItem(InventoryType inventoryType, Item item, int count = 1)
+        public bool RemoveFirstItemByItemId(InventoryType inventoryType, int id, int count = 1)
         {
             var inventory = Inventories[inventoryType];
 
@@ -91,20 +92,49 @@ namespace Game.Inventories
             {
                 var slot = inventory[i];
 
-                if (slot.ItemInstance != null && slot.ItemInstance.Item.Id == item.Id && slot.Count >= count)
+                if (slot.ItemInstance != null && slot.ItemInstance.Item.Id == id)
                 {
-                    slot.Count -= count;
-
-                    if (slot.Count == 0)
-                    {
-                        slot.ItemInstance = null;
-                        ReorganizeInventory(inventory);
-                    }
-
-                    InventoryChanged?.Invoke(inventoryType, Inventories[inventoryType]);
-
-                    return true;
+                    return RemoveItemFromSlot(inventoryType, slot, count);
                 }
+            }
+
+            return false;
+        }
+
+        public bool RemoveFirstItemByInstance(InventoryType inventoryType, ItemInstance instance, int count = 1)
+        {
+            var inventory = Inventories[inventoryType];
+
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                var slot = inventory[i];
+
+                if (slot.ItemInstance != null && slot.ItemInstance == instance)
+                {
+                    return RemoveItemFromSlot(inventoryType, slot, count);
+                }
+            }
+
+            return false;
+        }
+
+        private bool RemoveItemFromSlot(InventoryType inventoryType, SlotData slot, int count = 1)
+        {
+            var inventory = Inventories[inventoryType];
+
+            if (slot.ItemInstance != null && slot.Count >= count)
+            {
+                slot.Count -= count;
+
+                if (slot.Count == 0)
+                {
+                    slot.ItemInstance = null;
+                    ReorganizeInventory(inventory);
+                }
+
+                InventoryChanged?.Invoke(inventoryType, inventory);
+
+                return true;
             }
 
             return false;
