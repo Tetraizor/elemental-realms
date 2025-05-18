@@ -62,8 +62,11 @@ namespace Game.Entities.Player
             controls.Look.performed += OnLookPerformed;
             controls.Look.canceled += OnLookCanceled;
 
-            controls.Attack.performed += OnAttackPerformed;
-            controls.Attack.canceled += OnAttackCanceled;
+            controls.PrimaryAttack.performed += OnPrimaryAttackPerformed;
+            controls.PrimaryAttack.canceled += OnPrimaryAttackCanceled;
+
+            controls.SecondaryAttack.performed += OnSecondaryAttackPerformed;
+            controls.SecondaryAttack.canceled += OnSecondaryAttackCanceled;
 
             controls.Dash.performed += OnDashPerformed;
 
@@ -82,8 +85,11 @@ namespace Game.Entities.Player
             controls.Look.performed -= OnLookPerformed;
             controls.Look.canceled -= OnLookCanceled;
 
-            controls.Attack.performed -= OnAttackPerformed;
-            controls.Attack.canceled -= OnAttackCanceled;
+            controls.PrimaryAttack.performed -= OnPrimaryAttackPerformed;
+            controls.PrimaryAttack.canceled -= OnPrimaryAttackCanceled;
+
+            controls.SecondaryAttack.performed += OnSecondaryAttackPerformed;
+            controls.SecondaryAttack.canceled += OnSecondaryAttackCanceled;
 
             controls.Dash.performed -= OnDashPerformed;
 
@@ -115,12 +121,22 @@ namespace Game.Entities.Player
             _lookDirectionInput = Vector2.zero;
         }
 
-        private void OnAttackPerformed(InputAction.CallbackContext ctx)
+        private void OnPrimaryAttackPerformed(InputAction.CallbackContext ctx)
         {
             _player.InteractionSource?.Activate();
         }
 
-        private void OnAttackCanceled(InputAction.CallbackContext ctx)
+        private void OnPrimaryAttackCanceled(InputAction.CallbackContext ctx)
+        {
+            _player.InteractionSource?.Deactivate();
+        }
+
+        private void OnSecondaryAttackPerformed(InputAction.CallbackContext ctx)
+        {
+            _player.InteractionSource?.Activate();
+        }
+
+        private void OnSecondaryAttackCanceled(InputAction.CallbackContext ctx)
         {
             _player.InteractionSource?.Deactivate();
         }
