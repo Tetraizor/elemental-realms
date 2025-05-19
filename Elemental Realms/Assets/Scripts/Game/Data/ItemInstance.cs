@@ -31,7 +31,7 @@ namespace Game.Data
                 if (Item == null || other.Item == null)
                     return false;
 
-                return !(Item is ToolItem) && Item.Id == other.Item.Id;
+                return Item.Type != Enum.ItemType.Tool && Item.Id == other.Item.Id;
             }
 
             return false;

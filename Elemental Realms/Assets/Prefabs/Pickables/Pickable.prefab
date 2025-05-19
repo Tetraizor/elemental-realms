@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 3190450272295902094}
   - component: {fileID: 7742128285329675500}
   - component: {fileID: 7063217089052612460}
+  - component: {fileID: -7812151801286978894}
   - component: {fileID: 9141770937188869420}
+  - component: {fileID: -1640893706618134302}
   m_Layer: 6
   m_Name: Pickable
   m_TagString: Untagged
@@ -98,6 +100,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-7812151801286978894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826670579028751054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b219ce906a0804418bb2285863ee107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tags: 2
+  Spawned:
+    m_PersistentCalls:
+      m_Calls: []
+  Killed:
+    m_PersistentCalls:
+      m_Calls: []
+  Health: {fileID: 0}
 --- !u!114 &9141770937188869420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +132,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab56ddf8c19ae34fb5623a31bc301d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemData: {fileID: 0}
+  _itemInstance:
+    Item: {fileID: 0}
+    Durability: 0
+--- !u!114 &-1640893706618134302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826670579028751054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904ce76ee795aaf44980d568b22a5eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseHealth: 20
+  _showText: 0
+  _knockbackResistance: 0.5
+  TypeVsResistance:
+    _serializedList:
+    - Key: 0
+      Value: 1
+    - Key: 1
+      Value: 1
+    - Key: 2
+      Value: 1
+    - Key: 3
+      Value: 1
+  Killed:
+    m_PersistentCalls:
+      m_Calls: []
+  Changed:
+    m_PersistentCalls:
+      m_Calls: []
+  IsInvincible: 0
 --- !u!1 &8890185850212405337
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +241,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -616032385
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -675783158, guid: 981cf1f8301ae2c48a3cc710c32597cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

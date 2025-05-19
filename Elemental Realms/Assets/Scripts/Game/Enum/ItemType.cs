@@ -5,7 +5,8 @@ namespace Game.Enum
         Material,
         Tool,
         Armor,
-        Ammo,
+        Arrow,
+        Pebble,
         Spell,
     }
 }

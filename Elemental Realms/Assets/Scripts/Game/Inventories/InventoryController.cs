@@ -18,6 +18,9 @@ namespace Game.Inventories
         [HideInInspector] public Dictionary<InventoryType, List<SlotData>> Inventories { get; private set; }
         [HideInInspector] public UnityEvent<InventoryType, List<SlotData>> InventoryChanged;
 
+        [HideInInspector] public UnityEvent<ItemInstance> ItemPicked;
+        [HideInInspector] public UnityEvent<ItemInstance> ItemRemoved;
+
         protected override void Init()
         {
             base.Init();
@@ -60,6 +63,8 @@ namespace Game.Inventories
                     ReorganizeInventory(inventory);
                     InventoryChanged?.Invoke(inventoryType, inventory);
 
+                    ItemPicked?.Invoke(itemInstance);
+
                     return true;
                 }
             }
@@ -76,6 +81,8 @@ namespace Game.Inventories
 
                     ReorganizeInventory(inventory);
                     InventoryChanged?.Invoke(inventoryType, inventory);
+
+                    ItemPicked?.Invoke(itemInstance);
 
                     return true;
                 }
@@ -121,8 +128,9 @@ namespace Game.Inventories
         private bool RemoveItemFromSlot(InventoryType inventoryType, SlotData slot, int count = 1)
         {
             var inventory = Inventories[inventoryType];
+            var itemInstance = slot.ItemInstance;
 
-            if (slot.ItemInstance != null && slot.Count >= count)
+            if (itemInstance != null && slot.Count >= count)
             {
                 slot.Count -= count;
 
@@ -133,6 +141,8 @@ namespace Game.Inventories
                 }
 
                 InventoryChanged?.Invoke(inventoryType, inventory);
+
+                ItemRemoved?.Invoke(itemInstance);
 
                 return true;
             }
@@ -163,6 +173,30 @@ namespace Game.Inventories
             }
 
             return false;
+        }
+
+        public ItemInstance HasItemWithId(InventoryType inventoryType, int id)
+        {
+            var inventory = Inventories[inventoryType];
+
+            foreach (var slot in inventory)
+            {
+                if (slot.ItemInstance?.Item?.Id == id) return slot.ItemInstance;
+            }
+
+            return null;
+        }
+
+        public ItemInstance HasItemWithType(InventoryType inventoryType, ItemType type)
+        {
+            var inventory = Inventories[inventoryType];
+
+            foreach (var slot in inventory)
+            {
+                if (slot.ItemInstance?.Item?.Type == type) return slot.ItemInstance;
+            }
+
+            return null;
         }
 
         private void ReorganizeInventory(List<SlotData> inventory)

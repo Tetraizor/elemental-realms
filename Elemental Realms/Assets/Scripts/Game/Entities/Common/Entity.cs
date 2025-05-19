@@ -21,7 +21,7 @@ namespace Game.Entities.Common
 
         [HideInInspector] public GameObject EntityRenderer { get; protected set; }
         [HideInInspector] public Rigidbody2D EntityRigidbody { get; protected set; }
-        [HideInInspector] public StateManager StateManager { get; protected set; }
+        [HideInInspector] public StateManager StateManager { get; protected set; } = new StateManager();
 
         [HideInInspector] public UnityEvent Spawned;
         [HideInInspector] public UnityEvent Killed;
@@ -62,14 +62,5 @@ namespace Game.Entities.Common
         }
 
         #endregion
-
-#if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            if (!Application.isPlaying) return;
-
-            Handles.Label(transform.position + Vector3.up * 2f, StateManager.CurrentState.GetType().ToString().Split('.').Last());
-        }
-#endif
     }
 }

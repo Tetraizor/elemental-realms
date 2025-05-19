@@ -19,7 +19,7 @@ namespace Game.Components
         // References
         private Rigidbody2D _rigidbody;
 
-        private bool _isActive = true;
+        public bool IsActive = true;
 
         public override void InitializeWithItem(ItemInstance instance)
         {
@@ -28,9 +28,9 @@ namespace Game.Components
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        void OnCollisionEnter2D(Collision2D collision)
+        protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!_isActive) return;
+            if (!IsActive) return;
 
             var ctx = new InteractionContext
             {
@@ -40,17 +40,19 @@ namespace Game.Components
                 Speed = collision.relativeVelocity.magnitude
             };
 
-            var toolItem = _itemInstance.Item as ToolItem;
-            toolItem.AttackEffects.ForEach(effect => effect.ApplyEffect(collision.gameObject, ctx));
+            if (_itemInstance.Item is ToolItem toolItem)
+            {
+                toolItem.AttackEffects.ForEach(effect => effect.ApplyEffect(collision.gameObject, ctx));
+            }
         }
 
         private void Update()
         {
-            if (!_isActive) return;
+            if (!IsActive) return;
 
             if (_rigidbody.linearVelocity.magnitude < _activationVelocityThreshold)
             {
-                _isActive = false;
+                IsActive = false;
 
                 _rigidbody.angularDamping = _groundAngularFriction;
                 _rigidbody.linearDamping = _groundLinearFriction;

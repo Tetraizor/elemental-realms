@@ -14,6 +14,8 @@ namespace Game.Components
         public float BaseHealth => _baseHealth;
         public float Health { protected set; get; }
 
+        [SerializeField] private bool _showText = true;
+
         [Header("Resistance Properties")]
         [SerializeField] private float _knockbackResistance = .5f;
         public float KnockbackResistance => _knockbackResistance;
@@ -41,11 +43,19 @@ namespace Game.Components
 
             float trueDamage = TypeVsResistance.ContainsKey(type) ? amount * (1 - TypeVsResistance[type]) : amount;
 
-            var damageText = Instantiate(_damageText, transform.position + new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0).normalized, Quaternion.identity).GetComponent<DamageText>();
+            if (_showText)
+            {
+                var damageText = Instantiate(_damageText,
+                    transform.position +
+                        new Vector3(0, 1) +
+                        new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0).normalized,
+                    Quaternion.identity
+                ).GetComponent<DamageText>();
 
-            float percentage = 1 - (trueDamage / BaseHealth);
-            var color = new Color(1, percentage, percentage);
-            damageText.Setup(trueDamage.ToString(), color);
+                float percentage = 1 - (trueDamage / BaseHealth);
+                var color = new Color(1, percentage, percentage);
+                damageText.Setup(trueDamage.ToString(), color);
+            }
 
             SetHealth(Health - trueDamage);
         }
@@ -54,11 +64,20 @@ namespace Game.Components
         {
             if (IsInvincible) return;
 
-            var damageText = Instantiate(_damageText, transform.position + new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0).normalized, Quaternion.identity).GetComponent<DamageText>();
+            if (_showText)
+            {
+                var damageText = Instantiate(
+                    _damageText,
+                    transform.position +
+                        new Vector3(0, 1) +
+                        new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0).normalized,
+                    Quaternion.identity
+                ).GetComponent<DamageText>();
 
-            float percentage = 1 - (amount / BaseHealth);
-            var color = new Color(percentage, 1, percentage);
-            damageText.Setup(amount.ToString(), color);
+                float percentage = 1 - (amount / BaseHealth);
+                var color = new Color(percentage, 1, percentage);
+                damageText.Setup(amount.ToString(), color);
+            }
 
             SetHealth(Health + amount);
         }

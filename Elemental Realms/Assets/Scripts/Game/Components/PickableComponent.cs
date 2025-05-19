@@ -42,7 +42,7 @@ namespace Game.Components
         {
             InventoryType inventoryType = InventoryType.GearInventory;
 
-            if (_itemInstance.Item.Type == ItemType.Material)
+            if (_itemInstance.Item.Type == ItemType.Material || _itemInstance.Item.Type == ItemType.Arrow || _itemInstance.Item.Type == ItemType.Pebble)
             {
                 inventoryType = InventoryType.MaterialInventory;
             }

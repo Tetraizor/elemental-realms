@@ -13,7 +13,7 @@ using UnityEngine.Events;
 namespace Game.Tools
 {
     [RequireComponent(typeof(Animator))]
-    public class MeleeWeapon : MonoBehaviour, IInteractionSource, IInteractorFieldParent, ISpeedModifier, IItemThrowable
+    public class MeleeWeapon : MonoBehaviour, IInteractionSource, IInteractorFieldParent, ISpeedModifier, IItemThrowable, IToolInitializable
     {
         [Header("Weapon Properties")]
         [SerializeField] private EntityTag _targetTags = EntityTag.Enemy;

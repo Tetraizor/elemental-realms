@@ -14,6 +14,8 @@ namespace Game.Interactions.Effects
 
         public override void ApplyEffect(GameObject target, InteractionContext context)
         {
+            base.ApplyEffect(target, context);
+
             if (target.TryGetComponent(out HealthComponent health))
             {
                 health.TakeDamage(Damage, Type);

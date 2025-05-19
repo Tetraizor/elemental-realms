@@ -28,7 +28,15 @@ namespace Game.Entities.Player
 
             SheathTool();
 
-            var toolInventoryController = FindFirstObjectByType<ToolsInventoryUIController>();
+            InventoryController.Instance.ItemPicked.AddListener(OnItemPicked);
+        }
+
+        private void OnItemPicked(ItemInstance itemInstance)
+        {
+            if ((ToolInstance == null || ToolInstance.Item.Id == _fist.Id) && itemInstance.Item is ToolItem)
+            {
+                EquipTool(itemInstance);
+            }
         }
 
         public void EquipTool(ItemInstance itemInstance)
@@ -39,6 +47,7 @@ namespace Game.Entities.Player
             var previousToolInstance = ToolGameObject;
             var tool = itemInstance.Item as ToolItem;
 
+            ToolInstance = itemInstance;
             ToolGameObject = Instantiate(tool.InteractorPrefab, _player.Orbit.TargetTransform);
             ToolGameObject.transform.localPosition = Vector3.zero;
             ToolGameObject.transform.localEulerAngles = Vector3.zero;
@@ -56,9 +65,9 @@ namespace Game.Entities.Player
             }
 
             // Assign new item related stuff
-            if (ToolGameObject.TryGetComponent(out MeleeWeapon weapon))
+            if (ToolGameObject.TryGetComponent(out IToolInitializable initializable))
             {
-                weapon.Setup(_player.gameObject, itemInstance);
+                initializable.Setup(_player.gameObject, itemInstance);
             }
 
             if (ToolGameObject.TryGetComponent(out IItemThrowable newThrowable))
