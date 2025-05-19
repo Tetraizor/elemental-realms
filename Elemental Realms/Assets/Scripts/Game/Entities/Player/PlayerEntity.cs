@@ -1,15 +1,16 @@
 using System;
+using System.Collections.Generic;
 using Game.Components;
-using Game.Controllers;
+using Game.Data;
 using Game.Entities.Common;
 using Game.Interactions;
-using Game.Tools;
+using Game.Items;
 using UnityEngine;
 
 namespace Game.Entities.Player
 {
     [RequireComponent(typeof(MoveableComponent))]
-    public class PlayerEntity : Entity
+    public class PlayerEntity : Entity, IItemConsumer
     {
         [HideInInspector] public MoveableComponent Moveable { get; private set; }
         [HideInInspector] public OrbitComponent Orbit { get; private set; }
@@ -34,18 +35,6 @@ namespace Game.Entities.Player
             Health.Changed.AddListener(OnHealthChanged);
         }
 
-        public void SetLookDirection(Vector2 lookDirection)
-        {
-            Orbit.Direction = lookDirection;
-            Moveable.LookDirection = lookDirection;
-        }
-
-        private void OnHealthChanged(float oldHealth, float newHealth)
-        {
-            if (newHealth != 0)
-                StateManager.SetState(new PlayerDamageState(this));
-        }
-
         protected override void Start()
         {
             base.Start();
@@ -60,10 +49,17 @@ namespace Game.Entities.Player
             _dashCooldownTimer = Math.Max(0, _dashCooldownTimer - Time.deltaTime);
         }
 
-        public void ActivateInteractionSourcePrimary() => InteractionSource?.Activate(0);
-        public void DeactivateInteractionSourcePrimary() => InteractionSource?.Deactivate(0);
-        public void ActivateInteractionSourceSecondary() => InteractionSource?.Activate(1);
-        public void DeactivateInteractionSourceSecondary() => InteractionSource?.Deactivate(1);
+        public void SetLookDirection(Vector2 lookDirection)
+        {
+            Orbit.Direction = lookDirection;
+            Moveable.LookDirection = lookDirection;
+        }
+
+        private void OnHealthChanged(float oldHealth, float newHealth)
+        {
+            if (newHealth != 0)
+                StateManager.SetState(new PlayerDamageState(this));
+        }
 
         protected override void Kill()
         {
@@ -80,5 +76,19 @@ namespace Game.Entities.Player
                 _dashCooldownTimer = _dashCooldown;
             }
         }
+
+        public void Consume(List<ConsumeEffectInstance> consumables)
+        {
+            consumables.ForEach(consumable => consumable.GetConsumed(gameObject));
+        }
+
+        #region Input Handlers
+
+        public void ActivateInteractionSourcePrimary() => InteractionSource?.Activate(0);
+        public void DeactivateInteractionSourcePrimary() => InteractionSource?.Deactivate(0);
+        public void ActivateInteractionSourceSecondary() => InteractionSource?.Activate(1);
+        public void DeactivateInteractionSourceSecondary() => InteractionSource?.Deactivate(1);
+
+        #endregion
     }
 }

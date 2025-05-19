@@ -86,7 +86,7 @@ MonoBehaviour:
   _tags: 1
   AttackEffects:
   - Type: 0
-    Damage: 15
+    Damage: 10
     Knockback: 0.3
 --- !u!114 &8090387198255579164
 MonoBehaviour:
@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _baseHealth: 20
+  _showText: 1
   _knockbackResistance: 0.5
   TypeVsResistance:
     _serializedList:

@@ -22,7 +22,7 @@ MonoBehaviour:
   _prefab: {fileID: 0}
   _droppable: 1
   Effects:
-  - Type: {fileID: 11400000, guid: 9206ac8b66c921f48bec95ab9363b29a, type: 2}
+  - ConsumeEffect: {fileID: 11400000, guid: 9206ac8b66c921f48bec95ab9363b29a, type: 2}
     Magnitude: 5
-  - Type: {fileID: 11400000, guid: a46f5480924b10246902b31751df6437, type: 2}
+  - ConsumeEffect: {fileID: 11400000, guid: a46f5480924b10246902b31751df6437, type: 2}
     Magnitude: 3

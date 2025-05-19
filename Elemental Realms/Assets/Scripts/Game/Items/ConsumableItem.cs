@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Game.Data;
 using UnityEngine;
 
@@ -7,11 +8,8 @@ namespace Game.Items
     public class ConsumableItem : Item, IItemConsumable
     {
         [Header("Consumable Properties")]
-        public ConsumeEffectAttribute[] Effects;
+        public List<ConsumeEffectInstance> Effects;
 
-        public ConsumeEffectAttribute[] Consume()
-        {
-            return Effects;
-        }
+        public List<ConsumeEffectInstance> GetEffects() => Effects;
     }
 }

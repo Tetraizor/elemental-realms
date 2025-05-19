@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Game.Controllers;
 using Game.Controllers.UI;
+using Game.Entities.Player;
 using Game.Items;
 using Game.UI;
 using TMPro;
@@ -40,13 +41,13 @@ namespace Game.Inventories
 
                 if (slot.ItemInstance.Item is IItemConsumable consumable)
                 {
-                    var consumableEffects = consumable.Consume();
+                    var consumableEffects = consumable.GetEffects();
                     _consumablePrompt.gameObject.SetActive(true);
 
                     foreach (var consumableEffect in consumableEffects)
                     {
                         var prompt = Instantiate(_promptPrefab, _effectContainer);
-                        prompt.GetComponent<PromptElement>().Setup($"{consumableEffect.Type.Name} ({consumableEffect.Magnitude})", consumableEffect.Type.Icon);
+                        prompt.GetComponent<PromptElement>().Setup($"{consumableEffect.ConsumeEffect.Name} ({consumableEffect.Magnitude})", consumableEffect.ConsumeEffect.Icon);
                     }
                 }
                 else
@@ -86,7 +87,10 @@ namespace Game.Inventories
 
                 if (InventoryController.Instance.RemoveItemFromSlot(Type, slotIndex))
                 {
-                    var effects = consumable.Consume();
+                    var effects = consumable.GetEffects();
+                    var player = FindFirstObjectByType<PlayerEntity>();
+
+                    player.Consume(effects);
                 }
 
                 SelectSlot(ActiveSlot);
