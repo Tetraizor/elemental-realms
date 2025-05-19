@@ -25,7 +25,7 @@ namespace Game.Components
 
         [Header("Events")]
         [HideInInspector] public UnityEvent Killed;
-        [HideInInspector] public UnityEvent<float> Changed;
+        [HideInInspector] public UnityEvent<float, float> Changed;
 
         [HideInInspector] public bool IsInvincible = false;
 
@@ -35,6 +35,11 @@ namespace Game.Components
         {
             Health = _baseHealth;
             _damageText = Resources.Load<GameObject>("UI/DamageText");
+        }
+
+        private void Start()
+        {
+            SetHealth(BaseHealth);
         }
 
         public virtual void TakeDamage(float amount, DamageType type)
@@ -84,9 +89,10 @@ namespace Game.Components
 
         public void SetHealth(float health)
         {
+            float previousHealth = Health;
             Health = Mathf.Clamp(health, 0, _baseHealth);
 
-            Changed?.Invoke(Health);
+            Changed?.Invoke(previousHealth, Health);
 
             if (Health == 0)
             {

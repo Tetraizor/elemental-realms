@@ -40,7 +40,7 @@ namespace Game.Entities.Player
             Moveable.LookDirection = lookDirection;
         }
 
-        private void OnHealthChanged(float newHealth)
+        private void OnHealthChanged(float oldHealth, float newHealth)
         {
             if (newHealth != 0)
                 StateManager.SetState(new PlayerDamageState(this));

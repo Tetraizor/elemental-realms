@@ -57,7 +57,7 @@ namespace Game.Entities.Slime
             Destroy(gameObject, 1.5f);
         }
 
-        private void OnHealthChanged(float newHealth)
+        private void OnHealthChanged(float oldHealth, float newHealth)
         {
             if (newHealth != 0)
                 StateManager.SetState(new SlimeTakeDamageState(this));
