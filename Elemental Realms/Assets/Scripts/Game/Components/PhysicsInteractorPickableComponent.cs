@@ -40,9 +40,9 @@ namespace Game.Components
                 Speed = collision.relativeVelocity.magnitude
             };
 
-            if (_itemInstance.Item is ToolItem toolItem)
+            if (_itemInstance.Item is IInteractionEffectProvider effectProvider)
             {
-                toolItem.AttackEffects.ForEach(effect => effect.ApplyEffect(collision.gameObject, ctx));
+                effectProvider.GetEffects().ForEach(effect => effect.ApplyEffect(collision.gameObject, ctx));
             }
         }
 

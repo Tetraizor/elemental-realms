@@ -131,10 +131,13 @@ namespace Game.Tools
                 HitPoint = collider.gameObject.GetComponent<Collider2D>().ClosestPoint(_user.transform.position)
             };
 
-            (_itemInstance.Item as ToolItem).AttackEffects.ForEach(effect => effect.ApplyEffect(
-                collider.gameObject,
-                ctx
-            ));
+            if (_itemInstance.Item is IInteractionEffectProvider effectProvider)
+            {
+                effectProvider.GetEffects().ForEach(effect => effect.ApplyEffect(
+                    collider.gameObject,
+                    ctx
+                ));
+            }
 
             _itemInstance.Durability -= 1;
 

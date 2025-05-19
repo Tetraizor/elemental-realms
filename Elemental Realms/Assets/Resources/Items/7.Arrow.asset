@@ -9,23 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8f6b64013a155d43a804277541edcb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 47c7df4a1d2700a4f92b066ae28a4468, type: 3}
   m_Name: 7.Arrow
   m_EditorClassIdentifier: 
   _id: 7
   _itemName: Arrow
-  _description: Simply crafted arrow.
+  _description: Simple wooden arrow.
   _sprite: {fileID: -1775245665, guid: 45d5ea3dea2517d40894d6aa7a43fcdb, type: 3}
   _type: 3
   _mass: 1
   _maxStackSize: 99
   _prefab: {fileID: 1716191604057793394, guid: ba397c7b40281a043bd6d799211d13fc, type: 3}
   _droppable: 1
-  MaxDurability: 20
-  MovementSpeedPenalty: 0
-  UseSpeedPenalty: 0
-  InteractorPrefab: {fileID: 0}
-  AttackEffects:
+  _effects:
   - Type: 2
     Damage: 10
-    Knockback: 0.1
+    Knockback: 0.2

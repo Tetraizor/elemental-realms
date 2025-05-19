@@ -16,7 +16,7 @@ namespace Game.Tools
         [SerializeField] private float _radius;
         [SerializeField] private EntityTag _tags;
 
-        public List<ToolAttackEffect> AttackEffects = new();
+        public List<InteractionEffect> AttackEffects = new();
 
         private CircleCollider2D _collider;
         private GameObject _user;

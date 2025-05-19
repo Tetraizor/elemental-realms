@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Game.Interactions.Effects
 {
     [System.Serializable]
-    public class ToolAttackEffect : InteractionEffect
+    public class AttackEffect : InteractionEffect
     {
         public DamageType Type = DamageType.Blunt;
         public float Damage = 5;

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Game.Controllers;
 using Game.Controllers.UI;
 using Game.Items;
@@ -37,7 +38,7 @@ namespace Game.Inventories
                 _titleText.SetText(slot.ItemInstance.Item.Name);
                 _descriptionText.SetText(slot.ItemInstance.Item.Description);
 
-                if (slot.ItemInstance is IItemConsumable consumable)
+                if (slot.ItemInstance.Item is IItemConsumable consumable)
                 {
                     var consumableEffects = consumable.Consume();
                     _consumablePrompt.gameObject.SetActive(true);
@@ -71,10 +72,15 @@ namespace Game.Inventories
         {
             if (ActiveSlot == null || ActiveSlot.ItemInstance == null) return;
 
-            var item = ActiveSlot.ItemInstance;
+            var itemInstance = ActiveSlot.ItemInstance;
 
-            if (item is IItemConsumable consumable)
+            if (itemInstance.Item is IItemConsumable consumable)
             {
+                ActiveSlot.transform.DOScale(Vector3.one * 1.1f, .07f).OnComplete(() =>
+                {
+                    ActiveSlot.transform.DOScale(Vector3.one, .5f);
+                });
+
                 int slotIndex = _slots.FindIndex(slot => slot == ActiveSlot);
                 int itemId = ActiveSlot.ItemInstance.Item.Id;
 

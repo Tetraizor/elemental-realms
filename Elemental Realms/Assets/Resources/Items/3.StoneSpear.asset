@@ -25,7 +25,7 @@ MonoBehaviour:
   MovementSpeedPenalty: 0.2
   UseSpeedPenalty: 0.6
   InteractorPrefab: {fileID: 6029146042148992363, guid: d628c4c2b69f8384db1e195dcf3dd5e2, type: 3}
-  AttackEffects:
+  _attackEffects:
   - Type: 2
-    Damage: 5
+    Damage: 8
     Knockback: 0.1

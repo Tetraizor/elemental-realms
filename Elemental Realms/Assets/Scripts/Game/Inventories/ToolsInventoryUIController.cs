@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using Game.Controllers;
 using Game.Controllers.UI;
 using Game.Data;
@@ -99,6 +100,11 @@ namespace Game.Inventories
             }
 
             if (_equippedSlot != null) UnequipItemSlot();
+
+            slot.transform.DOScale(Vector3.one * 1.1f, .07f).OnComplete(() =>
+            {
+                slot.transform.DOScale(Vector3.one, .5f);
+            });
 
             _equippedSlot = slot;
             _equippedSlot.EquipItem();

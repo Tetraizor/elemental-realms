@@ -36,12 +36,9 @@ namespace Game.Controllers.UI
 
         private void OnPlayerHealthChanged(float oldHealth, float newHealth)
         {
-            // Animate the fill amount
             float targetFill = newHealth / _player.Health.BaseHealth;
             _playerHealthColor.DOFillAmount(targetFill, 0.5f).SetEase(Ease.OutQuad);
 
-            // Animate the number text smoothly from current value to new value
-            Debug.Log(_playerHealthLabel);
             DOTween.To(() => oldHealth, x =>
             {
                 oldHealth = x;

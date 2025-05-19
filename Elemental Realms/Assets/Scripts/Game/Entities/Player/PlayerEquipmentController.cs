@@ -49,6 +49,7 @@ namespace Game.Entities.Player
 
             ToolInstance = itemInstance;
             ToolGameObject = Instantiate(tool.InteractorPrefab, _player.Orbit.TargetTransform);
+
             ToolGameObject.transform.localPosition = Vector3.zero;
             ToolGameObject.transform.localEulerAngles = Vector3.zero;
             ToolGameObject.transform.localScale = Vector3.one;

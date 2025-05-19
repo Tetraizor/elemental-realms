@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Game.Data;
 using Game.Entities.Player;
 using Game.Enum;
@@ -75,6 +76,11 @@ namespace Game.Controllers.UI
             {
                 int slotIndex = _slots.FindIndex(slot => slot == ActiveSlot);
                 var instance = ActiveSlot.ItemInstance;
+
+                ActiveSlot.transform.DOScale(Vector3.one * 1.1f, .07f).OnComplete(() =>
+                {
+                    ActiveSlot.transform.DOScale(Vector3.one, .5f);
+                });
 
                 if (InventoryController.Instance.RemoveFirstItemByInstance(Type, instance))
                 {
