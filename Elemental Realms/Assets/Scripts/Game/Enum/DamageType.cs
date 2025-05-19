@@ -6,5 +6,10 @@ namespace Game.Enum
         Sharp,
         Piercing,
         Magic,
+        Poison,
+        Fire,
+        Cold,
+        Light,
+        Darkness
     }
 }

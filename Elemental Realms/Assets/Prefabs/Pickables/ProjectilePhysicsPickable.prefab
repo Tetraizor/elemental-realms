@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tags: 2
+  ResistantEffects: -1
   Spawned:
     m_PersistentCalls:
       m_Calls: []

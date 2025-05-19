@@ -9,6 +9,6 @@ namespace Game.Items
     {
         [SerializeField] private List<AttackEffect> _effects;
 
-        public List<AttackEffect> GetEffects() => _effects;
+        public List<AttackEffect> GetAttackEffects() => _effects;
     }
 }

@@ -63,7 +63,7 @@ namespace Game.Entities.Player
 
         protected override void Kill()
         {
-            base.Kill();
+            Killed.Invoke();
 
             StateManager.SetState(new PlayerKillState(this));
         }

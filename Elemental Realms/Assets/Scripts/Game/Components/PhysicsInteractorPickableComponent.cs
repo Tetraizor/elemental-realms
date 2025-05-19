@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Game.Data;
+using Game.Entities.Common;
 using Game.Interactions;
 using Game.Items;
+using Game.Status;
 using UnityEngine;
 
 namespace Game.Components
@@ -42,7 +44,12 @@ namespace Game.Components
 
             if (_itemInstance.Item is IInteractionEffectProvider effectProvider)
             {
-                effectProvider.GetEffects().ForEach(effect => effect.ApplyEffect(collision.gameObject, ctx));
+                effectProvider.GetAttackEffects().ForEach(effect => effect.ApplyEffect(collision.gameObject, ctx));
+            }
+
+            if (_itemInstance.Item is IStatusEffectProvider statusProvider && collision.gameObject.TryGetComponent(out Entity entity))
+            {
+                statusProvider.GetStatusEffects().ForEach(status => entity.StatusManager.AddStatus(new StatusInstance { Status = status }));
             }
         }
 

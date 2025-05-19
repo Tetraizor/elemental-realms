@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -616032385
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: -1
   m_Sprite: {fileID: -8515772800681639292, guid: a1f6aa891a4ad8049b9c84b50451d874, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -161,7 +161,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -616032385
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -8515772800681639292, guid: a1f6aa891a4ad8049b9c84b50451d874, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -220,12 +220,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca502cbb567d514da1762cb10046bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effects:
-  - {fileID: 11400000, guid: 5e2c544f7fcf21a4bb68023f3dba4a69, type: 2}
+  _targetTags: 65538
+  _cooldown: 0.5
+  _throwable: 1
   _animationTriggerNames:
   - LeftPunch
   - RightPunch
-  _cooldown: 0.5
+  Hit:
+    m_PersistentCalls:
+      m_Calls: []
+  WeaponThrown:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &9088735984731355480
 Animator:
   serializedVersion: 7

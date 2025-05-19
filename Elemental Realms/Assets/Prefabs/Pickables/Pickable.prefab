@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tags: 2
+  ResistantEffects: 7
   Spawned:
     m_PersistentCalls:
       m_Calls: []
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904ce76ee795aaf44980d568b22a5eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseHealth: 20
+  _baseHealth: 10
   _showText: 0
   _knockbackResistance: 0.5
   TypeVsResistance:
@@ -159,6 +160,16 @@ MonoBehaviour:
     - Key: 2
       Value: 1
     - Key: 3
+      Value: 1
+    - Key: 4
+      Value: 1
+    - Key: 5
+      Value: 0
+    - Key: 6
+      Value: 1
+    - Key: 7
+      Value: 1
+    - Key: 8
       Value: 1
   Killed:
     m_PersistentCalls:

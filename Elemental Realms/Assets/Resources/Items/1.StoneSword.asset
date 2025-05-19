@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f6b64013a155d43a804277541edcb0, type: 3}
+  m_Name: 1.StoneSword
+  m_EditorClassIdentifier: 
+  _id: 1
+  _itemName: Stone Sword
+  _description: Amateurouslihy crafted.
+  _sprite: {fileID: 8699069900992395679, guid: 45d5ea3dea2517d40894d6aa7a43fcdb, type: 3}
+  _type: 1
+  _mass: 15
+  _maxStackSize: 1
+  _prefab: {fileID: 8826670579028751054, guid: 88f78cb9b7d1d15499c7c4e753c68f83, type: 3}
+  _droppable: 1
+  MaxDurability: 20
+  MovementSpeedPenalty: 0.2
+  UseSpeedPenalty: 0.6
+  InteractorPrefab: {fileID: 6029146042148992363, guid: 08eb90e25a9e1274880521967c72085c, type: 3}
+  _attackEffects:
+  - Type: 1
+    Damage: 10
+    Knockback: 0.3
+  _statusEffects:
+  - {fileID: 11400000, guid: 53ce27e79ae08714f80390abc7bd88fc, type: 2}

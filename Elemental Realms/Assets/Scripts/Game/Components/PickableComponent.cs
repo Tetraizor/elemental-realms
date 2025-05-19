@@ -6,12 +6,15 @@ using Game.Enum;
 using Game.Items;
 using Game.Data;
 using Game.Entities.Player;
+using Game.Entities.Common;
+using System;
 
 namespace Game.Components
 {
     public class PickableComponent : MonoBehaviour, IInteractable, IItemInitializable
     {
         [SerializeField] protected ItemInstance _itemInstance;
+
         [HideInInspector] public ItemInstance ItemInstance => _itemInstance;
         private SpriteRenderer _renderer;
 
@@ -23,6 +26,16 @@ namespace Game.Components
             {
                 InitializeWithItem(_itemInstance);
             }
+
+            GetComponent<Entity>().Killed.AddListener(OnKilled);
+            GetComponent<Entity>().ResistantEffects = _itemInstance.Item.ResistantEffects;
+        }
+
+        private void OnKilled()
+        {
+            var smokeParticle = Resources.Load<GameObject>("VisualFX/Particles/SmokeParticles");
+            var smoke = Instantiate(smokeParticle, transform.position, Quaternion.identity);
+            Destroy(smoke, 2);
         }
 
         public virtual void InitializeWithItem(ItemInstance itemInstance)

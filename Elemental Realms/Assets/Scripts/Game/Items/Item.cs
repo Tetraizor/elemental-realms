@@ -19,6 +19,8 @@ namespace Game.Items
 
         [SerializeField] private bool _droppable = true;
 
+        [SerializeField] public StatusEffectType ResistantEffects = StatusEffectType.All;
+
         public int Id => _id;
         public string Name => _itemName;
         public string Description => _description;

@@ -50,7 +50,7 @@ namespace Game.Entities.Slime
 
         protected override void Kill()
         {
-            base.Kill();
+            Killed.Invoke();
 
             StateManager.SetState(new SlimeKillState(this));
 

@@ -5,6 +5,6 @@ namespace Game.Items
 {
     public interface IInteractionEffectProvider
     {
-        public List<AttackEffect> GetEffects();
+        public List<AttackEffect> GetAttackEffects();
     }
 }

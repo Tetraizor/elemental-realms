@@ -10,11 +10,6 @@ namespace Game.Entities.Misc
     {
         [SerializeField] private ParticleSystem _hitParticle;
 
-        protected override void Awake()
-        {
-            base.Awake();
-        }
-
         public void ConsumeContext(InteractionContext ctx)
         {
             var particleEffect = Instantiate(_hitParticle, transform.position + new Vector3(0, 1), Quaternion.identity);

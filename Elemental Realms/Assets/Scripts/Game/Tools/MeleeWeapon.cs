@@ -133,10 +133,18 @@ namespace Game.Tools
 
             if (_itemInstance.Item is IInteractionEffectProvider effectProvider)
             {
-                effectProvider.GetEffects().ForEach(effect => effect.ApplyEffect(
+                effectProvider.GetAttackEffects().ForEach(effect => effect.ApplyEffect(
                     collider.gameObject,
                     ctx
                 ));
+            }
+
+            if (_itemInstance.Item is IStatusEffectProvider statusProvider)
+            {
+                if (entity != null)
+                {
+                    statusProvider.GetStatusEffects().ForEach(status => entity.StatusManager.AddStatus(new Status.StatusInstance { Status = status }));
+                }
             }
 
             _itemInstance.Durability -= 1;

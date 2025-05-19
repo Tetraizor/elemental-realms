@@ -5,6 +5,7 @@ using Game.Components;
 using UnityEditor;
 using System.Linq;
 using Game.Enum;
+using Game.Status;
 
 namespace Game.Entities.Common
 {
@@ -17,11 +18,13 @@ namespace Game.Entities.Common
         [Header("Entity Properties")]
 
         [SerializeField] protected EntityTag _tags = EntityTag.None;
+        [SerializeField] public StatusEffectType ResistantEffects = StatusEffectType.None;
         public EntityTag Tags => _tags;
 
         [HideInInspector] public GameObject EntityRenderer { get; protected set; }
         [HideInInspector] public Rigidbody2D EntityRigidbody { get; protected set; }
         [HideInInspector] public StateManager StateManager { get; protected set; } = new StateManager();
+        [HideInInspector] public StatusManager StatusManager { get; protected set; }
 
         [HideInInspector] public UnityEvent Spawned;
         [HideInInspector] public UnityEvent Killed;
@@ -33,7 +36,7 @@ namespace Game.Entities.Common
         #region Unity Methods
         protected virtual void Awake()
         {
-            StateManager = new StateManager();
+            StatusManager = new StatusManager(this);
             EntityRigidbody = GetComponent<Rigidbody2D>();
             Health = GetComponent<HealthComponent>();
             EntityRenderer = transform.Find("Renderer").gameObject;
@@ -54,11 +57,20 @@ namespace Game.Entities.Common
         protected virtual void Update()
         {
             StateManager.TickState(Time.deltaTime);
+            StatusManager.TickStatus(Time.deltaTime);
         }
 
         protected virtual void Kill()
         {
             Killed?.Invoke();
+            StatusManager.Statuses.ForEach(status => StatusManager.RemoveStatus(status));
+
+            Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            StatusManager.Statuses.ForEach(status => StatusManager.RemoveStatus(status));
         }
 
         #endregion
