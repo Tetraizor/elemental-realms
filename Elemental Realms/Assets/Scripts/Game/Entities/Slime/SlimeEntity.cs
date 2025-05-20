@@ -16,10 +16,13 @@ namespace Game.Entities.Slime
         [HideInInspector] public MoveableComponent Moveable;
         public AreaDamager AreaDamager { get; protected set; }
 
+        public Vector2 SpawnPosition;
+
         protected override void Awake()
         {
             base.Awake();
 
+            SpawnPosition = transform.position;
             Moveable = GetComponent<MoveableComponent>();
 
             AreaDamager = GetComponentInChildren<AreaDamager>();

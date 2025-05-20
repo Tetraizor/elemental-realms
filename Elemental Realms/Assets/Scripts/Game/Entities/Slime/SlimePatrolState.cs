@@ -21,7 +21,11 @@ namespace Game.Entities.Slime
 
         public override void Enter()
         {
-            _moveDirection = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)).normalized;
+            _waitInterval *= Random.Range(.8f, 1.3f);
+
+            var targetPosition = _slime.SpawnPosition + new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)) * Random.Range(0, 5.0f);
+            _moveDirection = (targetPosition - (Vector2)_slime.transform.position).normalized;
+
             _slime.Moveable.MovementDirection = _moveDirection;
             _slime.Moveable.LookDirection = _moveDirection;
 

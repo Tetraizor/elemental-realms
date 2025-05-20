@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904ce76ee795aaf44980d568b22a5eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseHealth: 10
+  _baseHealth: 25
   _showText: 1
   _knockbackResistance: 0.9
   TypeVsResistance:

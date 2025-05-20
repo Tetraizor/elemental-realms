@@ -680,28 +680,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tools_25
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b1c1c4e365071c548a555c6f63a9565b
-      internalID: 779676815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: tools_26
       rect:
         serializedVersion: 2
@@ -862,9 +840,9 @@ TextureImporter:
         x: 32
         y: 96
         width: 32
-        height: 32
+        height: 64
       alignment: 9
-      pivot: {x: 0.5125003, y: 0.43749785}
+      pivot: {x: 0.51250017, y: 0.22707152}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1039,8 +1017,8 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5058758, y: 0.188586}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
