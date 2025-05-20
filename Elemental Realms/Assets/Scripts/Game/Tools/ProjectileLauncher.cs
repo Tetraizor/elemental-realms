@@ -16,7 +16,7 @@ namespace Game.Tools
         [Header("Weapon Properties")]
         [SerializeField] private float _drawTime;
         [SerializeField] private float _currentDrawTime = 0;
-        [SerializeField] private float _swayAngles = 15;
+        [SerializeField] private float _swayAngles = 8;
 
         // References
         private ItemInstance _itemInstance;

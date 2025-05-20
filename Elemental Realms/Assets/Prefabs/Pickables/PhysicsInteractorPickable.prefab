@@ -136,7 +136,7 @@ MonoBehaviour:
   _itemInstance:
     Item: {fileID: 0}
     Durability: 0
-  _activationVelocityThreshold: 10
+  ActivationVelocityThreshold: 5
   _groundLinearFriction: 8
   _groundAngularFriction: 5
   IsActive: 1

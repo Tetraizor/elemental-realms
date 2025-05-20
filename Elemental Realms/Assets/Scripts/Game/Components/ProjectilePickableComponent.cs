@@ -7,8 +7,8 @@ namespace Game.Components
     public class ProjectilePickableComponent : PhysicsInteractorPickableComponent
     {
         [Header("Projectile Properties")]
-        [SerializeField] private float _destroyOnHitChance = .5f;
-        [SerializeField] private float _stickOnHitChance = .5f;
+        [SerializeField] public float DestroyOnHitChance = .5f;
+        [SerializeField] public float StickOnHitChance = .5f;
 
         private void StickToCollider(Collision2D collision)
         {
@@ -26,9 +26,9 @@ namespace Game.Components
 
             IsActive = false;
 
-            if (Random.Range(0, 1.0f) < _destroyOnHitChance) Destroy(gameObject);
+            if (Random.Range(0, 1.0f) < DestroyOnHitChance) Destroy(gameObject);
 
-            if (Random.Range(0, 1.0f) < _stickOnHitChance)
+            if (Random.Range(0, 1.0f) < StickOnHitChance)
             {
                 if (!collision.gameObject.TryGetComponent(out PickableComponent pickable))
                 {

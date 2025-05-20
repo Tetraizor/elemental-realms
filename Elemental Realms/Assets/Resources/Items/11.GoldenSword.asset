@@ -30,5 +30,4 @@ MonoBehaviour:
   - Type: 1
     Damage: 25
     Knockback: 0.4
-  _statusEffects:
-  - {fileID: 11400000, guid: 14587db42a2df7e4bb556d0548c531ff, type: 2}
+  _statusEffects: []

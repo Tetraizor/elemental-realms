@@ -166,6 +166,9 @@ MonoBehaviour:
   - Item: {fileID: 11400000, guid: 131fcbf5fa07adc4faa5fc1313e98edb, type: 2}
     Count: 1
     Chance: 0.7
+  - Item: {fileID: 11400000, guid: 17dd7f7fa7a3b1848acccb6cfe8d0e5c, type: 2}
+    Count: 5
+    Chance: 0.25
 --- !u!114 &429304980516272856
 MonoBehaviour:
   m_ObjectHideFlags: 0

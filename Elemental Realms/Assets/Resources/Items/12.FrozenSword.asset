@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f6b64013a155d43a804277541edcb0, type: 3}
   m_Name: 12.FrozenSword
   m_EditorClassIdentifier: 
-  _id: 11
+  _id: 12
   _itemName: Frozen Sword
   _description: Can be used to freeze enemies.
   _sprite: {fileID: 1645884977, guid: 45d5ea3dea2517d40894d6aa7a43fcdb, type: 3}

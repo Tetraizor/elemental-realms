@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c7df4a1d2700a4f92b066ae28a4468, type: 3}
+  m_Name: 51.MageProjectile
+  m_EditorClassIdentifier: 
+  _id: 50
+  _itemName: Arrow
+  _description: Simple wooden arrow.
+  _sprite: {fileID: 1448674961, guid: 76384e271774c7041bc39919d3e57bda, type: 3}
+  _type: 5
+  _mass: 1
+  _maxStackSize: 99
+  _prefab: {fileID: 1716191604057793394, guid: ba397c7b40281a043bd6d799211d13fc, type: 3}
+  _droppable: 1
+  ResistantEffects: -1
+  _effects:
+  - Type: 8
+    Damage: 15
+    Knockback: 0.5

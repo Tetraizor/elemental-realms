@@ -146,12 +146,12 @@ MonoBehaviour:
   _itemInstance:
     Item: {fileID: 0}
     Durability: 0
-  _activationVelocityThreshold: 20
+  ActivationVelocityThreshold: 20
   _groundLinearFriction: 8
   _groundAngularFriction: 5
   IsActive: 1
-  _destroyOnHitChance: 0
-  _stickOnHitChance: 1
+  DestroyOnHitChance: 0
+  StickOnHitChance: 1
 --- !u!114 &5324294501722879849
 MonoBehaviour:
   m_ObjectHideFlags: 0

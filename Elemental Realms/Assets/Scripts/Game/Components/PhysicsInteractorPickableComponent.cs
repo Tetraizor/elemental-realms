@@ -14,7 +14,7 @@ namespace Game.Components
     public class PhysicsInteractorPickableComponent : PickableComponent
     {
         [Header("Physics Properties")]
-        [SerializeField] private float _activationVelocityThreshold = 20;
+        [SerializeField] public float ActivationVelocityThreshold = 5;
         [SerializeField] private float _groundLinearFriction = 8;
         [SerializeField] private float _groundAngularFriction = 5;
 
@@ -57,7 +57,7 @@ namespace Game.Components
         {
             if (!IsActive) return;
 
-            if (_rigidbody.linearVelocity.magnitude < _activationVelocityThreshold)
+            if (_rigidbody.linearVelocity.magnitude < ActivationVelocityThreshold)
             {
                 IsActive = false;
 

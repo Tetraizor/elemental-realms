@@ -168,6 +168,204 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: actors_3
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 244
+        width: 15
+        height: 11
+      alignment: 9
+      pivot: {x: 0.5425829, y: 0.18643466}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 116cc70148c41a247afad0d273fc76bf
+      internalID: 1455017101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: actors_4
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 240
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae41b7f5e8f4fd4b99dedec6fef3773
+      internalID: 1577041447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: actors_5
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 240
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb8b98056b49fa540bf95b6c482eae2a
+      internalID: 636409700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: actors_6
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 236
+        width: 8
+        height: 7
+      alignment: 9
+      pivot: {x: 0.5159688, y: 0.34487697}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c90bbdfcb162d8547b9e3f3a84842b7f
+      internalID: -1221086524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: actors_7
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 233
+        width: 4
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ce11d356e97d4b40a1e8c7ea611b214
+      internalID: 143944116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: actors_8
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 233
+        width: 4
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d908cb3259379d4c9c2b420864fc8b0
+      internalID: 1148056909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: actors_9
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 240
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a57fb4ee4f517434c92d0e22b99bd1d9
+      internalID: 1448674961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: actors_10
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 220
+        width: 10
+        height: 19
+      alignment: 9
+      pivot: {x: 0.5574867, y: 0.2814821}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11f1d24e00b7dc845b72a9ca2a8af511
+      internalID: -1584388418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: actors_11
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 177
+        width: 32
+        height: 53
+      alignment: 9
+      pivot: {x: 0.50000006, y: 0.08719707}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e046827eb53fcc4dac0d9820285004e
+      internalID: 1013116552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -184,7 +382,16 @@ TextureImporter:
     nameFileIdTable:
       actors_0: -3716429066164623118
       actors_1: 4647957424625045330
+      actors_10: -1584388418
+      actors_11: 1013116552
       actors_2: 749532143
+      actors_3: 1455017101
+      actors_4: 1577041447
+      actors_5: 636409700
+      actors_6: -1221086524
+      actors_7: 143944116
+      actors_8: 1148056909
+      actors_9: 1448674961
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
