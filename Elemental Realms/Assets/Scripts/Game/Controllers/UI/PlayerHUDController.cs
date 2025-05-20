@@ -42,7 +42,7 @@ namespace Game.Controllers.UI
             DOTween.To(() => oldHealth, x =>
             {
                 oldHealth = x;
-                _playerHealthLabel.SetText($"{oldHealth}");
+                _playerHealthLabel.SetText($"{oldHealth:0}");
             }, (int)newHealth, 0.5f).SetEase(Ease.OutQuad);
         }
     }

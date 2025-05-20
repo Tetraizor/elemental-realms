@@ -7,6 +7,7 @@ namespace Game.Enum
 
         Player = 1 << 0,
         Pickable = 1 << 1,
+        Container = 1 << 2,
 
         // Enemies
         Enemy = 1 << 16,

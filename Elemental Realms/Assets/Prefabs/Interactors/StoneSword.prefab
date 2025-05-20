@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca502cbb567d514da1762cb10046bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetTags: 65538
+  _targetTags: 65542
   _cooldown: 0.8
   _throwable: 1
   _animationTriggerNames:

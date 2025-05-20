@@ -59,7 +59,7 @@ namespace Game.Components
 
                 float percentage = 1 - (trueDamage / BaseHealth);
                 var color = new Color(1, percentage, percentage);
-                damageText.Setup(trueDamage.ToString(), color);
+                damageText.Setup(trueDamage.ToString("0.0"), color);
             }
 
             SetHealth(Health - trueDamage);
@@ -81,7 +81,7 @@ namespace Game.Components
 
                 float percentage = 1 - (amount / BaseHealth);
                 var color = new Color(percentage, 1, percentage);
-                damageText.Setup(amount.ToString(), color);
+                damageText.Setup(amount.ToString("0.0"), color);
             }
 
             SetHealth(Health + amount);
