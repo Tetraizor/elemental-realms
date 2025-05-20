@@ -1,10 +1,11 @@
 using Game.Enum;
+using Game.Modifiers;
 using UnityEngine;
 
 namespace Game.Status
 {
     [CreateAssetMenu(fileName = "OnFireEffect", menuName = "Effects/Status/On Fire", order = 0)]
-    public class OnFireStatusSO : StatusBaseSO
+    public class OnFireStatusSO : StatusBaseSO, ISpeedModifier
     {
         [SerializeField] private GameObject _fireParticles;
 
@@ -64,6 +65,8 @@ namespace Game.Status
             var statusData = statusInstance.StatusData as OnFireStatusData;
             statusData.Lifetime = 0;
         }
+
+        public float GetSpeedModifier() => 1.5f;
     }
 
     public class OnFireStatusData : StatusData

@@ -6,12 +6,13 @@ using UnityEditor;
 using System.Linq;
 using Game.Enum;
 using Game.Status;
+using Game.Modifiers;
 
 namespace Game.Entities.Common
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(HealthComponent))]
-    public class Entity : MonoBehaviour
+    public class Entity : MonoBehaviour, ISpeedModifier
     {
         #region Properties
 
@@ -71,6 +72,21 @@ namespace Game.Entities.Common
         private void OnDestroy()
         {
             StatusManager.Statuses.ForEach(status => StatusManager.RemoveStatus(status));
+        }
+
+        public float GetSpeedModifier()
+        {
+            float speedMultiplier = 1;
+
+            StatusManager.Statuses.ForEach(status =>
+            {
+                if (status.Status is ISpeedModifier speedModifier)
+                {
+                    speedMultiplier *= speedModifier.GetSpeedModifier();
+                }
+            });
+
+            return speedMultiplier;
         }
 
         #endregion

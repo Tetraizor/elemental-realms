@@ -21,6 +21,7 @@ MonoBehaviour:
   _maxStackSize: 1
   _prefab: {fileID: 8826670579028751054, guid: 88f78cb9b7d1d15499c7c4e753c68f83, type: 3}
   _droppable: 1
+  ResistantEffects: -1
   MaxDurability: 20
   MovementSpeedPenalty: 0.2
   UseSpeedPenalty: 0.6
@@ -30,4 +31,4 @@ MonoBehaviour:
     Damage: 8
     Knockback: 0.1
   _statusEffects:
-  - {fileID: 11400000, guid: 53ce27e79ae08714f80390abc7bd88fc, type: 2}
+  - {fileID: 11400000, guid: 2385ff14da38e344382f3a6a89e2def9, type: 2}

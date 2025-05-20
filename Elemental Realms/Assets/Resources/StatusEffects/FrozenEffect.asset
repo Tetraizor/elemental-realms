@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc2ad49cf3a29147abb63a9f023b524, type: 3}
+  m_Name: FrozenEffect
+  m_EditorClassIdentifier: 
+  Name: Frozen
+  Icon: {fileID: 0}
+  Type: 2
+  _frozenParticles: {fileID: 2801806714091837241, guid: b26051d08459e704ebed482bad7d30a0, type: 3}
+  _frozenShell: {fileID: 5035118422497433934, guid: 6abf9ea4421fd1a4499384b3112761f0, type: 3}
