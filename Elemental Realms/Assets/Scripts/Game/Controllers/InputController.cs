@@ -53,7 +53,15 @@ namespace Game.Controllers
         private void OnDestroy()
         {
             if (Input)
+            {
                 Input.onControlsChanged -= OnControlsChanged;
+            }
+
+            if (Controls != null)
+            {
+                Controls.Disable();
+                Controls.Dispose();
+            }
         }
     }
 }
