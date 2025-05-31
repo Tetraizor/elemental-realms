@@ -8,12 +8,14 @@ _A 2D top-down sandbox game prototype inspired by the brilliant mechanics of_ **
 
 At its core, the project is a small open-ended sandbox that experiments with very simple elemental interactions, physics-based interactions, and a scalable entity architecture. While not a complete game, it serves as a playground for systems-driven gameplay and design iteration.
 
+[Play the game at itch.io (WebGL)](https://tetraizor.itch.io/elemental-realms)
+
 ## 🎮 Features
 
 - 🌿 **Elemental Interactions** — Use suitable tools/environmental objects to burn or freeze enemies, or even yourself.
 <br>
 <p align="center">
-<img src="docs/md/fire.gif" width="90%" alt="Gameplay Demo">
+<img src="docs/md/crates.gif" width="90%" alt="Gameplay Demo">
 </p>
 
 - ⚔️ **Melee Combat** — Fight enemies using close-range weapons or throw tools at them from afar instead.

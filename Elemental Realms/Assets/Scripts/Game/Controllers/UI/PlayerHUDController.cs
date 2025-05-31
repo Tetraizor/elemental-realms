@@ -17,7 +17,7 @@ namespace Game.Controllers.UI
         [SerializeField] private TextMeshProUGUI _playerHealthLabel;
         [SerializeField] private Image _playerHealthColor;
 
-        private void Awake()
+        private void Start()
         {
             _player.Health.Changed.AddListener(OnPlayerHealthChanged);
             _player.Spawned.AddListener(OnPlayerSpawned);
