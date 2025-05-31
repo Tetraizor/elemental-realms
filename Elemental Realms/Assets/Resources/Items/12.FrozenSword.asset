@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f6b64013a155d43a804277541edcb0, type: 3}
+  m_Name: 12.FrozenSword
+  m_EditorClassIdentifier: 
+  _id: 12
+  _itemName: Frozen Sword
+  _description: Can be used to freeze enemies.
+  _sprite: {fileID: 1645884977, guid: 45d5ea3dea2517d40894d6aa7a43fcdb, type: 3}
+  _type: 1
+  _mass: 15
+  _maxStackSize: 1
+  _prefab: {fileID: 8826670579028751054, guid: 88f78cb9b7d1d15499c7c4e753c68f83, type: 3}
+  _droppable: 1
+  ResistantEffects: -1
+  MaxDurability: 100
+  MovementSpeedPenalty: 0.3
+  UseSpeedPenalty: 0.7
+  InteractorPrefab: {fileID: 6291199471755996894, guid: 00908d3d325e71740adb0c54508bb290, type: 3}
+  _attackEffects:
+  - Type: 1
+    Damage: 15
+    Knockback: 0.4
+  _statusEffects:
+  - {fileID: 11400000, guid: 14587db42a2df7e4bb556d0548c531ff, type: 2}

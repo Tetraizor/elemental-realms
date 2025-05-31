@@ -1,0 +1,906 @@
+fileFormatVersion: 2
+guid: a1f6aa891a4ad8049b9c84b50451d874
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8537372944163426157
+    second: debug_atlas_0
+  - first:
+      213: 5755481033350012215
+    second: debug_atlas_1
+  - first:
+      213: -4272829439315099273
+    second: debug_atlas_2
+  - first:
+      213: -5218247618777913986
+    second: debug_atlas_3
+  - first:
+      213: 1919634731948093435
+    second: debug_atlas_4
+  - first:
+      213: -3572417129855850722
+    second: debug_atlas_5
+  - first:
+      213: 7625227436051710361
+    second: debug_atlas_6
+  - first:
+      213: 9139021370161706986
+    second: debug_atlas_7
+  - first:
+      213: -4157838419751571885
+    second: debug_atlas_8
+  - first:
+      213: -8515772800681639292
+    second: debug_atlas_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: stone_slab
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 489
+        width: 14
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 390bb1c4a88258980800000000000000
+      internalID: -8537372944163426157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree_trunk
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 466
+        width: 17
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0.14893617}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73d535881839fdf40800000000000000
+      internalID: 5755481033350012215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree_top
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 421
+        width: 75
+        height: 90
+      alignment: 9
+      pivot: {x: 0.4935065, y: 0.15217392}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 771cacb634cd3b4c0800000000000000
+      internalID: -4272829439315099273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rock
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 445
+        width: 22
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5416667, y: 0.3181818}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e75e6bc207f0597b0800000000000000
+      internalID: -5218247618777913986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 419
+        width: 13
+        height: 26
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0.1923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bffa4483e99e3aa10800000000000000
+      internalID: 1919634731948093435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stick
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 424
+        width: 10
+        height: 21
+      alignment: 9
+      pivot: {x: 0.3, y: 0.23809524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e17eb614c893c6ec0800000000000000
+      internalID: -3572417129855850722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 431
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 991cc61f3ff32d960800000000000000
+      internalID: 7625227436051710361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 407
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.47058824, y: 0.3846154}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae7313bf38354de70800000000000000
+      internalID: 9139021370161706986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_body
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 405
+        width: 17
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35e6c358cf36c46c0800000000000000
+      internalID: -4157838419751571885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_hand
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 415
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 482007b91c5e1d980800000000000000
+      internalID: -8515772800681639292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 386
+        width: 27
+        height: 19
+      alignment: 9
+      pivot: {x: 0.5215258, y: 0.22600707}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c1a4938684c90343963cd1c2de0bed9
+      internalID: 618291046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 374
+        width: 16
+        height: 11
+      alignment: 9
+      pivot: {x: 0.53632545, y: 0.33394277}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21f7fcc3afb3b8346b3b9b5a5d536703
+      internalID: -143497733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_2
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 381
+        width: 6
+        height: 4
+      alignment: 9
+      pivot: {x: 0.5415166, y: 0.23016357}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0051980a83f49ac4c8489cef40958278
+      internalID: 860283712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_3
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 374
+        width: 25
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5091403, y: 0.41796875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 328284882036b4741aa3ce61b4e1b54b
+      internalID: 561897579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_4
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 388
+        width: 14
+        height: 17
+      alignment: 9
+      pivot: {x: 0.49455914, y: 0.16394581}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 846b25640d654fe4e8632ddd9db43302
+      internalID: -418406329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_5
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 390
+        width: 14
+        height: 15
+      alignment: 9
+      pivot: {x: 0.5217634, y: 0.19531046}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efeecfe70182c8f4b8b0bccadd063927
+      internalID: 1995833900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 466
+        width: 14
+        height: 22
+      alignment: 9
+      pivot: {x: 0.4667704, y: 0.30066195}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 924f46af5fedbbb419019d72d6796c5d
+      internalID: 807542608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_7
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 432
+        width: 17
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12783882}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d85127eb8e5dd346a022eeb53ec0872
+      internalID: 1381628296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_8
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 478
+        width: 52
+        height: 33
+      alignment: 9
+      pivot: {x: 0.50681627, y: 0.263707}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760908925acc4fe408ec185cdf95ba62
+      internalID: 102584755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_9
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 298
+        width: 47
+        height: 48
+      alignment: 9
+      pivot: {x: 0.49658498, y: 0.13889758}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4127a3efc4e66384aad223f5390d71c6
+      internalID: -1841893751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_10
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 391
+        width: 18
+        height: 29
+      alignment: 9
+      pivot: {x: 0.494311, y: 0.15747912}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 262494318ea29dc44bce8d962467067a
+      internalID: -124348028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_11
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 390
+        width: 18
+        height: 27
+      alignment: 9
+      pivot: {x: 0.511378, y: 0.16624168}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 942b07e46c798a54b91123b9b6ae57ce
+      internalID: -346555209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_12
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 378
+        width: 30
+        height: 12
+      alignment: 9
+      pivot: {x: 0.48975956, y: 0.3890635}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd0d1cf57e183f64b99b11b03779ae00
+      internalID: -1177545142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_13
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 273
+        width: 35
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b7378e4ab73a5243a02164181ad10c1
+      internalID: -724666375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_14
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 361
+        width: 17
+        height: 12
+      alignment: 9
+      pivot: {x: 0.49563396, y: 0.15982056}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28cff4833d8a9fe49a78ea2040223624
+      internalID: -470763288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_15
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 361
+        width: 17
+        height: 12
+      alignment: 9
+      pivot: {x: 0.49999967, y: 0.14126587}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db48fe177f1507143a1f44d5becfa7b0
+      internalID: 1261395034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_16
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 361
+        width: 17
+        height: 12
+      alignment: 9
+      pivot: {x: 0.48690256, y: 0.20930226}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4108a7cca1005d4ab3cf75a86599422
+      internalID: -2086351593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_17
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 352
+        width: 19
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5088312, y: 0.034658205}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b8e147cc5fd08a44a96e1410854459b
+      internalID: -553705716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_18
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 350
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 921b6b1bf3d57214ea87cabbf47a23e3
+      internalID: -1786803757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_19
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 354
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a76bd6450a2957408af0216789a853a
+      internalID: 1408595733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_20
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 347
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3359e40c050ed9c4d9bf80d61255a37c
+      internalID: -1427294737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_21
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 349
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c334ced9df2ba846aa03b275fe4779f
+      internalID: 450216883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: debug_atlas_22
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 298
+        width: 47
+        height: 48
+      alignment: 9
+      pivot: {x: 0.49999985, y: 0.139225}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09b48d5449528c843be4b2943fd635cf
+      internalID: 1240822760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 955036f0654e8684a8092f4ab442e308
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      debug_atlas_0: 618291046
+      debug_atlas_1: -143497733
+      debug_atlas_10: -124348028
+      debug_atlas_11: -346555209
+      debug_atlas_12: -1177545142
+      debug_atlas_13: -724666375
+      debug_atlas_14: -470763288
+      debug_atlas_15: 1261395034
+      debug_atlas_16: -2086351593
+      debug_atlas_17: -553705716
+      debug_atlas_18: -1786803757
+      debug_atlas_19: 1408595733
+      debug_atlas_2: 860283712
+      debug_atlas_20: -1427294737
+      debug_atlas_21: 450216883
+      debug_atlas_22: 1240822760
+      debug_atlas_3: 561897579
+      debug_atlas_4: -418406329
+      debug_atlas_5: 1995833900
+      debug_atlas_6: 807542608
+      debug_atlas_7: 1381628296
+      debug_atlas_8: 102584755
+      debug_atlas_9: -1841893751
+      player_body: -4157838419751571885
+      player_hand: -8515772800681639292
+      rock: -5218247618777913986
+      shield: 7625227436051710361
+      slime: 9139021370161706986
+      stick: -3572417129855850722
+      stone_slab: -8537372944163426157
+      sword: 1919634731948093435
+      tree_top: -4272829439315099273
+      tree_trunk: 5755481033350012215
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

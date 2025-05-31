@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f6b64013a155d43a804277541edcb0, type: 3}
+  m_Name: 3.StoneSpear
+  m_EditorClassIdentifier: 
+  _id: 3
+  _itemName: Stone Spear
+  _description: Good in long distances.
+  _sprite: {fileID: 5292716684467120071, guid: 45d5ea3dea2517d40894d6aa7a43fcdb, type: 3}
+  _type: 1
+  _mass: 15
+  _maxStackSize: 1
+  _prefab: {fileID: 8826670579028751054, guid: 88f78cb9b7d1d15499c7c4e753c68f83, type: 3}
+  _droppable: 1
+  ResistantEffects: -1
+  MaxDurability: 20
+  MovementSpeedPenalty: 0.2
+  UseSpeedPenalty: 0.6
+  InteractorPrefab: {fileID: 6029146042148992363, guid: d628c4c2b69f8384db1e195dcf3dd5e2, type: 3}
+  _attackEffects:
+  - Type: 2
+    Damage: 8
+    Knockback: 0.1
+  _statusEffects:
+  - {fileID: 11400000, guid: 2385ff14da38e344382f3a6a89e2def9, type: 2}

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f6b64013a155d43a804277541edcb0, type: 3}
+  m_Name: 11.GoldenSword
+  m_EditorClassIdentifier: 
+  _id: 11
+  _itemName: Golden Sword
+  _description: 'Masterfully crafted, light and quick to use. '
+  _sprite: {fileID: -1109973829, guid: 45d5ea3dea2517d40894d6aa7a43fcdb, type: 3}
+  _type: 1
+  _mass: 15
+  _maxStackSize: 1
+  _prefab: {fileID: 8826670579028751054, guid: 88f78cb9b7d1d15499c7c4e753c68f83, type: 3}
+  _droppable: 1
+  ResistantEffects: -1
+  MaxDurability: 100
+  MovementSpeedPenalty: 0.1
+  UseSpeedPenalty: 0.4
+  InteractorPrefab: {fileID: 2359831326788103446, guid: 253c7f70e4416ac4191b270fe9357a5d, type: 3}
+  _attackEffects:
+  - Type: 1
+    Damage: 25
+    Knockback: 0.4
+  _statusEffects: []

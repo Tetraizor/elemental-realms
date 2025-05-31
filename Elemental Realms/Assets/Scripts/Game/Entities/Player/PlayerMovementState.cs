@@ -1,0 +1,34 @@
+using Game.Entities.Player;
+using UnityEngine;
+
+namespace Game.Entities.Player
+{
+    public class PlayerMovementState : StateBase
+    {
+        private PlayerEntity _player;
+
+        public PlayerMovementState(PlayerEntity player)
+        {
+            _player = player;
+        }
+
+        public override void Enter()
+        {
+            _player.GetComponent<Animator>().SetTrigger("PlayerWalk");
+        }
+
+        public override bool Exit(StateBase newState) => true;
+
+        public override void FixedTick(float fixedDeltaTime)
+        {
+        }
+
+        public override void Tick(float deltaTime)
+        {
+            if (_player.Moveable.MovementDirection.magnitude < 0.1f)
+            {
+                _player.StateManager.SetState(new PlayerIdleState(_player));
+            }
+        }
+    }
+}
