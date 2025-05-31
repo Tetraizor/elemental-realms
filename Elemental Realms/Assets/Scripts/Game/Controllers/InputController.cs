@@ -12,8 +12,10 @@ namespace Game.Controllers
         public PlayerInput Input { get; private set; }
         public InputType ActiveInputType { get; private set; }
 
-        private void Start()
+        protected override void Init()
         {
+            base.Init();
+
             Controls = new MainControls();
             Controls.Enable();
 

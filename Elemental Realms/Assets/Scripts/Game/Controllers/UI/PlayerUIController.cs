@@ -1,8 +1,11 @@
+using System;
 using System.Linq;
 using DG.Tweening;
+using Game.Entities.Player;
 using Game.Enum;
 using Game.Input;
 using Tetraizor.MonoSingleton;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -37,6 +40,8 @@ namespace Game.Controllers.UI
         [SerializeField] private Sprite _activeLabelSprite;
         [SerializeField] private Sprite _inactiveLabelSprite;
 
+        [SerializeField] private TextMeshProUGUI _healthLabel;
+
         private const float INVENTORY_SLIDE_TIME = .5f;
         private const float INVENTORY_BUTTON_ANIMATION_TIME = .1f;
 
@@ -53,10 +58,17 @@ namespace Game.Controllers.UI
             _previousButton.onClick.AddListener(SelectPreviousTab);
             _nextButton.onClick.AddListener(SelectNextTab);
 
+            FindFirstObjectByType<PlayerEntity>().Health.Changed.AddListener(PlayerHealthChanged);
+
             _activeInventoryType = InventoryType.ToolsInventory;
             ChangeInventory(InventoryType.MaterialInventory);
 
             DeactivateInput();
+        }
+
+        private void PlayerHealthChanged(float previousHealth, float newHealth)
+        {
+            _healthLabel.SetText(newHealth.ToString("0.0"));
         }
 
         public void ChangeInventory(InventoryType inventoryType)
